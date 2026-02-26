@@ -10,7 +10,15 @@ import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import starsRain from "./../../public/assets/lotties/starsRain.json";
 import gsap from 'gsap'
 
-const Hero = () => {
+interface Props {
+    badge?: string;
+    heading?: string;
+    para?: string;
+    btn1?: string;
+    btn2?: string;
+}
+
+const Hero = ({ badge, heading, para, btn1, btn2 }: Props) => {
     const lottieRef = useRef<LottieRefCurrentProps>(null);
 
     useEffect(() => {
@@ -207,12 +215,12 @@ const Hero = () => {
     return (
         <div className='min-h-screen flex justify-center relative lg:pt-25.5 pt-10 lg:pb-75 md:pb-30 pb-25 px-4'>
             <div ref={containerRef} className="max-w-247 mx-auto flex flex-col sm:gap-6 gap-4 items-center relative z-20 justify-center">
-                <Badge ref={badgeRef} style={{ ["--dynamic-gradient" as any]: `linear-gradient(${count}.03deg, rgba(255,255,255,0.5) 0.02%, rgba(153,153,153,0) 50.18%)` }} className={`opacity-0`}>Premium Web Development Studio</Badge>
-                <Heading ref={headingRef} Tag='h1' className='lg:text-6xl md:text-5xl sm:text-4xl text-3xl opacity-0 text-center font-bold leading-[137%]'>Building High-Performance <br /> Sites for SaaS & Tech.</Heading>
-                <Paragraph ref={paraRef} className='opacity-0 text-center'>Stop losing users to slow load times and generic templates. CodeBlooms designs and develops custom, lightning-fast digital experiences using Next.js and React to scale your MRR and turn visitors into loyal users.</Paragraph>
+                <Badge ref={badgeRef} style={{ ["--dynamic-gradient" as any]: `linear-gradient(${count}.03deg, rgba(255,255,255,0.5) 0.02%, rgba(153,153,153,0) 50.18%)` }} className={`opacity-0`}>{badge}</Badge>
+                <h1 ref={headingRef} dangerouslySetInnerHTML={{ __html: heading ?? "" }} className='bg-[linear-gradient(89.7deg,rgba(255,255,255,0.4)_1.56%,#FFFFFF_23.75%,#FFFFFF_50.16%,rgba(255,255,255,0.4)_97.71%)] bg-clip-text text-transparent lg:text-6xl md:text-5xl sm:text-4xl text-3xl opacity-0 text-center font-bold leading-[137%]'></h1>
+                <Paragraph ref={paraRef} className='opacity-0 text-center'>{para}</Paragraph>
                 <div className="flex items-stretch justify-center sm:flex-row flex-col sm:max-w-none max-w-100 w-full sm:gap-5 gap-3 sm:mt-0 mt-4">
-                    <Button className='opacity-0' ref={btn1Ref}>Start Your Project</Button>
-                    <Button className='opacity-0' ref={btn2Ref} secondary>View Our Work</Button>
+                    <Button className='opacity-0' ref={btn1Ref}>{btn1}</Button>
+                    <Button className='opacity-0' ref={btn2Ref} secondary>{btn2}</Button>
                 </div>
                 {/* <p className='text-white'>{count}</p> */}
             </div>

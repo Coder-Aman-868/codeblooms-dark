@@ -3,6 +3,6 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <Hero />
+    <Hero badge="Premium Web Development Studio" heading="Building High-Performance <br class='sm:flex hidden' /> Sites for SaaS & Tech." para=" Stop losing users to slow load times and generic templates. CodeBlooms designs and develops custom, lightning-fast digital experiences using Next.js and React to scale your MRR and turn visitors into loyal users." btn1="Start Your Project" btn2=" View Our Work" />
   );
 }
