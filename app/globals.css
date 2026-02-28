@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --text-custom-7xl: 60px;
+  --text-custom-4xl: 42px;
 }
 
 .badge-box {
@@ -21,4 +21,50 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
+}
+
+.slider-buttons {
+  position: relative;
+}
+
+.slider-buttons::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  pointer-events: none !important;
+  padding: 1px;
+  background: linear-gradient(90.03deg, rgba(255, 255, 255, 0.5) 0.02%, rgba(153, 153, 153, 0) 50.18%);
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.back-to-top-button {
+  position: relative;
+}
+
+.back-to-top-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  pointer-events: none !important;
+  padding: 2px;
+  background: var(--back-gradient);
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.swiper-slide-active {
+  .active-ellipse {
+    opacity: 1 !important;
+    scale: 1 !important;
+    transform: translateY(0) !important;
+  }
 }

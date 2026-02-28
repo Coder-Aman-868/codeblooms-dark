@@ -10,7 +10,7 @@ interface Props {
 
 const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML }: Props) => {
     return (
-        <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(89.7deg,rgba(255,255,255,0.4)_1.56%,#FFFFFF_23.75%,#FFFFFF_50.16%,rgba(255,255,255,0.4)_97.71%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
+        <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(90deg,_#FFFFFF_30%,_#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
     )
 }
 

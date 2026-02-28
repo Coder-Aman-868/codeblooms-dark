@@ -213,7 +213,7 @@ const Hero = ({ badge, heading, para, btn1, btn2 }: Props) => {
 
     }, []);
     return (
-        <div className='min-h-screen flex justify-center relative lg:pt-25.5 pt-10 lg:pb-75 md:pb-30 pb-25 px-4'>
+        <div className='lg:min-h-screen flex justify-center relative lg:pt-25.5 sm:pt-30 pt-25 lg:pb-75 md:pb-50 sm:pb-35 pb-45 px-4 overflow-x-clip'>
             <div ref={containerRef} className="max-w-247 mx-auto flex flex-col sm:gap-6 gap-4 items-center relative z-20 justify-center">
                 <Badge ref={badgeRef} style={{ ["--dynamic-gradient" as any]: `linear-gradient(${count}.03deg, rgba(255,255,255,0.5) 0.02%, rgba(153,153,153,0) 50.18%)` }} className={`opacity-0`}>{badge}</Badge>
                 <h1 ref={headingRef} dangerouslySetInnerHTML={{ __html: heading ?? "" }} className='bg-[linear-gradient(89.7deg,rgba(255,255,255,0.4)_1.56%,#FFFFFF_23.75%,#FFFFFF_50.16%,rgba(255,255,255,0.4)_97.71%)] bg-clip-text text-transparent lg:text-6xl md:text-5xl sm:text-4xl text-3xl opacity-0 text-center font-bold leading-[137%]'></h1>
@@ -235,7 +235,7 @@ const Hero = ({ badge, heading, para, btn1, btn2 }: Props) => {
                             className="min-w-300 w-full h-full object-cover"
                         />
                     </div>
-                    <div className="absolute sm:top-[70%] top-[80%] left-1/2 -translate-x-1/2 xl:w-200 md:w-150 sm:w-86 w-75 lg:h-75.75 md:h-55.75 h-35">
+                    <div className="absolute lg:top-[70%] md:top-[60%] top-[70%] left-1/2 -translate-x-1/2 xl:w-200 md:w-150 sm:w-86 w-75 lg:h-75.75 md:h-55.75 h-35">
                         <div ref={blurWhiteLayer} className="absolute opacity-0 w-full h-full lg:top-[-25%] top-[20%] left-1/2 -translate-x-1/2">
                             <Image fill className='h-full lg:scale-[3] scale-[2]' src={'/assets/images/png/hero-blur-layer.png'} alt='blur layer' />
                         </div>
