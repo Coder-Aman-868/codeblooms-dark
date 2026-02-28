@@ -1,4 +1,5 @@
 import React from 'react'
+import SmoothAnimtionWrapper from './SmoothAnimtionWrapper';
 
 interface Props {
     children: React.ReactNode;
@@ -6,11 +7,22 @@ interface Props {
     className?: string;
     ref?: React.RefObject<HTMLHeadingElement>;
     dangerouslySetInnerHTML?: { __html: string };
+    animate?: boolean;
 }
 
-const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML }: Props) => {
+const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML, animate }: Props) => {
     return (
-        <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(90deg,_#FFFFFF_30%,_#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
+        <>
+            {!animate && (
+                <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(90deg,#FFFFFF_30%,#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
+
+            )}
+            {animate && (
+                <SmoothAnimtionWrapper>
+                    <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(90deg,#FFFFFF_30%,#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
+                </SmoothAnimtionWrapper>
+            )}
+        </>
     )
 }
 
