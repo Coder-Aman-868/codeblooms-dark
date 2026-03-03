@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import BackToTop from "@/components/common/BackToTop";
 import ContactNow from "@/components/common/ContactNow";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -73,6 +74,7 @@ export default function RootLayout({
         {children}
         <BackToTop />
         {/* <ContactNow /> */}
+        <SpeedInsights />
       </body>
     </html>
   );
