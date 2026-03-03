@@ -68,3 +68,20 @@
     transform: translateY(0) !important;
   }
 }
+
+.testimonials-swiper-wrapper {
+  .swiper-pagination-bullet {
+    /* width: 8px; */
+    transition: all 0.3s ease-in-out;
+    /* height: 4px; */
+    border-radius: 999px;
+    background: #fff;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 30px;
+    opacity: 1;
+    background: white;
+  }
+}

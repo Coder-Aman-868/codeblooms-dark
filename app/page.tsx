@@ -1,5 +1,7 @@
 import Hero from "@/components/common/Hero";
 import BuiltScale from "@/components/homepage/BuiltScale";
+import CtaSection from "@/components/common/CtaSection";
+import FoundersSaying from "@/components/homepage/FoundersSaying";
 import Methodology from "@/components/homepage/Methodology";
 import WorkNeedle from "@/components/homepage/WorkNeedle";
 import Image from "next/image";
@@ -11,6 +13,8 @@ export default function Home() {
       <BuiltScale />
       <WorkNeedle />
       <Methodology />
+      <FoundersSaying />
+      <CtaSection />
     </>
   );
 }

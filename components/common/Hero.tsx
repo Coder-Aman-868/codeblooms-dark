@@ -25,58 +25,6 @@ const Hero = ({ badge, heading, para, btn1, btn2 }: Props) => {
         lottieRef.current?.setSpeed(0.5);
     }, []);
 
-    const [count, setCount] = useState<number>(90);
-    const frameRef = useRef<number | null>(null);
-
-    useEffect(() => {
-        const startValue = 90;
-        const midValue = 270;
-        const endValue = 450;
-
-        const duration1 = 2500; // 2.5s
-        const duration2 = 2000; // 1s slow finish
-
-        let startTime: number | null = null;
-
-        const easeInOut = (t: number): number => {
-            return t < 0.5
-                ? 2 * t * t
-                : 1 - Math.pow(-2 * t + 2, 2) / 2;
-        };
-
-        const animate = (timestamp: number) => {
-            if (!startTime) startTime = timestamp;
-            const progress = timestamp - startTime;
-
-            if (progress <= duration1) {
-                const t = progress / duration1;
-                const eased = easeInOut(t);
-                const value = startValue + (midValue - startValue) * eased;
-                setCount(Math.floor(value));
-            }
-            else if (progress <= duration1 + duration2) {
-                const t = (progress - duration1) / duration2;
-                const eased = easeInOut(t);
-                const value = midValue + (endValue - midValue) * eased;
-                setCount(Math.floor(value));
-            }
-            else {
-                // Restart cycle
-                startTime = timestamp;
-            }
-
-            frameRef.current = requestAnimationFrame(animate);
-        };
-
-        frameRef.current = requestAnimationFrame(animate);
-
-        return () => {
-            if (frameRef.current) {
-                cancelAnimationFrame(frameRef.current);
-            }
-        };
-    }, []);
-
     const circleImage = useRef<HTMLDivElement | null | any>(null);
     const blurWhiteLayer = useRef<HTMLDivElement | null | any>(null);
     const starsBg = useRef<HTMLDivElement | null | any>(null);
@@ -215,7 +163,7 @@ const Hero = ({ badge, heading, para, btn1, btn2 }: Props) => {
     return (
         <div className='lg:min-h-screen flex justify-center relative lg:pt-25.5 sm:pt-30 pt-25 lg:pb-75 md:pb-50 sm:pb-35 pb-45 px-4 overflow-x-clip'>
             <div ref={containerRef} className="max-w-247 mx-auto flex flex-col sm:gap-6 gap-4 items-center relative z-20 justify-center">
-                <Badge ref={badgeRef} style={{ ["--dynamic-gradient" as any]: `linear-gradient(${count}.03deg, rgba(255,255,255,0.5) 0.02%, rgba(153,153,153,0) 50.18%)` }} className={`opacity-0`}>{badge}</Badge>
+                <Badge ref={badgeRef} className={`opacity-0`}>{badge}</Badge>
                 <h1 ref={headingRef} dangerouslySetInnerHTML={{ __html: heading ?? "" }} className='bg-[linear-gradient(89.7deg,rgba(255,255,255,0.4)_1.56%,#FFFFFF_23.75%,#FFFFFF_50.16%,rgba(255,255,255,0.4)_97.71%)] bg-clip-text text-transparent lg:text-6xl md:text-5xl sm:text-4xl text-3xl opacity-0 text-center font-bold leading-[137%]'></h1>
                 <Paragraph ref={paraRef} className='opacity-0 text-center'>{para}</Paragraph>
                 <div className="flex items-stretch justify-center sm:flex-row flex-col sm:max-w-none max-w-100 w-full sm:gap-5 gap-3 sm:mt-0 mt-4">
