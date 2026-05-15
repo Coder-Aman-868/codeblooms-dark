@@ -43,7 +43,7 @@ export default function SmoothAnimtionWrapper({ children, className }: SmoothAni
     return (
         <div
             ref={sectionRef}
-            className={`opacity-0 ${className}`}
+            className={`${className}`}
         >
             {children}
         </div>

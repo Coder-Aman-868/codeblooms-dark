@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+// @ts-ignore
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import BackToTop from "@/components/common/BackToTop";
-import ContactNow from "@/components/common/ContactNow";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/common/Footer";
+import LenisScroll from "@/components/LenisScroll";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -71,12 +71,13 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased bg-black`}
       >
+        {/* <LenisScroll /> */}
         <Navbar />
         {children}
         <Footer />
         <BackToTop />
         {/* <ContactNow /> */}
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
       </body>
     </html>
   );

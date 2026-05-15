@@ -71,74 +71,92 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <div className='lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip'>
+    <div className='py-20 md:py-28 lg:py-32 px-5 relative overflow-x-clip border-t border-white/5'>
       <div className="max-w-[1036px] mx-auto w-full">
-        <div className="flex flex-col justify-center items-center gap-3 max-w-[800px] mx-auto pb-10 md:pb-15">
-          <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>
-            Our <span className='bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent'>Services</span>
+        {/* Header */}
+        <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pb-16 md:pb-24">
+          <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
+            Our <span className='font-normal border-b border-white/20 pb-1'>Services</span>
           </Heading>
-          <Paragraph animate className='text-center opacity-80'>
-            Tailored solutions to elevate your digital presence and drive measurable results.
+          <Paragraph animate className='text-center opacity-60 font-light text-lg'>
+            Tailored engineering solutions to elevate your digital presence and drive measurable results.
           </Paragraph>
         </div>
 
-        <div className="flex flex-col gap-6 sm:gap-8">
-          {servicesData.map((service, index) => (
-            <SmoothAnimtionWrapper key={service.id} className="relative group rounded-2xl overflow-hidden p-[1px]">
-              {/* Gradient Border */}
-              <div className="absolute inset-0 bg-[linear-gradient(115.42deg,_rgba(184,184,184,0.3)_0%,_rgba(82,82,82,0)_50%,_rgba(184,184,184,0.3)_100%)] opacity-100 transition-opacity duration-500"></div>
+        {/* Timeline Container */}
+        <div className="relative max-w-[900px] mx-auto">
+          {/* Vertical Line */}
+          <div className="absolute left-[15px] sm:left-[39px] top-8 bottom-8 w-[1px] bg-white/10"></div>
 
-              {/* Inner Card Content */}
-              <div id={service.id} className="relative flex flex-col gap-6 p-6 sm:p-8 lg:p-10 bg-[#171717] rounded-2xl overflow-hidden">
-                {/* Glow Effect */}
-                <div className="absolute pointer-events-none -top-20 -right-20 w-60 h-60 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
+          <div className="flex flex-col gap-12 sm:gap-20">
+            {servicesData.map((service, index) => (
+              <SmoothAnimtionWrapper key={service.id} className="relative group flex items-start w-full">
+                
+                {/* Timeline Dot */}
+                <div className="relative flex-none w-[30px] sm:w-[80px] h-full flex flex-col items-center pt-2.5">
+                    {/* Glowing Dot */}
+                    <div className="w-8 h-8 rounded-full border border-white/10 bg-black flex items-center justify-center relative z-10 transition-all duration-700 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                        <div className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-white transition-colors duration-700"></div>
+                    </div>
+                </div>
 
-                {/* Title */}
-                <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent! relative z-10'>
-                  {service.title}
-                </Heading>
+                {/* Content Container */}
+                <div id={service.id} className="flex-1 ml-4 sm:ml-8 relative">
+                  {/* Subtle hover glow behind content */}
+                  <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[120%] bg-gradient-to-r from-white/5 to-transparent blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-full"></div>
 
-                {/* Problem & Solution */}
-                <div className="flex flex-col gap-4 relative z-10">
-                  <div>
-                    <Paragraph className="!text-base font-semibold mb-2">The Problem:</Paragraph>
-                    <Paragraph className="opacity-70 !text-sm sm:!text-base">{service.problem}</Paragraph>
+                  <div className="flex flex-col gap-6 relative z-10 pb-6 sm:pb-8 border-b border-white/0 group-hover:border-white/10 transition-colors duration-700">
+                    
+                    {/* Title */}
+                    <Heading Tag='h3' className='text-2xl sm:text-4xl font-light tracking-wide text-white! bg-transparent!'>
+                      {service.title}
+                    </Heading>
+
+                    {/* Problem / Solution Grid */}
+                    <div className="grid md:grid-cols-2 gap-6 sm:gap-10 mt-2">
+                      <div className="flex flex-col gap-2">
+                        <span className="text-xs font-semibold tracking-widest text-white/30 uppercase">The Problem</span>
+                        <Paragraph className="opacity-60 font-light leading-relaxed !text-sm sm:!text-base group-hover:opacity-80 transition-opacity duration-500">
+                            {service.problem}
+                        </Paragraph>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <span className="text-xs font-semibold tracking-widest text-[#B8B8B8] uppercase">Our Solution</span>
+                        <Paragraph className="opacity-60 font-light leading-relaxed !text-sm sm:!text-base group-hover:opacity-90 transition-opacity duration-500">
+                            {service.solution}
+                        </Paragraph>
+                      </div>
+                    </div>
+
+                    {/* Benefits Tags */}
+                    <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
+                      {service.benefits.map((benefit, idx) => (
+                        <span key={idx} className="px-5 py-2.5 border border-white/5 rounded-full text-xs sm:text-sm font-light text-white/40 group-hover:border-white/20 group-hover:text-white/80 transition-all duration-500 bg-black shadow-[0_4px_20px_rgba(255,255,255,0.02)]">
+                          {benefit}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="mt-8">
+                      <Link href="/start-project">
+                        <Button secondary className="py-3 px-8 !text-sm border-white/10 hover:border-white/30 rounded-full group">
+                          {service.cta} <span className="ml-2 font-normal opacity-50 group-hover:opacity-100 transition-opacity">→</span>
+                        </Button>
+                      </Link>
+                    </div>
+
                   </div>
-                  <div>
-                    <Paragraph className="!text-base font-semibold mb-2">The Solution:</Paragraph>
-                    <Paragraph className="opacity-70 !text-sm sm:!text-base">{service.solution}</Paragraph>
-                  </div>
                 </div>
-
-                {/* Benefits */}
-                <div className="relative z-10">
-                  <Paragraph className="!text-base font-semibold mb-3">Key Benefits:</Paragraph>
-                  <ul className="flex flex-col gap-2">
-                    {service.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="text-white/50 mt-1">•</span>
-                        <Paragraph className="opacity-70 !text-sm sm:!text-base flex-1">{benefit}</Paragraph>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* CTA Button */}
-                <div className="relative z-10 mt-2">
-                  <Link href="/start-project">
-                    <Button className="w-full sm:w-auto">
-                      {service.cta}
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </SmoothAnimtionWrapper>
-          ))}
+              </SmoothAnimtionWrapper>
+            ))}
+          </div>
         </div>
+
       </div>
 
-      {/* Background Glow */}
-      <div className="bg-[#EAFFFF] opacity-60 blur-[200px] w-[415px] h-[129px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+      {/* Subtle Minimal Background Glow */}
+      <div className="bg-white/5 blur-[150px] w-full max-w-[800px] h-[300px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
     </div>
   )
 }

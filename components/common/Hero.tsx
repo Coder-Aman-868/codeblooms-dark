@@ -169,7 +169,7 @@ const Hero = ({ badge, heading, para, btn1, btn1Link = "#", btn2, btn2Link = "#"
                 <Badge ref={badgeRef} className={`opacity-0`}>{badge}</Badge>
                 <h1 ref={headingRef} dangerouslySetInnerHTML={{ __html: heading ?? "" }} className='bg-[linear-gradient(89.7deg,rgba(255,255,255,0.4)_1.56%,#FFFFFF_23.75%,#FFFFFF_50.16%,rgba(255,255,255,0.4)_97.71%)] bg-clip-text text-transparent lg:text-6xl md:text-5xl sm:text-4xl text-3xl opacity-0 text-center font-bold leading-[137%]'></h1>
                 <Paragraph ref={paraRef} className='opacity-0 text-center'>{para}</Paragraph>
-                <div className="flex items-stretch justify-center sm:flex-row flex-col sm:max-w-none max-w-100 w-full sm:gap-5 gap-3 sm:mt-0 mt-4">
+                <div className="flex items-center justify-center sm:flex-row flex-col sm:max-w-none max-w-100 w-full sm:gap-5 gap-3 sm:mt-0 mt-4">
                     <Link href={btn1Link}>
                         <Button className='opacity-0' ref={btn1Ref}>{btn1}</Button>
                     </Link>

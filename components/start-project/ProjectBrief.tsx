@@ -20,8 +20,16 @@ const ProjectBrief = () => {
         details: ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSubmitting(true);
+
+        // Simulate network request
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
         console.log('=== PROJECT BRIEF FORM DATA ===');
         console.log('Name:', formData.name);
         console.log('Company:', formData.company);
@@ -33,6 +41,14 @@ const ProjectBrief = () => {
         console.log('Project Details:', formData.details);
         console.log('=== END FORM DATA ===');
         console.log('Full Form Object:', formData);
+
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+
+        // Reset form
+        setFormData({
+            name: '', company: '', email: '', url: '', services: [], budget: '', timeline: '', details: ''
+        });
     };
 
     const handleCheckboxChange = (service: string, checked: boolean) => {
@@ -55,222 +71,274 @@ const ProjectBrief = () => {
 
     return (
         <section className="lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip">
-            <div className="max-w-[1036px] mx-auto w-full relative z-10">
+            <div className="max-w-[800px] mx-auto w-full relative z-10">
                 
-                {/* Main Form Card with Gradient Border */}
-                <div className="relative group rounded-2xl overflow-hidden p-[1px]">
-                    {/* Gradient Border */}
-                    <div className="absolute inset-0 bg-[linear-gradient(115.42deg,_rgba(184,184,184,0.3)_0%,_rgba(82,82,82,0)_50%,_rgba(184,184,184,0.3)_100%)] opacity-100"></div>
+                {/* Clean, minimalistic form container without heavy backgrounds */}
+                <div className="relative">
+                    
+                    {/* Subtle ambient light behind form */}
+                    <div className="absolute pointer-events-none top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px]"></div>
 
-                    {/* Inner Card Content */}
-                    <div className="relative bg-[#171717] rounded-2xl p-6 sm:p-8 lg:p-12">
-                        {/* Glow Effect */}
-                        <div className="absolute pointer-events-none -top-20 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-                        <div className="absolute pointer-events-none -bottom-20 -left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+                    {!isSubmitted ? (
+                        <form onSubmit={handleSubmit} className="relative z-10 space-y-6 sm:space-y-12 animate-fadeIn">
+                        
+                        {/* Header Area */}
+                        <div className="text-center space-y-4 mb-10">
+                            <Heading Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
+                                Start a Project
+                            </Heading>
+                            <Paragraph className="text-white/60 max-w-xl mx-auto text-lg">
+                                Fill out the brief below to get started. We'll get back to you within 24 hours.
+                            </Paragraph>
+                        </div>
 
-                        <form onSubmit={handleSubmit} className="relative z-10 space-y-10 sm:space-y-12">
-
-                            {/* 1. The Basics */}
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-4">
-                                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-base font-medium text-white flex-shrink-0">1</span>
-                                    <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent!'>
-                                        The Basics
-                                    </Heading>
+                        {/* 1. The Basics */}
+                        <div className="space-y-8">
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-3 text-white/40">
+                                    <span className="text-xs font-semibold tracking-[0.3em] uppercase">01</span>
+                                    <span className="h-[1px] w-12 bg-white/10"></span>
                                 </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                                    <Input
-                                        type="text"
-                                        id="proj-name"
-                                        name="name"
-                                        label="Name"
-                                        required
-                                        value={formData.name}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                                        placeholder="John Doe"
-                                    />
-                                    <Input
-                                        type="text"
-                                        id="proj-company"
-                                        name="company"
-                                        label="Company / Startup Name"
-                                        required
-                                        value={formData.company}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
-                                        placeholder="Acme Corp"
-                                    />
-                                    <Input
-                                        type="email"
-                                        id="proj-email"
-                                        name="email"
-                                        label="Work Email"
-                                        required
-                                        value={formData.email}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                                        placeholder="john@example.com"
-                                    />
-                                    <Input
-                                        type="url"
-                                        id="proj-url"
-                                        name="url"
-                                        label="Current Website"
-                                        optional
-                                        value={formData.url}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, url: e.target.value }))}
-                                        placeholder="https://yourwebsite.com"
-                                    />
-                                </div>
+                                <Heading Tag='h3' className='text-3xl sm:text-4xl font-light tracking-tight text-white! bg-transparent!'>
+                                    The Basics
+                                </Heading>
                             </div>
 
-                            {/* Divider */}
-                            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-                            {/* 2. Services Needed */}
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-4">
-                                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-base font-medium text-white flex-shrink-0">2</span>
-                                    <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent!'>
-                                        What do you need help with?
-                                    </Heading>
-                                </div>
-
-                                <Paragraph className="opacity-70 !text-sm sm:!text-base">
-                                    Select all services that apply to your project.
-                                </Paragraph>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {services.map((service) => (
-                                        <label 
-                                            key={service} 
-                                            className="relative flex items-center cursor-pointer group"
-                                        >
-                                            <input 
-                                                type="checkbox" 
-                                                name="services" 
-                                                value={service}
-                                                checked={formData.services.includes(service)}
-                                                onChange={(e) => handleCheckboxChange(service, e.target.checked)}
-                                                className="peer sr-only" 
-                                            />
-                                            <div className="w-full flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 peer-checked:bg-white/10 peer-checked:border-white/30 transition-all hover:bg-white/[0.07] hover:border-white/20">
-                                                <div className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded border border-white/30 peer-checked:bg-white group-has-[:checked]:bg-white group-has-[:checked]:border-white transition-colors">
-                                                    <svg className="w-3.5 h-3.5 text-black opacity-0 group-has-[:checked]:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                </div>
-                                                <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{service}</span>
-                                            </div>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Divider */}
-                            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-                            {/* 3. Budget & Timeline */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8">
-                                {/* Budget */}
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4">
-                                        <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-base font-medium text-white flex-shrink-0">3</span>
-                                        <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent!'>
-                                            Estimated Budget
-                                        </Heading>
-                                    </div>
-                                    <Paragraph className="opacity-70 !text-sm sm:!text-base">
-                                        Helps us recommend the most efficient architecture and approach.
-                                    </Paragraph>
-
-                                    <Dropdown
-                                        id="proj-budget"
-                                        name="budget"
-                                        required
-                                        value={formData.budget}
-                                        onChange={(value) => setFormData(prev => ({ ...prev, budget: value }))}
-                                        placeholder="Select a range..."
-                                        options={[
-                                            { value: '', label: 'Select a range...' },
-                                            { value: '5k-10k', label: '$5,000 - $10,000 (Starter)' },
-                                            { value: '10k-25k', label: '$10,000 - $25,000 (Growth)' },
-                                            { value: '25k-50k', label: '$25,000 - $50,000 (Premium)' },
-                                            { value: '50k+', label: '$50,000+ (Enterprise)' }
-                                        ]}
-                                    />
-                                </div>
-
-                                {/* Timeline */}
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4">
-                                        <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-base font-medium text-white flex-shrink-0">4</span>
-                                        <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent!'>
-                                            Target Timeline
-                                        </Heading>
-                                    </div>
-                                    <Paragraph className="opacity-70 !text-sm sm:!text-base">
-                                        When are you looking to launch your project?
-                                    </Paragraph>
-
-                                    <Dropdown
-                                        id="proj-timeline"
-                                        name="timeline"
-                                        required
-                                        value={formData.timeline}
-                                        onChange={(value) => setFormData(prev => ({ ...prev, timeline: value }))}
-                                        placeholder="Select a timeline..."
-                                        options={[
-                                            { value: '', label: 'Select a timeline...' },
-                                            { value: 'asap', label: 'ASAP (1-2 weeks)' },
-                                            { value: '1-2months', label: '1-2 months' },
-                                            { value: '2-3months', label: '2-3 months' },
-                                            { value: '3+months', label: '3+ months' },
-                                            { value: 'flexible', label: 'Flexible' }
-                                        ]}
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Divider */}
-                            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-                            {/* 5. Project Details */}
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-4">
-                                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-base font-medium text-white flex-shrink-0">5</span>
-                                    <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent!'>
-                                        Tell us about your project
-                                    </Heading>
-                                </div>
-
-                                <Paragraph className="opacity-70 !text-sm sm:!text-base">
-                                    Share your vision, goals, target audience, and any specific requirements or challenges.
-                                </Paragraph>
-
-                                <Textarea
-                                    id="proj-details"
-                                    name="details"
-                                    label="Project Details"
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                                <Input
+                                    type="text"
+                                    id="proj-name"
+                                    name="name"
+                                    label="Name"
                                     required
-                                    value={formData.details}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, details: e.target.value }))}
-                                    rows={6}
-                                    placeholder="Describe your project, goals, target audience, and any specific requirements..."
+                                    value={formData.name}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                    placeholder="John Doe"
+                                />
+                                <Input
+                                    type="text"
+                                    id="proj-company"
+                                    name="company"
+                                    label="Company"
+                                    required
+                                    value={formData.company}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+                                    placeholder="Acme Corp"
+                                />
+                                <Input
+                                    type="email"
+                                    id="proj-email"
+                                    name="email"
+                                    label="Email Address"
+                                    required
+                                    value={formData.email}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                    placeholder="john@example.com"
+                                />
+                                <Input
+                                    type="url"
+                                    id="proj-url"
+                                    name="url"
+                                    label="Current Website"
+                                    optional
+                                    value={formData.url}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, url: e.target.value }))}
+                                    placeholder="https://yourwebsite.com"
+                                />
+                            </div>
+                        </div>
+
+                        {/* 2. Services Needed */}
+                        <div className="space-y-8">
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-3 text-white/40">
+                                    <span className="text-xs font-semibold tracking-[0.3em] uppercase">02</span>
+                                    <span className="h-[1px] w-12 bg-white/10"></span>
+                                </div>
+                                <Heading Tag='h3' className='text-3xl sm:text-4xl font-light tracking-tight text-white! bg-transparent!'>
+                                    Services
+                                </Heading>
+                            </div>
+
+                            <Paragraph className="text-white/50 !text-sm sm:!text-base">
+                                Select all that apply to your project scope.
+                            </Paragraph>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-2">
+                                {services.map((service) => (
+                                    <label 
+                                        key={service} 
+                                        className="relative flex items-center cursor-pointer group"
+                                    >
+                                        <input 
+                                            type="checkbox" 
+                                            name="services" 
+                                            value={service}
+                                            checked={formData.services.includes(service)}
+                                            onChange={(e) => handleCheckboxChange(service, e.target.checked)}
+                                            className="peer sr-only" 
+                                        />
+                                        <div className="w-full flex items-center justify-between py-4 border-b border-white/10 transition-all duration-500 group-hover:border-white/30 group-has-[:checked]:border-white/80">
+                                            
+                                            <span className="text-base font-light text-white/50 group-has-[:checked]:text-white group-hover:text-white/80 transition-colors duration-500">
+                                                {service}
+                                            </span>
+                                            
+                                            {/* Minimalistic Indicator Dot */}
+                                            <div className="relative flex items-center justify-center w-5 h-5 rounded-full border border-white/20 group-has-[:checked]:border-white/0 group-hover:border-white/40 transition-all duration-500 overflow-hidden bg-transparent group-has-[:checked]:bg-white shadow-[0_0_0_0_rgba(255,255,255,0)] group-has-[:checked]:shadow-[0_0_12px_rgba(255,255,255,0.7)]">
+                                                <svg 
+                                                    className="w-3 h-3 text-black opacity-0 scale-50 group-has-[:checked]:opacity-100 group-has-[:checked]:scale-100 transition-all duration-500 ease-out" 
+                                                    fill="none" 
+                                                    viewBox="0 0 24 24" 
+                                                    stroke="currentColor" 
+                                                    strokeWidth={3}
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+
+                                            {/* Glow Line Bottom */}
+                                            <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 ease-out group-has-[:checked]:w-full opacity-0 group-has-[:checked]:opacity-100">
+                                                <div className="absolute inset-0 bg-white blur-[3px] opacity-80"></div>
+                                                <div className="absolute inset-0 bg-white blur-[6px] opacity-40"></div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 3. Budget & Timeline */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+                            {/* Budget */}
+                            <div className="space-y-8">
+                                <div className="flex flex-col gap-2">
+                                    <div className="flex items-center gap-3 text-white/40">
+                                        <span className="text-xs font-semibold tracking-[0.3em] uppercase">03</span>
+                                        <span className="h-[1px] w-12 bg-white/10"></span>
+                                    </div>
+                                    <Heading Tag='h3' className='text-3xl sm:text-4xl font-light tracking-tight text-white! bg-transparent!'>
+                                        Budget
+                                    </Heading>
+                                </div>
+
+                                <Dropdown
+                                    id="proj-budget"
+                                    name="budget"
+                                    label="Estimated Budget"
+                                    required
+                                    value={formData.budget}
+                                    onChange={(value) => setFormData(prev => ({ ...prev, budget: value }))}
+                                    placeholder="Select range..."
+                                    options={[
+                                        { value: '', label: 'Select range...' },
+                                        { value: '5k-10k', label: '$5,000 - $10,000' },
+                                        { value: '10k-25k', label: '$10,000 - $25,000' },
+                                        { value: '25k-50k', label: '$25,000 - $50,000' },
+                                        { value: '50k+', label: '$50,000+' }
+                                    ]}
                                 />
                             </div>
 
-                            {/* Submit Button */}
-                            <div className="flex justify-center pt-4">
-                                <Button 
-                                    // type="submit"
-                                    className="px-8 py-4 text-base font-medium"
-                                >
-                                    Submit Project Brief
-                                </Button>
+                            {/* Timeline */}
+                            <div className="space-y-8">
+                                <div className="flex flex-col gap-2">
+                                    <div className="flex items-center gap-3 text-white/40">
+                                        <span className="text-xs font-semibold tracking-[0.3em] uppercase">04</span>
+                                        <span className="h-[1px] w-12 bg-white/10"></span>
+                                    </div>
+                                    <Heading Tag='h3' className='text-3xl sm:text-4xl font-light tracking-tight text-white! bg-transparent!'>
+                                        Timeline
+                                    </Heading>
+                                </div>
+
+                                <Dropdown
+                                    id="proj-timeline"
+                                    name="timeline"
+                                    label="Target Timeline"
+                                    required
+                                    value={formData.timeline}
+                                    onChange={(value) => setFormData(prev => ({ ...prev, timeline: value }))}
+                                    placeholder="Select timeline..."
+                                    options={[
+                                        { value: '', label: 'Select timeline...' },
+                                        { value: 'asap', label: 'ASAP (1-2 weeks)' },
+                                        { value: '1-2months', label: '1-2 months' },
+                                        { value: '2-3months', label: '2-3 months' },
+                                        { value: '3+months', label: '3+ months' },
+                                        { value: 'flexible', label: 'Flexible' }
+                                    ]}
+                                />
+                            </div>
+                        </div>
+
+                        {/* 5. Project Details */}
+                        <div className="space-y-8 pt-4">
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-3 text-white/40">
+                                    <span className="text-xs font-semibold tracking-[0.3em] uppercase">05</span>
+                                    <span className="h-[1px] w-12 bg-white/10"></span>
+                                </div>
+                                <Heading Tag='h3' className='text-3xl sm:text-4xl font-light tracking-tight text-white! bg-transparent!'>
+                                    Project Details
+                                </Heading>
                             </div>
 
+                            <Textarea
+                                id="proj-details"
+                                name="details"
+                                label="Tell us about your project"
+                                required
+                                value={formData.details}
+                                onChange={(e) => setFormData(prev => ({ ...prev, details: e.target.value }))}
+                                rows={4}
+                                placeholder="Describe your vision, goals, target audience..."
+                            />
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="flex justify-end pt-8">
+                            <Button 
+                                type="submit"
+                                className={`px-10 py-4 text-base font-medium rounded-full bg-white text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] ${isSubmitting ? 'opacity-70 cursor-wait' : 'hover:bg-white/90'}`}
+                            >
+                                {isSubmitting ? (
+                                    <span className="flex items-center gap-2">
+                                        <svg className="w-5 h-5 animate-spin text-black" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Sending...
+                                    </span>
+                                ) : (
+                                    'Submit Request'
+                                )}
+                            </Button>
+                        </div>
+
                         </form>
-                    </div>
+                    ) : (
+                        <div className="relative z-10 max-w-2xl mx-auto py-16 sm:py-24 text-center flex flex-col items-center animate-fadeIn">
+                            <div className="w-16 h-16 rounded-full border border-white/10 bg-white/[0.02] flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(255,255,255,0.03)]">
+                                <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <Heading Tag="h3" className="text-3xl sm:text-4xl font-light tracking-tight text-white mb-4">
+                                Request Successfully Sent
+                            </Heading>
+                            <Paragraph className="text-white/50 text-base sm:text-lg mb-12 font-light">
+                                Thank you for sharing your vision. We've received your brief and our team will get back to you within 24 hours.
+                            </Paragraph>
+                            <Button 
+                                secondary
+                                type="button"
+                                onClick={() => setIsSubmitted(false)}
+                            >
+                                Return & Close
+                            </Button>
+                        </div>
+                    )}
                 </div>
 
             </div>

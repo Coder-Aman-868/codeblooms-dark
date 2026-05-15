@@ -1,9 +1,148 @@
 @import "tailwindcss";
-*{
+
+/* ============================================
+   Dynamic Color System - CSS Custom Properties
+   ============================================ */
+:root {
+  --primary-color: transparent;
+  --primary-color-rgb: 255, 255, 255;
+  --color-primary: var(--primary-color);
+}
+
+* {
   padding: auto;
 }
+
 @theme {
   --text-custom-4xl: 42px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track (transparent as you wanted) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+/* Hide arrows */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff transparent;
+}
+
+/* ============================================
+   Accent Utility Classes
+   These apply the dynamic color only where set.
+   When --primary-color is transparent (default),
+   elements fall back to the original B&W theme.
+   ============================================ */
+
+/* Link hover accent — only applies color when set */
+.accent-link {
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.accent-link:hover {
+  color: var(--color-primary, inherit);
+}
+
+/* Border accent */
+.accent-border {
+  transition: border-color 0.4s ease;
+  border-color: var(--color-primary, rgba(255, 255, 255, 0.08));
+}
+
+/* Subtle border — lower opacity accent */
+.accent-border-subtle {
+  transition: border-color 0.4s ease;
+}
+
+/* Focus glow */
+.accent-focus:focus,
+.accent-focus:focus-within {
+  border-color: var(--color-primary, rgba(255, 255, 255, 0.3));
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.08);
+}
+
+/* Button hover background */
+.accent-btn-hover {
+  transition: all 0.4s ease;
+}
+
+.accent-btn-hover:hover {
+  box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.12);
+  border-color: var(--color-primary, rgba(255, 255, 255, 0.12));
+}
+
+/* Text accent */
+.accent-text {
+  transition: color 0.4s ease;
+  color: var(--color-primary, inherit);
+}
+
+/* Underline accent */
+.accent-underline {
+  position: relative;
+}
+
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-primary, rgba(255, 255, 255, 0.15));
+  transition: background-color 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.accent-underline:hover::after {
+  opacity: 1;
+}
+
+/* Divider accent */
+.accent-divider {
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+  border-color: var(--color-primary, rgba(255, 255, 255, 0.06));
+}
+
+/* Icon accent on hover */
+.accent-icon {
+  transition: color 0.4s ease;
+}
+
+.accent-icon:hover {
+  color: var(--color-primary, currentColor);
+}
+
+/* Glow accent — for focus/active states */
+.accent-glow {
+  transition: box-shadow 0.4s ease;
+}
+
+.accent-glow:hover {
+  box-shadow: 0 0 25px rgba(var(--primary-color-rgb), 0.1);
+}
+
+/* Ring / outline accent */
+.accent-ring:focus-visible {
+  outline: 2px solid var(--color-primary, rgba(255, 255, 255, 0.3));
+  outline-offset: 2px;
 }
 
 .badge-box {
@@ -111,6 +250,7 @@
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -119,4 +259,26 @@
 
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
+}
+
+.card-border {
+  position: relative;
+}
+
+.card-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none !important;
+  padding: 1px;
+  background: linear-gradient(180.03deg, #ffffff30 0.02%, #99999900 90.18%);
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }

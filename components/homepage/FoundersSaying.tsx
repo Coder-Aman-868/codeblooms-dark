@@ -61,7 +61,7 @@ const FoundersSaying = () => {
 
                         {/* Heading & Subtitle */}
                         <div className="flex flex-col gap-3">
-                            <Heading animate Tag='h2' className='lg:text-6xl md:text-5xl sm:text-4xl text-4xl font-semibold text-white! bg-transparent! !text-left'>
+                            <Heading animate Tag='h2' className='lg:text-6xl md:text-5xl sm:text-4xl text-4xl font-semibold text-white! max-w-max bg-transparent! !text-left'>
                                 Our <span className='bg-[linear-gradient(115.42deg,_#8a8a8a_52.82%,_#525252_79.53%)] bg-clip-text text-transparent'>Client Say</span>
                             </Heading>
                             <Paragraph animate className='opacity-60 !text-left text-[15px] sm:text-[16px]'>

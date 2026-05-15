@@ -41,16 +41,13 @@ const Methodology = () => {
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4 sm:gap-6 w-full">
                     {methodologySteps.map((step, index) => (
-                        <SmoothAnimtionWrapper key={index} className="relative group rounded-2xl overflow-hidden p-[1px] h-full flex flex-col">
-                            {/* Gradient Border Background */}
-                            <div className="absolute inset-0 bg-[linear-gradient(115.42deg,_rgba(184,184,184,0.3)_0%,_rgba(82,82,82,0)_50%,_rgba(184,184,184,0.3)_100%)] opacity-100 transition-opacity duration-500"></div>
-
+                        <SmoothAnimtionWrapper key={index} className="relative group rounded-2xl overflow-hidden  h-full flex flex-col">
                             {/* Inner Card Content */}
-                            <div className="relative flex flex-col h-full gap-4 p-6 sm:p-8 bg-[#171717] rounded-2xl overflow-hidden">
-                                <div className="absolute pointer-events-none -top-20 -right-20 w-40 h-40 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
-
+                            <div className="relative flex flex-col h-full gap-4 p-6 sm:p-8 pb-12! rounded-2xl overflow-hidden card-border before:rounded-2xl">
+                                <div className="h-10.75 w-[80%] absolute -top-20 left-1/2 -translate-x-1/2 bg-white blur-[40px] opacity-0 scale-20 duration-300 group-hover:scale-100 group-hover:opacity-100"></div>
+                                {/* <div className="h-6.75 w-[95%] absolute top-0 left-1/2 -translate-x-1/2 bg-white blur-[30px] scale-95 opacity-0 translate-y-6  group-hover:translate-y-0 duration-800 ease-out will-change-transform"></div> */}
+                                <span className="absolute sm:-bottom-5 sm:-right-1 -bottom-4 -right-1.75 leading-none text-8xl sm:text-9xl font-bold bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent opacity-40">{step.number}</span>
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 relative z-10">
-                                    <span className="text-4xl sm:text-5xl font-bold bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent opacity-80">{step.number}</span>
                                     <h3 className="text-xl sm:text-2xl font-medium text-white">{step.title}</h3>
                                 </div>
                                 <Paragraph className="opacity-70 relative z-10 !text-left">

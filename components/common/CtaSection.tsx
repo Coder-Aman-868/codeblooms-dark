@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import SmoothAnimtionWrapper from './SmoothAnimtionWrapper'
 import Badge from './Badge';
+import Button from './Button';
 
 const CtaSection = () => {
     const [email, setEmail] = useState('');
@@ -16,94 +17,88 @@ const CtaSection = () => {
     };
 
     return (
-        <section className='lg:pb-37.5 md:pb-30 sm:pb-20 pb-15 px-5 relative overflow-x-clip'>
-            {/* Background glow effects */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-white/4 rounded-full blur-[120px]" />
-                <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-white/3 rounded-full blur-[80px]" />
-                <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-white/3 rounded-full blur-[80px]" />
+        <section className='relative py-14 sm:py-22 lg:py-30 overflow-hidden'>
+            {/* Modern architectural background grids & glows */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-center">
+                {/* Radial glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.03] rounded-[100%] blur-[120px]" />
+
+                {/* Minimal grid */}
+                <div
+                    className="absolute inset-0 opacity-[0.2]"
+                    style={{
+                        backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+                        backgroundSize: '100px 100px',
+                        maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
+                        WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+                    }}
+                />
             </div>
 
-            <div className="max-w-[1036px] mx-auto w-full relative z-10">
-                <SmoothAnimtionWrapper className="relative group rounded-3xl overflow-hidden p-[1px]">
-                    {/* Gradient border */}
-                    <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(184,184,184,0.35)_0%,rgba(82,82,82,0)_45%,rgba(184,184,184,0.35)_100%)] rounded-3xl" />
+            <div className="max-w-[1000px] mx-auto px-5 relative z-10">
+                <SmoothAnimtionWrapper className="w-full flex flex-col items-center text-center">
 
-                    {/* Inner card */}
-                    <div className="relative flex lg:flex-row flex-col items-center justify-between gap-6 lg:gap-10 px-8 sm:px-10 py-10 sm:py-12 bg-[#101010] rounded-3xl overflow-hidden">
+                    <Badge>Let's Build Together</Badge>
 
-                        {/* Subtle inner glow */}
-                        <div className="absolute pointer-events-none top-0 left-1/2 -translate-x-1/2 w-[500px] h-[1px] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent)]" />
-                        <div className="absolute pointer-events-none -top-32 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-white/4 rounded-full blur-[80px]" />
+                    <h2 className="mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-bold tracking-tight text-white mb-2">
+                        Ready to Outperform <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/70 to-white/30 italic font-light">
+                            Your Competitors?
+                        </span>
+                    </h2>
 
-                        {/* LEFT — Heading content */}
-                        <div className="flex flex-col lg:items-start items-center gap-3 relative z-10 lg:max-w-[420px] w-full shrink-0">
-                            <Badge>Let's Build Together</Badge>
+                    <p className="mt-8 text-base md:text-xl text-[#B8B8B8] max-w-2xl font-medium">
+                        Let's build a website that reflects the true quality of your software. Drop your email below to book a strategy call.
+                    </p>
 
-                            <h2 className="bg-[linear-gradient(89.7deg,rgba(255,255,255,0.4)_1.56%,#FFFFFF_23.75%,#FFFFFF_50.16%,rgba(255,255,255,0.4)_97.71%)] bg-clip-text text-transparent lg:text-4xl md:text-3xl sm:text-3xl text-2xl font-bold leading-[130%] lg:text-left text-center">
-                                Ready to Outperform<br className='lg:block hidden' /> Your Competitors?
-                            </h2>
+                    <div className="mt-12 lg:mt-16 w-full max-w-md mx-auto">
+                        {!submitted ? (
+                            <form onSubmit={handleSubmit} className="relative group">
+                                {/* Elegant border glow on focus */}
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 to-white/5 rounded-full blur-md opacity-0 group-focus-within:opacity-100 transition duration-500" />
 
-                            <p className="md:text-base text-sm font-medium text-white opacity-55 lg:text-left text-center">
-                                Let's build a website that reflects the true quality of your software.
-                            </p>
-                        </div>
-
-                        {/* RIGHT — Email + CTA form */}
-                        <div className="relative z-10 w-full lg:max-w-[480px]">
-                            {!submitted ? (
-                                <form onSubmit={handleSubmit} className="w-full">
-                                    {/* Input with embedded button */}
-                                    <div className="relative rounded-full p-[1px] bg-[linear-gradient(115.42deg,rgba(184,184,184,0.35)_0%,rgba(82,82,82,0)_50%,rgba(184,184,184,0.35)_100%)]">
-                                        <div className="flex items-center bg-[#171717] rounded-full pr-1.5 overflow-hidden">
-                                            <input
-                                                type="email"
-                                                required
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="Enter your work email"
-                                                className="flex-1 bg-transparent text-white placeholder:text-white/30 text-sm font-medium py-4 pl-6 pr-3 outline-none border-none min-w-0"
-                                            />
-                                            {/* Button inside input */}
-                                            <button
-                                                type="submit"
-                                                className="group relative overflow-hidden shrink-0 rounded-full py-3 px-5 sm:px-6 text-xs sm:text-sm font-medium text-black cursor-pointer transition-all duration-300"
-                                            >
-                                                <span className="absolute inset-0 pointer-events-none bg-[linear-gradient(137.49deg,#EFEFEF_20.48%,#737272_79.52%)]" />
-                                                <span className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[linear-gradient(137.49deg,#737272_20.48%,#EFEFEF_79.52%)]" />
-                                                <span className="relative z-10 whitespace-nowrap">Book a Strategy Call</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            ) : (
-                                <div className="flex items-center justify-center gap-3 py-4 px-6 rounded-full bg-white/5 border border-white/10">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                        <path d="M3 9L7 13L15 5" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    <span className="text-[#B8B8B8] text-sm font-medium">
-                                        We'll reach out to <span className="text-white">{email}</span> shortly!
-                                    </span>
+                                <div className="relative flex items-center bg-[#111] backdrop-blur-xl border border-white/10 rounded-full p-1.5 focus-within:border-white/30 focus-within:bg-[#161616] transition-all overflow-hidden">
+                                    <input
+                                        type="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="name@company.com"
+                                        className="flex-1 bg-transparent text-white placeholder:text-white/30 text-base py-4 pl-6 pr-4 outline-none border-none min-w-0"
+                                    />
+                                    <Button
+                                        type="submit"
+                                    // className="relative shrink-0 flex items-center justify-center rounded-full bg-white text-black py-4 px-8 text-sm font-semibold hover:bg-zinc-200 active:scale-[0.97] transition-all"
+                                    >
+                                        Start Now
+                                    </Button>
                                 </div>
-                            )}
-
-                        </div>
-                        {/* No spam — absolute bottom right */}
-                        {!submitted && (
-                            <p className="absolute bottom-4 right-8 text-white/25 text-xs">
-                                No spam, ever. Unsubscribe any time.
-                            </p>
+                            </form>
+                        ) : (
+                            <div className="flex items-center justify-center gap-4 py-5 px-8 rounded-full bg-[#111] border border-white/10 text-white animate-in zoom-in-95 duration-500">
+                                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <path d="M5 13L9 17L19 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
+                                <span className="font-medium text-sm sm:text-base">
+                                    We'll reach out to <span className="text-white/60">{email}</span> shortly!
+                                </span>
+                            </div>
                         )}
 
-                        {/* Decorative grid lines */}
-                        <div className="absolute bottom-0 left-0 right-0 pointer-events-none opacity-[0.3]"
-                            style={{
-                                backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-                                backgroundSize: '40px 40px',
-                                height: '80px',
-                                maskImage: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)'
-                            }}
-                        />
+                        {!submitted && (
+                            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-white/40 text-sm font-medium">
+                                <span className="flex items-center gap-2">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
+                                    No commitment
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
+                                    Free consultation
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </SmoothAnimtionWrapper>
             </div>

@@ -46,8 +46,9 @@ const BuiltScale = () => {
             centeredSlides={true}
             slidesPerView={"auto"}
             loop={true}
+            speed={700}
             autoplay={{
-              delay: 2000,
+              delay: 5000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}

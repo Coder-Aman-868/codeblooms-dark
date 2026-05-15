@@ -25,34 +25,33 @@ const ethosData = [
 
 const OurMission = () => {
     return (
-        <section className='lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip'>
+        <section className='py-20 md:py-28 lg:py-32 px-5 relative overflow-x-clip border-t border-white/5'>
             <div className="max-w-[1036px] mx-auto w-full">
-                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 sm:gap-6">
+                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 sm:gap-12">
                     {ethosData.map((ethos, index) => (
-                        <SmoothAnimtionWrapper key={index} className="relative group rounded-2xl overflow-hidden p-[1px] h-full flex flex-col">
-                            {/* Gradient Border Background */}
-                            <div className="absolute inset-0 bg-[linear-gradient(115.42deg,_rgba(184,184,184,0.3)_0%,_rgba(82,82,82,0)_50%,_rgba(184,184,184,0.3)_100%)] opacity-100 transition-opacity duration-500"></div>
+                        <SmoothAnimtionWrapper key={index} className="relative group pt-8 flex flex-col h-full border-t border-white/10 transition-all duration-700 hover:border-white/30">
+                            {/* Top Glow on hover */}
+                            <div className="absolute top-0 left-0 w-full h-[1px] bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_15px_rgba(255,255,255,0.6)]"></div>
+                            {/* Soft inner glow */}
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[80px] bg-white/5 blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
-                            {/* Inner Card Content */}
-                            <div className="relative flex flex-col h-full gap-4 p-6 sm:p-8 bg-[#171717] rounded-2xl overflow-hidden">
-                                <div className="absolute pointer-events-none -top-20 -right-20 w-40 h-40 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
-
-                                <Heading Tag='h3' className='text-xl sm:text-2xl font-medium text-white! bg-transparent! relative z-10 !text-left'>
+                            <div className="relative z-10 flex flex-col h-full gap-5">
+                                <Heading Tag='h3' className='text-2xl sm:text-3xl font-light text-white! bg-transparent! relative z-10 !text-left tracking-wide'>
                                     {ethos.title}
                                 </Heading>
 
                                 {ethos.description && (
-                                    <Paragraph className="opacity-70 relative z-10 !text-left !text-sm sm:!text-base leading-relaxed">
+                                    <Paragraph className="opacity-60 relative z-10 !text-left !text-sm sm:!text-base font-light leading-relaxed group-hover:opacity-80 transition-opacity duration-500">
                                         {ethos.description}
                                     </Paragraph>
                                 )}
 
                                 {ethos.values && (
-                                    <ul className="flex flex-col gap-3 relative z-10">
+                                    <ul className="flex flex-col gap-5 relative z-10 mt-2">
                                         {ethos.values.map((value, idx) => (
-                                            <li key={idx} className="flex flex-col gap-1">
-                                                <span className="text-white font-semibold text-sm sm:text-base">{value.label}</span>
-                                                <Paragraph className="opacity-70 !text-left !text-sm">
+                                            <li key={idx} className="flex flex-col gap-1.5 border-l border-white/10 pl-4 group-hover:border-white/20 transition-colors duration-500">
+                                                <span className="text-white/80 font-medium tracking-wide text-sm uppercase">{value.label}</span>
+                                                <Paragraph className="opacity-50 !text-left !text-sm font-light">
                                                     {value.text}
                                                 </Paragraph>
                                             </li>

@@ -21,32 +21,31 @@ const featuresData = [
 
 const PartnerWith = () => {
     return (
-        <section className='lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip'>
+        <section className='py-20 md:py-28 lg:py-32 px-5 relative overflow-x-clip border-t border-white/5'>
             <div className="max-w-[1036px] mx-auto w-full">
-                <div className="flex flex-col justify-center items-center gap-3 max-w-[800px] mx-auto pb-10 md:pb-15">
-                    <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>
-                        Why Partner With <span className='bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent'>CodeBlooms?</span>
+                <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pb-16 md:pb-20">
+                    <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light text-center tracking-tight text-white! bg-transparent!'>
+                        Why Partner With <span className='font-normal border-b border-white/20 pb-1'>CodeBlooms?</span>
                     </Heading>
-                    <Paragraph animate className='text-center opacity-80'>
+                    <Paragraph animate className='text-center opacity-60 font-light text-lg'>
                         We are not a traditional agency. We are an extension of your product team.
                     </Paragraph>
                 </div>
 
-                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 sm:gap-6">
+                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 sm:gap-16">
                     {featuresData.map((feature, index) => (
-                        <SmoothAnimtionWrapper key={index} className="relative group rounded-2xl overflow-hidden p-[1px] h-full flex flex-col">
-                            {/* Gradient Border Background */}
-                            <div className="absolute inset-0 bg-[linear-gradient(115.42deg,_rgba(184,184,184,0.3)_0%,_rgba(82,82,82,0)_50%,_rgba(184,184,184,0.3)_100%)] opacity-100 transition-opacity duration-500"></div>
+                        <SmoothAnimtionWrapper key={index} className="relative group pl-6 sm:pl-8 flex flex-col h-full border-l border-white/10 transition-all duration-700 hover:border-white/30">
+                            {/* Left Glow on hover */}
+                            <div className="absolute top-0 left-0 w-[1px] h-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_15px_rgba(255,255,255,0.6)]"></div>
+                            {/* Soft inner glow */}
+                            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[60px] h-3/4 bg-white/5 blur-[35px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
-                            {/* Inner Card Content */}
-                            <div className="relative flex flex-col h-full gap-4 p-6 sm:p-8 bg-[#171717] rounded-2xl overflow-hidden">
-                                <div className="absolute pointer-events-none -top-20 -right-20 w-40 h-40 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-500"></div>
-
-                                <Heading Tag='h3' className='text-xl sm:text-2xl font-medium text-white! bg-transparent! relative z-10 !text-left'>
+                            <div className="relative z-10 flex flex-col h-full gap-5">
+                                <Heading Tag='h3' className='text-2xl sm:text-3xl font-light tracking-wide text-white! bg-transparent! relative z-10 !text-left'>
                                     {feature.title}
                                 </Heading>
 
-                                <Paragraph className="opacity-70 relative z-10 !text-left !text-sm sm:!text-base leading-relaxed">
+                                <Paragraph className="opacity-60 font-light relative z-10 !text-left !text-sm sm:!text-base leading-relaxed group-hover:opacity-80 transition-opacity duration-500">
                                     {feature.description}
                                 </Paragraph>
                             </div>
@@ -55,8 +54,8 @@ const PartnerWith = () => {
                 </div>
             </div>
 
-            {/* Background Glow */}
-            <div className="bg-[#EAFFFF] opacity-60 blur-[200px] w-[415px] h-[129px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+            {/* Subtle Minimal Background Glow */}
+            <div className="bg-white/5 blur-[150px] w-full max-w-[800px] h-[300px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         </section>
     )
 }
