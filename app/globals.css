@@ -7,10 +7,43 @@
   --primary-color: transparent;
   --primary-color-rgb: 255, 255, 255;
   --color-primary: var(--primary-color);
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
 }
 
 * {
   padding: auto;
+  cursor: none !important;
+}
+
+/* ============================================
+   Grid Background + Cursor Spotlight
+   ============================================ */
+body {
+  background-color: #000;
+  background-image:
+    conic-gradient(from 270deg at bottom 1px right 1px, #000 25%, transparent 0),
+    radial-gradient(
+      280px at var(--cursor-x) var(--cursor-y),
+      rgba(126, 244, 221, 0.12),
+      transparent 70%
+    );
+  background-repeat: repeat, no-repeat;
+  background-size: 48px 48px, 100% 100%;
+  background-attachment: fixed;
+}
+
+/* Grid lines — subtle white hairlines */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom,  rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 @theme {

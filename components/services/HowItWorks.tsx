@@ -7,11 +7,11 @@ const HowItWorks = () => {
   return (
     <section className='lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip'>
       <div className="max-w-[1036px] mx-auto w-full relative z-10">
-        
+
         {/* Header Section */}
         <div className="flex flex-col justify-center items-center gap-3 max-w-[800px] mx-auto pb-10">
           <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>
-            How We <span className='bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent'>Work</span>
+            How We Work
           </Heading>
           <Paragraph animate className='text-center opacity-80'>
             From the first kickoff call to post-launch support, our process is designed for transparency and momentum. We define scopes clearly, hit our deadlines, and deliver code that works.
@@ -33,7 +33,7 @@ const HowItWorks = () => {
               <Heading Tag='h3' className='text-2xl sm:text-3xl font-medium text-white! bg-transparent!'>
                 Transparent Investment
               </Heading>
-              
+
               <Paragraph className='opacity-70 max-w-[700px]'>
                 Premium quality doesn't mean unpredictable billing. We offer clear, productized pricing tiers tailored to the stage of your startup, starting at $5,000.
               </Paragraph>

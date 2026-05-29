@@ -11,7 +11,7 @@ const WorkNeedle = () => {
         <div className='lg:pb-37.5 md:pb-30 sm:pb-20 pb-15 px-5 relative overflow-x-clip'>
             <div className="max-w-[1036px] mx-auto w-full flex flex-col justify-center items-center gap-6">
                 <div className="flex flex-col justify-center items-center gap-3 max-w-[800px] mx-auto pb-10">
-                    <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>Work <span className='bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent'>That Moves the Needle.</span></Heading>
+                    <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>Work that Moves the Needle.</Heading>
                     <Paragraph animate className='text-center opacity-80'>We don't just write code. We build digital assets designed to lower customer acquisition costs and increase conversions.</Paragraph>
                 </div>
                 <div className="flex sm:flex-row flex-col gap-4 items-stretch w-full">

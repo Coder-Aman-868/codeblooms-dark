@@ -7,6 +7,8 @@ import BackToTop from "@/components/common/BackToTop";
 import Footer from "@/components/common/Footer";
 import LenisScroll from "@/components/LenisScroll";
 
+import CursorLight from "@/components/animations/CursorLight";
+
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -71,6 +73,7 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased bg-black`}
       >
+        <CursorLight />
         {/* <LenisScroll /> */}
         <Navbar />
         {children}

@@ -29,23 +29,6 @@ const CtaSection = () => {
 
     return (
         <section className='relative py-14 sm:py-22 lg:py-30 overflow-hidden'>
-            {/* Modern architectural background grids & glows */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-center">
-                {/* Radial glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.03] rounded-[100%] blur-[120px]" />
-
-                {/* Minimal grid */}
-                <div
-                    className="absolute inset-0 opacity-[0.2]"
-                    style={{
-                        backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
-                        backgroundSize: '100px 100px',
-                        maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
-                        WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
-                    }}
-                />
-            </div>
-
             <div className="max-w-[1000px] mx-auto px-5 relative z-10">
                 <SmoothAnimtionWrapper className="w-full flex flex-col items-center text-center">
 

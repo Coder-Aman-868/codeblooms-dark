@@ -1,5 +1,5 @@
 import React from 'react'
-import SmoothAnimtionWrapper from './SmoothAnimtionWrapper';
+import TextReveal from '../animations/TextReveal';
 
 interface Props {
     children: React.ReactNode;
@@ -11,19 +11,25 @@ interface Props {
 }
 
 const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML, animate }: Props) => {
-    return (
-        <>
-            {!animate && (
-                <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(90deg,#FFFFFF_30%,#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
+    const baseClass = `bg-[linear-gradient(90deg,#FFFFFF_30%,#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`;
 
-            )}
-            {animate && (
-                <SmoothAnimtionWrapper>
-                    <Tag ref={ref} dangerouslySetInnerHTML={dangerouslySetInnerHTML} className={`bg-[linear-gradient(90deg,#FFFFFF_30%,#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`}>{children}</Tag>
-                </SmoothAnimtionWrapper>
-            )}
-        </>
-    )
+    if (animate) {
+        return (
+            <TextReveal Tag={Tag} className={baseClass}>
+                {children}
+            </TextReveal>
+        );
+    }
+
+    return (
+        <Tag
+            ref={ref}
+            dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+            className={baseClass}
+        >
+            {children}
+        </Tag>
+    );
 }
 
 export default Heading
