@@ -9,12 +9,23 @@ const CtaSection = () => {
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (email.trim()) {
+        console.log({ data: { email } })
+        try {
+            await fetch('/api/ready-to-outperforms', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
             setSubmitted(true);
+        } catch (error) {
+            console.error('Error submitting email:', error);
         }
     };
+
 
     return (
         <section className='relative py-14 sm:py-22 lg:py-30 overflow-hidden'>

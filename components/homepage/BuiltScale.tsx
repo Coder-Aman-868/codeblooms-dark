@@ -6,7 +6,9 @@ import React from 'react'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import { EffectCoverflow, Autoplay, Navigation } from 'swiper/modules';
+// @ts-ignore
 import 'swiper/css';
+// @ts-ignore
 import 'swiper/css/effect-coverflow';
 
 import { Swiper, SwiperSlide } from 'swiper/react'
