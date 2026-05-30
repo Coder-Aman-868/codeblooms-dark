@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import SmoothAnimtionWrapper from './SmoothAnimtionWrapper'
 import Badge from './Badge';
 import Button from './Button';
+import TextReveal from '../animations/TextReveal';
 
 const CtaSection = () => {
     const [email, setEmail] = useState('');
@@ -34,12 +35,12 @@ const CtaSection = () => {
 
                     <Badge>Let's Build Together</Badge>
 
-                    <h2 className="mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-bold tracking-tight text-white mb-2">
+                    <TextReveal Tag='h2' className="mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-bold tracking-tight text-white mb-2">
                         Ready to Outperform <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/70 to-white/30 italic font-light">
+                        <span className="text-white/50 font-medium">
                             Your Competitors?
                         </span>
-                    </h2>
+                    </TextReveal>
 
                     <p className="mt-8 text-base md:text-xl text-[#B8B8B8] max-w-2xl font-medium">
                         Let's build a website that reflects the true quality of your software. Drop your email below to book a strategy call.

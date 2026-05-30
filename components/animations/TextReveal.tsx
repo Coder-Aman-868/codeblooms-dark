@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useMemo,
+  Children,
+  isValidElement,
+  cloneElement,
+  ReactNode,
+} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,58 +23,55 @@ interface TextRevealProps {
 }
 
 /**
- * Recursively walks DOM nodes, splitting every text node into
- * individually animated `<span class="char">` elements while
- * preserving non-text children (like styled <span> tags).
+ * React-level text splitter.
+ * Walks children, splits every string into individual <span> chars
+ * wrapped in overflow-hidden containers. Preserves non-text elements
+ * (like styled <span> tags) and recurses into them.
  */
-function splitTextNodes(parent: HTMLElement): HTMLSpanElement[] {
-  const chars: HTMLSpanElement[] = [];
-
-  // snapshot children before mutation
-  const nodes = Array.from(parent.childNodes);
-  // clear parent
-  parent.innerHTML = "";
-
-  nodes.forEach((node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const text = node.textContent || "";
-      text.split("").forEach((ch) => {
-        const wrapper = document.createElement("span");
-        wrapper.style.display = "inline-block";
-        wrapper.style.overflow = "hidden";
-        wrapper.style.verticalAlign = "bottom";
-        if (ch === " ") wrapper.style.whiteSpace = "pre";
-
-        const charSpan = document.createElement("span");
-        charSpan.className = "char";
-        charSpan.textContent = ch;
-        charSpan.style.display = "inline-block";
-        charSpan.style.willChange = "transform";
-
-        wrapper.appendChild(charSpan);
-        parent.appendChild(wrapper);
-        chars.push(charSpan);
-      });
-    } else if (node.nodeName === "BR") {
-      parent.appendChild(document.createElement("br"));
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      // Clone the element (preserving class / style) but recurse into it
-      const el = node as HTMLElement;
-      const clone = document.createElement(el.tagName.toLowerCase());
-      // Copy all attributes (class, style, data-*, etc.)
-      Array.from(el.attributes).forEach((attr) => {
-        clone.setAttribute(attr.name, attr.value);
-      });
-      parent.appendChild(clone);
-      // Recurse — fill the clone with wrapped chars
-      // temporarily move original children into clone so we can split them
-      clone.innerHTML = el.innerHTML;
-      const nested = splitTextNodes(clone);
-      chars.push(...nested);
+let charKey = 0;
+function splitChildren(node: ReactNode): ReactNode {
+  return Children.map(node, (child) => {
+    // String text → split into per-char spans
+    if (typeof child === "string" || typeof child === "number") {
+      const text = String(child);
+      return text.split("").map((ch) => (
+        <span
+          key={`c-${charKey++}`}
+          style={{
+            display: "inline-block",
+            overflow: "hidden",
+            verticalAlign: "bottom",
+            ...(ch === " " ? { whiteSpace: "pre" as const } : {}),
+          }}
+        >
+          <span
+            className="tr-char"
+            style={{
+              display: "inline-block",
+              willChange: "transform",
+            }}
+          >
+            {ch}
+          </span>
+        </span>
+      ));
     }
-  });
 
-  return chars;
+    // React element → clone it and recurse into its children
+    if (isValidElement(child)) {
+      const props = child.props as { children?: ReactNode };
+      if (props.children != null) {
+        return cloneElement(
+          child,
+          {} as Record<string, unknown>,
+          splitChildren(props.children)
+        );
+      }
+      return child;
+    }
+
+    return child;
+  });
 }
 
 export default function TextReveal({
@@ -74,21 +79,26 @@ export default function TextReveal({
   Tag = "h2",
   className = "",
   stagger = 0.03,
-  duration = 0.6,
+  duration = 0.6
 }: TextRevealProps) {
-  const ref = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
+
+  // Split at the React level — no DOM manipulation needed
+  const processed = useMemo(() => {
+    charKey = 0;
+    return splitChildren(children);
+  }, [children]);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = containerRef.current;
     if (!el) return;
 
-    // Split all text nodes into individually wrapped chars
-    const chars = splitTextNodes(el);
+    const chars = el.querySelectorAll(".tr-char");
+    if (!chars.length) return;
 
-    // Set initial state — chars pushed below their wrapper
+    // Initial state — push chars below their overflow-hidden wrapper
     gsap.set(chars, { y: "110%" });
 
-    // Animate on scroll
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,
@@ -114,11 +124,10 @@ export default function TextReveal({
 
   return (
     <Tag
-      ref={ref as React.RefObject<HTMLHeadingElement>}
+      ref={containerRef as React.RefObject<HTMLHeadingElement>}
       className={className}
-      style={{ opacity: 1 }}
     >
-      {children}
+      {processed}
     </Tag>
   );
 }

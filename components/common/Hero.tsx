@@ -177,7 +177,6 @@ const Hero = ({ badge, heading, para, btn1, btn1Link = "#", btn2, btn2Link = "#"
                         <Button className='opacity-0' ref={btn2Ref} secondary>{btn2}</Button>
                     </Link>
                 </div>
-                {/* <p className='text-white'>{count}</p> */}
             </div>
             <div className="absolute inset-0 pointer-events-none">
                 <div className="relative h-full w-full overflow-clip">

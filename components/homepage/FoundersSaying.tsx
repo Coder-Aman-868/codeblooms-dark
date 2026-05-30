@@ -7,6 +7,7 @@ import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
 import Button from '../common/Button'
 import Icons from '../common/Icons'
 import Badge from '../common/Badge';
+import TextReveal from '../animations/TextReveal';
 
 const testimonials = [
     {
@@ -110,7 +111,7 @@ const FoundersSaying = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <h4 className="text-[20px] sm:text-[22px] font-medium text-white tracking-wide">{testimonial.name}</h4>
+                                    <TextReveal Tag='h4' className="text-[20px] sm:text-[22px] font-medium text-white tracking-wide">{testimonial.name}</TextReveal>
                                     <p className="text-[14px] text-white/50">{testimonial.title}</p>
                                 </div>
                             </div>

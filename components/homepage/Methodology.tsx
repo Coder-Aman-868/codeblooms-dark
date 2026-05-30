@@ -2,6 +2,7 @@ import React from 'react'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
+import TextReveal from '../animations/TextReveal'
 
 const methodologySteps = [
     {
@@ -48,7 +49,7 @@ const Methodology = () => {
                                 {/* <div className="h-6.75 w-[95%] absolute top-0 left-1/2 -translate-x-1/2 bg-white blur-[30px] scale-95 opacity-0 translate-y-6  group-hover:translate-y-0 duration-800 ease-out will-change-transform"></div> */}
                                 <span className="absolute sm:-bottom-5 sm:-right-1 -bottom-4 -right-1.75 leading-none text-8xl sm:text-9xl font-bold bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent opacity-40">{step.number}</span>
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 relative z-10">
-                                    <h3 className="text-xl sm:text-2xl font-medium text-white">{step.title}</h3>
+                                    <TextReveal Tag='h3' className="text-xl sm:text-2xl font-medium text-white">{step.title}</TextReveal>
                                 </div>
                                 <Paragraph className="opacity-70 relative z-10 !text-left">
                                     {step.description}

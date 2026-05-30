@@ -1,164 +1,289 @@
 "use client"
 
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import Button from '../common/Button'
-import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const servicesData = [
   {
     id: "custom-web",
     title: "Custom Website Development",
-    problem: "Off-the-shelf templates limit your brand identity and weigh down your site with unnecessary code, hurting both your SEO and user experience.",
-    solution: "We architect bespoke websites from the ground up. Tailored exactly to your user personas, heavily optimized for search engines, and built with maintainable, clean code.",
-    benefits: [
-      "100% unique brand positioning",
-      "Future-proof, scalable architecture",
-      "Seamless third-party API integrations"
-    ],
+    description: "We architect bespoke websites from the ground up — tailored to your user personas, optimized for search engines, and built with clean, scalable code.",
+    benefits: ["100% unique brand positioning", "Future-proof architecture", "Seamless API integrations"],
     cta: "Build Your Custom Site"
   },
   {
     id: "saas-landing",
     title: "SaaS Landing Page Development",
-    problem: "You have an incredible software product, but your landing page fails to convert visitors into free trials or booked demos due to poor messaging hierarchy and friction.",
-    solution: "Conversion-focused landing pages built with behavioral psychology in mind. We structure content, micro-interactions, and CTAs to guide the user naturally toward conversion.",
-    benefits: [
-      "Lower Customer Acquisition Cost (CAC)",
-      "Higher lead quality and volume",
-      "A/B testing ready structures"
-    ],
-    cta: "Optimize Your Conversions"
+    description: "Conversion-focused landing pages built with behavioral psychology. We structure content, micro-interactions, and CTAs to guide users toward conversion.",
+    benefits: ["Lower acquisition cost", "Higher lead quality", "A/B testing ready"],
+    cta: "Optimize Conversions"
   },
   {
     id: "frontend-dev",
-    title: "Frontend Development (React / Next.js)",
-    problem: "Your current frontend is a monolithic mess. It takes developers weeks to ship simple changes, and the UI feels clunky to the end user.",
-    solution: "We leverage React and Next.js to build modular, component-driven user interfaces. This headless approach separates your data from your presentation layer for ultimate speed and flexibility.",
-    benefits: [
-      "App-like transitions and speed",
-      "Reusable UI component libraries",
-      "Enhanced developer velocity for your internal team"
-    ],
+    title: "Frontend Development",
+    description: "We leverage React and Next.js to build modular, component-driven interfaces. Separating data from presentation for ultimate speed and flexibility.",
+    benefits: ["App-like speed", "Reusable components", "Enhanced dev velocity"],
     cta: "Upgrade Your Frontend"
   },
   {
     id: "redesign",
     title: "Website Redesign",
-    problem: "Your brand has outgrown your website. It looks dated, doesn't reflect your current enterprise offering, and is embarrassing to share with investors.",
-    solution: "A strategic overhaul. We don't just change colors; we rethink the user experience, update the tech stack, and align the aesthetic with your premium market positioning.",
-    benefits: [
-      "Modernized brand perception",
-      "Improved trust and credibility",
-      "Better alignment with enterprise buyers"
-    ],
+    description: "A strategic overhaul — we rethink the user experience, update the tech stack, and align the aesthetic with your premium market positioning.",
+    benefits: ["Modernized perception", "Improved credibility", "Enterprise-ready"],
     cta: "Revamp Your Brand"
   },
   {
     id: "performance",
     title: "Performance Optimization",
-    problem: "Slow load times are killing your conversion rates. Google is penalizing your search rankings because your Core Web Vitals are failing.",
-    solution: "A deep-dive technical audit and refactor. We optimize image delivery, eliminate render-blocking resources, implement advanced caching strategies, and minimize main-thread work.",
-    benefits: [
-      "Near-instant page loads",
-      "Higher organic search rankings (SEO)",
-      "Decreased bounce rates"
-    ],
+    description: "A deep-dive technical audit. We optimize image delivery, eliminate render-blocking resources, and implement advanced caching strategies.",
+    benefits: ["Near-instant loads", "Higher SEO rankings", "Decreased bounce rates"],
     cta: "Boost Your Speed"
   }
 ]
 
+const CARD_COUNT = servicesData.length
+
 const Services = () => {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const stackRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    const stack = stackRef.current
+    if (!section || !stack) return
+
+    const cards = gsap.utils.toArray<HTMLElement>('.service-card', stack)
+    const totalCards = cards.length
+
+    // On load: first card active, rest stacked behind to the right
+    cards.forEach((card, i) => {
+      if (i === 0) {
+        gsap.set(card, {
+          x: '0%',
+          rotateY: 0,
+          rotateZ: 0,
+          z: 0,
+          opacity: 1,
+        })
+      } else {
+        gsap.set(card, {
+          x: `${2 + i * 2}%`,
+          rotateY: 0,
+          rotateZ: 2 + i * 1,
+          z: -140 - i * 10,
+          opacity: 1 / Math.pow(2.5, i),
+        })
+      }
+    })
+
+    // For each transition between cards, create scroll-driven animations
+    const ctx = gsap.context(() => {
+      // Snap scroll to each card boundary so only one card advances per scroll action
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: `top+=${((totalCards - 1) / totalCards) * 100}% top`,
+        snap: {
+          snapTo: 1 / (totalCards - 1),
+          duration: { min: 0.25, max: 0.6 },
+          delay: 0.05,
+          ease: 'power1.inOut',
+        },
+      })
+
+      for (let step = 0; step < totalCards - 1; step++) {
+        const startPercent = step / totalCards
+        const endPercent = (step + 1) / totalCards
+
+        // Animate each card during this step
+        cards.forEach((card, i) => {
+          const fromState = getCardState(i, step, totalCards)
+          const midState = getCardMidState(i, step, totalCards)
+          const toState = getCardState(i, step + 1, totalCards)
+
+          // Create individual timeline for each card in each step
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: `top+=${startPercent * 100}% top`,
+              end: `top+=${endPercent * 100}% top`,
+              scrub: 0.5,
+            },
+          })
+
+          // First half: exit current active, rotate through
+          tl.fromTo(card,
+            { ...fromState },
+            { ...midState, duration: 0.5, ease: 'none' }
+          )
+          // Second half: enter new active
+          tl.to(card,
+            { ...toState, duration: 0.5, ease: 'none' }
+          )
+        })
+      }
+    }, section)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <div className='py-20 md:py-28 lg:py-32 px-5 relative overflow-x-clip border-t border-white/5'>
-      <div className="max-w-[1036px] mx-auto w-full">
+    <div
+      ref={sectionRef}
+      className='relative'
+      style={{ height: `${CARD_COUNT * 100}vh` }}
+    >
+      <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden">
         {/* Header */}
-        <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pb-16 md:pb-24">
+        <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pt-16 md:pt-24 pb-8 px-5">
           <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
-            Our <span className='font-normal border-b border-white/20 pb-1'>Services</span>
+            Our Services
           </Heading>
           <Paragraph animate className='text-center opacity-60 font-light text-lg'>
-            Tailored engineering solutions to elevate your digital presence and drive measurable results.
+            Tailored engineering solutions to elevate your digital presence.
           </Paragraph>
         </div>
 
-        {/* Timeline Container */}
-        <div className="relative max-w-[900px] mx-auto">
-          {/* Vertical Line */}
-          <div className="absolute left-[15px] sm:left-[39px] top-8 bottom-8 w-[1px] bg-white/10"></div>
-
-          <div className="flex flex-col gap-12 sm:gap-20">
-            {servicesData.map((service, index) => (
-              <SmoothAnimtionWrapper key={service.id} className="relative group flex items-start w-full">
-                
-                {/* Timeline Dot */}
-                <div className="relative flex-none w-[30px] sm:w-[80px] h-full flex flex-col items-center pt-2.5">
-                    {/* Glowing Dot */}
-                    <div className="w-8 h-8 rounded-full border border-white/10 bg-black flex items-center justify-center relative z-10 transition-all duration-700 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-                        <div className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-white transition-colors duration-700"></div>
-                    </div>
+        {/* Card Stack */}
+        <div
+          ref={stackRef}
+          className="relative flex-1 w-full flex items-center justify-center"
+          style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}
+        >
+          {servicesData.map((service, index) => (
+            <div
+              key={service.id}
+              className="service-card absolute w-[90vw] max-w-[480px] sm:max-w-[520px]"
+              style={{
+                transformStyle: 'preserve-3d',
+                willChange: 'transform, opacity',
+              }}
+            >
+              <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border before:rounded-2xl">
+                {/* Card Number */}
+                <div className="flex items-center gap-4">
+                  <span className="text-[80px] sm:text-[100px] leading-none font-bold bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent opacity-30 select-none">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
                 </div>
 
-                {/* Content Container */}
-                <div id={service.id} className="flex-1 ml-4 sm:ml-8 relative">
-                  {/* Subtle hover glow behind content */}
-                  <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[120%] bg-gradient-to-r from-white/5 to-transparent blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-full"></div>
+                {/* Title */}
+                <h3 className="text-xl sm:text-2xl font-medium text-white tracking-tight leading-tight">
+                  {service.title}
+                </h3>
 
-                  <div className="flex flex-col gap-6 relative z-10 pb-6 sm:pb-8 border-b border-white/0 group-hover:border-white/10 transition-colors duration-700">
-                    
-                    {/* Title */}
-                    <Heading Tag='h3' className='text-2xl sm:text-4xl font-light tracking-wide text-white! bg-transparent!'>
-                      {service.title}
-                    </Heading>
+                {/* Description */}
+                <p className="text-sm sm:text-base text-white/50 font-light leading-relaxed">
+                  {service.description}
+                </p>
 
-                    {/* Problem / Solution Grid */}
-                    <div className="grid md:grid-cols-2 gap-6 sm:gap-10 mt-2">
-                      <div className="flex flex-col gap-2">
-                        <span className="text-xs font-semibold tracking-widest text-white/30 uppercase">The Problem</span>
-                        <Paragraph className="opacity-60 font-light leading-relaxed !text-sm sm:!text-base group-hover:opacity-80 transition-opacity duration-500">
-                            {service.problem}
-                        </Paragraph>
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <span className="text-xs font-semibold tracking-widest text-[#B8B8B8] uppercase">Our Solution</span>
-                        <Paragraph className="opacity-60 font-light leading-relaxed !text-sm sm:!text-base group-hover:opacity-90 transition-opacity duration-500">
-                            {service.solution}
-                        </Paragraph>
-                      </div>
-                    </div>
-
-                    {/* Benefits Tags */}
-                    <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
-                      {service.benefits.map((benefit, idx) => (
-                        <span key={idx} className="px-5 py-2.5 border border-white/5 rounded-full text-xs sm:text-sm font-light text-white/40 group-hover:border-white/20 group-hover:text-white/80 transition-all duration-500 bg-black shadow-[0_4px_20px_rgba(255,255,255,0.02)]">
-                          {benefit}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* CTA Button */}
-                    <div className="mt-8">
-                      <Link href="/start-project">
-                        <Button secondary className="py-3 px-8 !text-sm border-white/10 hover:border-white/30 rounded-full group">
-                          {service.cta} <span className="ml-2 font-normal opacity-50 group-hover:opacity-100 transition-opacity">→</span>
-                        </Button>
-                      </Link>
-                    </div>
-
-                  </div>
+                {/* Benefits */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {service.benefits.map((benefit, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3.5 py-1.5 border border-white/[0.06] rounded-full text-xs text-white/40 bg-white/[0.02]"
+                    >
+                      {benefit}
+                    </span>
+                  ))}
                 </div>
-              </SmoothAnimtionWrapper>
+
+                {/* CTA */}
+                <div className="pt-4">
+                  <Link href="/start-project">
+                    <Button secondary className="!py-3 !px-6 !text-sm border-white/10 hover:border-white/30 rounded-full">
+                      {service.cta} <span className="ml-2 opacity-50">→</span>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Active indicator dots */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {servicesData.map((_, i) => (
+              <div
+                key={i}
+                className="card-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"
+                data-index={i}
+              />
             ))}
           </div>
         </div>
-
       </div>
-
-      {/* Subtle Minimal Background Glow */}
-      <div className="bg-white/5 blur-[150px] w-full max-w-[800px] h-[300px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
     </div>
   )
+}
+
+/**
+ * Calculate the transform state for a card at a given step.
+ * step = which card index is currently "active" (centered).
+ */
+function getCardState(cardIndex: number, activeStep: number, totalCards: number) {
+  const offset = cardIndex - activeStep
+
+  if (offset === 0) {
+    // Active / centered
+    return { x: '0%', rotateY: 0, rotateZ: 0, z: 0, opacity: 1 }
+  } else if (offset < 0) {
+    // Already passed — stacked to the left
+    const steps = Math.abs(offset)
+    return {
+      x: `${-(3 + steps * 8)}%`,
+      rotateY: 0,
+      rotateZ: -(4 + steps * 2),
+      z: -140 - steps * 20,
+      opacity: 1 / Math.pow(2.5, steps),
+    }
+  } else {
+    // Coming up — stacked to the right
+    return {
+      x: `${3 + offset * 8}%`,
+      rotateY: 0,
+      rotateZ: 4 + offset * 2,
+      z: -140 - offset * 20,
+      opacity: 1 / Math.pow(2.5, offset),
+    }
+  }
+}
+
+/**
+ * Mid-transition state (the card swings through a rotated pose).
+ */
+function getCardMidState(cardIndex: number, activeStep: number, totalCards: number) {
+  const offset = cardIndex - activeStep
+
+  if (offset === 0) {
+    // Active card is exiting to the left
+    return {
+      x: '-47%',
+      rotateY: -24,
+      rotateZ: 0,
+      z: -156,
+      opacity: 0.8,
+    }
+  } else if (offset === 1) {
+    // Next card is entering from the right
+    return {
+      x: '47%',
+      rotateY: 24,
+      rotateZ: 0,
+      z: -156,
+      opacity: 0.8,
+    }
+  } else {
+    // Other cards just interpolate linearly — return their "to" state
+    return getCardState(cardIndex, activeStep + 0.5, totalCards)
+  }
 }
 
 export default Services

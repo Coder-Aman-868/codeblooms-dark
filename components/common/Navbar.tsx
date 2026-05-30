@@ -111,7 +111,7 @@ const Navbar = () => {
         <>
             {/* ── Top bar ───────────────────────────────────────────────────── */}
             <div className='px-5 lg:pt-12.5 sm:pt-8 pt-5 fixed top-0 w-full z-50 left-0'>
-                <SmoothAnimtionWrapper className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-[#202020] flex justify-between items-center w-full bg-white/5 backdrop-blur-lg">
+                <div className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-[#202020] flex justify-between items-center w-full bg-white/5 backdrop-blur-lg">
 
                     {/* Logo */}
                     <Link
@@ -194,7 +194,7 @@ const Navbar = () => {
                         </button>
                     </div>
 
-                </SmoothAnimtionWrapper>
+                </div>
             </div>
 
             {/* ── Mobile overlay ────────────────────────────────────────────── */}
