@@ -1,47 +1,109 @@
 "use client";
-import React from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
-import Heading from '../common/Heading'
-import Paragraph from '../common/Paragraph'
-import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
-import Button from '../common/Button'
-import Icons from '../common/Icons'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Icons from '../common/Icons';
 import Badge from '../common/Badge';
-import TextReveal from '../animations/TextReveal';
+
+gsap.registerPlugin(ScrollTrigger)
 
 const testimonials = [
     {
         quote: "Working together was a seamless experience. The designs were beautiful and user-focused, and our website traffic improved noticeably.",
-        name: "Thoms alva",
-        title: "Ceo Of bingo",
-        image: "/assets/images/png/client_avatar_1.png"
+        name: "Thoms Alva",
+        title: "Ceo Of Bingo",
+        image: "/assets/images/png/client_avatar_1.png",
+        angle: 5,
     },
     {
-        quote: "Working together was a seamless experience. The designs were beautiful and user-focused, and our website traffic improved noticeably.",
+        quote: "The team delivered beyond expectations. Their attention to detail and creative vision transformed our entire digital presence.",
         name: "David Chen",
-        title: "Ceo Of bingo",
-        image: "/assets/images/png/client_avatar_2.png"
+        title: "Ceo Of Bingo",
+        image: "/assets/images/png/client_avatar_2.png",
+        angle: -7,
     },
     {
-        quote: "Working together was a seamless experience. The designs were beautiful and user-focused, and our website traffic improved noticeably.",
+        quote: "Exceptional collaboration from start to finish. The final product exceeded all our benchmarks and delighted our users.",
         name: "Elena Rodriguez",
-        title: "Ceo Of bingo",
-        image: "/assets/images/png/client_avatar_3.png"
+        title: "Ceo Of Bingo",
+        image: "/assets/images/png/client_avatar_3.png",
+        angle: -6,
     },
     {
-        quote: "Working together was a seamless experience. The designs were beautiful and user-focused, and our website traffic improved noticeably.",
+        quote: "Professional, creative, and incredibly responsive. They turned our vague ideas into a stunning reality that drives results.",
         name: "Marcus Johnson",
-        title: "Ceo Of bingo",
-        image: "/assets/images/png/client_avatar_4.png"
+        title: "Ceo Of Bingo",
+        image: "/assets/images/png/client_avatar_4.png",
+        angle: 9,
     },
 ]
 
+/** Split text into per-character spans wrapped in overflow-hidden containers */
+const SplitText = ({ children, className }: { children: string; className?: string }) => {
+    return (
+        <span className={className}>
+            {children.split('').map((ch, i) => (
+                <span
+                    key={i}
+                    style={{
+                        display: 'inline-block',
+                        overflow: 'hidden',
+                        verticalAlign: 'bottom',
+                        ...(ch === ' ' ? { whiteSpace: 'pre' as const } : {}),
+                    }}
+                >
+                    <span
+                        className="slide-tr-char"
+                        style={{
+                            display: 'inline-block',
+                            willChange: 'transform',
+                        }}
+                    >
+                        {ch}
+                    </span>
+                </span>
+            ))}
+        </span>
+    )
+}
+
+/** Split text into per-word spans for quote text */
+const SplitWords = ({ children, className }: { children: string; className?: string }) => {
+    const words = children.split(' ')
+    return (
+        <span className={className}>
+            {words.map((word, i) => (
+                <span
+                    key={i}
+                    style={{
+                        display: 'inline-block',
+                        overflow: 'hidden',
+                        marginRight: '0.3em',
+                        verticalAlign: 'bottom',
+                    }}
+                >
+                    <span
+                        className="slide-tr-word"
+                        style={{
+                            display: 'inline-block',
+                            willChange: 'transform',
+                        }}
+                    >
+                        {word}
+                    </span>
+                </span>
+            ))}
+        </span>
+    )
+}
+
 const StarRating = () => (
-    <div className="flex items-center gap-2">
-        <span className="text-white/90 text-sm font-medium">5.0</span>
-        <div className="flex items-center gap-1.5">
+    <div className="testimonial-stars">
+        <span className="testimonial-stars-label">5.0</span>
+        <div className="testimonial-stars-icons">
             {[1, 2, 3, 4, 5].map((star) => (
-                <svg key={star} width="16" height="15" viewBox="0 0 16 15" fill="#FFAF00" xmlns="http://www.w3.org/2000/svg">
+                <svg key={star} width="18" height="17" viewBox="0 0 16 15" fill="#FFAF00" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.99992 0L9.99992 5.5L15.9999 6L11.4999 10L12.9999 15L7.99992 12.5L2.99992 15L4.49992 10L-7.62939e-05 6L5.99992 5.5L7.99992 0Z" />
                 </svg>
             ))}
@@ -50,88 +112,190 @@ const StarRating = () => (
 )
 
 const FoundersSaying = () => {
+    const total = testimonials.length;
+    const sectionRef = useRef<HTMLElement>(null);
+    const hasAnimatedOnce = useRef(false);
+
+    const animateCard = useCallback((cardEl: Element) => {
+        const chars = cardEl.querySelectorAll('.slide-tr-char');
+        const words = cardEl.querySelectorAll('.slide-tr-word');
+        const fadeEls = cardEl.querySelectorAll('.slide-fade-up');
+
+        // Kill any running animations on these elements
+        gsap.killTweensOf([...Array.from(chars), ...Array.from(words), ...Array.from(fadeEls)]);
+
+        // Reset all
+        gsap.set(chars, { y: '110%' });
+        gsap.set(words, { y: '110%' });
+        gsap.set(fadeEls, { y: 20, opacity: 0 });
+
+        const tl = gsap.timeline({ delay: 0.35 });
+
+        // 1) Chars reveal (name)
+        if (chars.length) {
+            tl.to(chars, {
+                y: '0%',
+                duration: 0.5,
+                stagger: 0.025,
+                ease: 'power3.out',
+            }, 0);
+        }
+
+        // 2) Words reveal (quote) — slightly delayed
+        if (words.length) {
+            tl.to(words, {
+                y: '0%',
+                duration: 0.45,
+                stagger: 0.03,
+                ease: 'power3.out',
+            }, 0.1);
+        }
+
+        // 3) Fade-up elements (title, stars, divider, footer)
+        if (fadeEls.length) {
+            tl.to(fadeEls, {
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                stagger: 0.06,
+                ease: 'power2.out',
+            }, 0.25);
+        }
+    }, []);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const radios = section.querySelectorAll<HTMLInputElement>('.testimonial-radio');
+        const cards = section.querySelectorAll('.testimonial-card');
+
+        // Reset non-active cards chars/words to hidden
+        cards.forEach((card, i) => {
+            const chars = card.querySelectorAll('.slide-tr-char');
+            const words = card.querySelectorAll('.slide-tr-word');
+            const fadeEls = card.querySelectorAll('.slide-fade-up');
+            gsap.set(chars, { y: '110%' });
+            gsap.set(words, { y: '110%' });
+            gsap.set(fadeEls, { y: 20, opacity: 0 });
+        });
+
+        // Animate the first card on scroll into view
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top 75%',
+            once: true,
+            onEnter: () => {
+                const checkedRadio = section.querySelector<HTMLInputElement>('.testimonial-radio:checked');
+                if (checkedRadio) {
+                    const activeCard = checkedRadio.nextElementSibling;
+                    if (activeCard) {
+                        hasAnimatedOnce.current = true;
+                        animateCard(activeCard);
+                    }
+                }
+            },
+        });
+
+        // Listen for radio changes
+        const handleChange = (e: Event) => {
+            const radio = e.target as HTMLInputElement;
+            if (!radio.checked) return;
+            const card = radio.nextElementSibling;
+            if (card) animateCard(card);
+        };
+
+        radios.forEach(radio => radio.addEventListener('change', handleChange));
+
+        return () => {
+            radios.forEach(radio => radio.removeEventListener('change', handleChange));
+        };
+    }, [animateCard]);
+
     return (
-        <div className='lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip'>
-            <div className="max-w-[1240px] mx-auto w-full flex lg:flex-row flex-col gap-12 lg:gap-16 items-start">
+        <section className='md:px-10 px-5' ref={sectionRef}>
+            <div className="testimonial-container">
 
-                {/* Left Side (Sticky Content) */}
-                <div className="w-full lg:w-[45%] flex flex-col gap-10 lg:sticky top-32">
-                    <div className="flex flex-col gap-5">
-                        {/* Badge */}
-                        <Badge className='max-w-max'>Testimonial</Badge>
-
-                        {/* Heading & Subtitle */}
-                        <div className="flex flex-col gap-3">
-                            <Heading animate Tag='h2' className='lg:text-6xl md:text-5xl sm:text-4xl text-4xl font-semibold text-white! max-w-max bg-transparent! !text-left'>
-                                Our Client Say
-                            </Heading>
-                            <Paragraph animate className='opacity-60 !text-left text-[15px] sm:text-[16px]'>
-                                Real words from people I've worked with.
-                            </Paragraph>
-                        </div>
-                    </div>
-
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-3 gap-3 md:gap-4 w-full">
-                        <div className="flex flex-col items-center justify-center bg-[#171717] rounded-xl p-4 sm:p-5 border border-white/5">
-                            <h4 className="text-2xl sm:text-[28px] font-medium text-white mb-2">10k+</h4>
-                            <p className="text-[11px] sm:text-[12.5px] text-white/40 text-center font-medium">Happy Client's</p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center bg-[#171717] rounded-xl p-4 sm:p-5 border border-white/5">
-                            <h4 className="text-2xl sm:text-[28px] font-medium text-white mb-2">999+</h4>
-                            <p className="text-[11px] sm:text-[12.5px] text-white/40 text-center font-medium">Website's Created</p>
-                        </div>
-                        <div className="flex flex-col items-center justify-center bg-[#171717] rounded-xl p-4 sm:p-5 border border-white/5">
-                            <h4 className="text-2xl sm:text-[28px] font-medium text-white mb-2">4.5</h4>
-                            <p className="text-[11px] sm:text-[12.5px] text-white/40 text-center font-medium">Average Rating</p>
-                        </div>
-                    </div>
-
-                    {/* Buttons */}
-                    <div className="flex flex-wrap items-center gap-4 mt-2">
-                        <Button secondary className="!py-3.5 !px-7 !text-[13.5px]">Our Project's</Button>
-                        <Button className="!py-3.5 !px-7 !text-[13.5px]">Contact Now</Button>
-                    </div>
+                {/* Section Header */}
+                <div className="testimonial-header">
+                    <Badge>What Our Clients Say</Badge>
+                    <h2 className="testimonial-heading">Trusted by Industry Leaders</h2>
                 </div>
 
-                {/* Right Side (Scrollable List) */}
-                <div className="w-full lg:w-[50%] flex flex-col gap-5 ml-auto lg:mt-[193px]">
-                    {testimonials.map((testimonial, index) => (
-                        <SmoothAnimtionWrapper key={index} className="flex flex-col bg-[#0A0A0A] border border-white/5 hover:bg-[#121212] transition-colors duration-500 rounded-3xl p-6 sm:p-8 gap-6">
+                {/* Card Slider */}
+                <div className="testimonial-cards">
+                    {testimonials.map((testimonial, index) => {
+                        const radioId = `testimonial-radio-${index + 1}`;
+                        const prevIndex = index === 0 ? total : index;
+                        const nextIndex = index === total - 1 ? 1 : index + 2;
 
-                            {/* Profile Header */}
-                            <div className="flex items-center gap-5">
-                                <div className="relative size-[65px] rounded-xl overflow-hidden shrink-0">
-                                    <Image
-                                        src={testimonial.image}
-                                        alt={testimonial.name}
-                                        fill
-                                        className="object-cover"
-                                        sizes="65px"
-                                    />
-                                </div>
-                                <div className="flex flex-col">
-                                    <TextReveal Tag='h4' className="text-[20px] sm:text-[22px] font-medium text-white tracking-wide">{testimonial.name}</TextReveal>
-                                    <p className="text-[14px] text-white/50">{testimonial.title}</p>
-                                </div>
-                            </div>
+                        return (
+                            <React.Fragment key={index}>
+                                <input
+                                    type="radio"
+                                    id={radioId}
+                                    name="testimonial-card"
+                                    className="testimonial-radio"
+                                    defaultChecked={index === 0}
+                                />
+                                <article
+                                    className="testimonial-card"
+                                    style={{ '--angle': `${testimonial.angle}deg` } as React.CSSProperties}
+                                >
+                                    {/* Image Side */}
+                                    <div className="testimonial-card-img-wrapper">
+                                        <Image
+                                            src={testimonial.image}
+                                            alt={testimonial.name}
+                                            width={400}
+                                            height={400}
+                                            className="testimonial-card-img"
+                                        />
+                                    </div>
 
-                            {/* Divider Line */}
-                            <div className="h-[1px] w-full bg-white/5"></div>
+                                    {/* Content Side */}
+                                    <div className="testimonial-card-data">
+                                        <span className="testimonial-card-num slide-fade-up">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
 
-                            {/* Ratings & Content */}
-                            <div className="flex flex-col gap-4 mt-1">
-                                <StarRating />
-                                <Paragraph className="text-white/60 leading-relaxed text-[14px] sm:text-[15px] !text-left">
-                                    {testimonial.quote}
-                                </Paragraph>
-                            </div>
-                        </SmoothAnimtionWrapper>
-                    ))}
+                                        {/* Big quote icon */}
+                                        <svg className="testimonial-quote-icon slide-fade-up" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9.5C9.5 16.3807 8.38071 17.5 7 17.5V19.5C9.48528 19.5 11.5 17.4853 11.5 15V9C11.5 7.89543 10.6046 7 9.5 7H11V7ZM19 7H15C13.8954 7 13 7.89543 13 9V13C13 14.1046 13.8954 15 15 15H17.5C17.5 16.3807 16.3807 17.5 15 17.5V19.5C17.4853 19.5 19.5 17.4853 19.5 15V9C19.5 7.89543 18.6046 7 17.5 7H19V7Z" fill="currentColor" />
+                                        </svg>
+
+                                        {/* Quote — word-by-word reveal */}
+                                        <p className="testimonial-card-quote">
+                                            <SplitWords>{testimonial.quote}</SplitWords>
+                                        </p>
+
+                                        <div className="testimonial-card-divider slide-fade-up"></div>
+
+                                        <div className="testimonial-card-author slide-fade-up">
+                                            <div className="testimonial-card-author-info">
+                                                {/* Name — char-by-char reveal */}
+                                                <h3 className="testimonial-card-name">
+                                                    <SplitText>{testimonial.name}</SplitText>
+                                                </h3>
+                                                <p className="testimonial-card-title slide-fade-up">{testimonial.title}</p>
+                                            </div>
+                                            <StarRating />
+                                        </div>
+
+                                        <footer className="testimonial-card-footer slide-fade-up">
+                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous"  className="cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+                                                <Icons icon='arrowIcon' />
+                                            </label>
+                                            <label htmlFor={`testimonial-radio-${nextIndex}`} aria-label="Next" className="cursor-pointer hover:shadow-[-3px_0_6px_-3px_#ffffff50] duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:bg-[linear-gradient(270.03deg,rgba(255,255,255,0.5)_0.02%,rgba(153,153,153,0)_50.18%)]! rounded-4xl">
+                                                <Icons className='rotate-180' icon='arrowIcon' />
+                                            </label>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
-
             </div>
-        </div>
+        </section>
     )
 }
 
