@@ -66,30 +66,111 @@ const Services = () => {
     cards.forEach((card, i) => {
       if (i === 0) {
         gsap.set(card, {
+          transformPerspective: 1200,
           x: '0%',
           rotateY: 0,
           rotateZ: 0,
           z: 0,
-          opacity: 1,
+          zIndex: totalCards,
         })
       } else {
         gsap.set(card, {
+          transformPerspective: 1200,
           x: `${2 + i * 2}%`,
           rotateY: 0,
           rotateZ: 2 + i * 1,
           z: -140 - i * 10,
-          opacity: 1 / Math.pow(2.5, i),
+          zIndex: totalCards - i,
         })
       }
     })
 
-    // For each transition between cards, create scroll-driven animations
+    // Initialize indicator dots
+    const dots = gsap.utils.toArray<HTMLElement>('.card-dot', stack)
+    dots.forEach((dot, i) => {
+      gsap.set(dot, {
+        width: i === 0 ? 24 : 6,
+        backgroundColor: i === 0 ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.2)',
+      })
+    })
+
+    // Single master timeline driven by one ScrollTrigger — avoids
+    // cross-timeline zIndex conflicts that happen with per-step triggers
     const ctx = gsap.context(() => {
-      // Snap scroll to each card boundary so only one card advances per scroll action
+      const masterTl = gsap.timeline()
+
+      for (let step = 0; step < totalCards - 1; step++) {
+        cards.forEach((card, i) => {
+          const fromState = getCardState(i, step, totalCards)
+          const midState = getCardMidState(i, step, totalCards)
+          const toState = getCardState(i, step + 1, totalCards)
+
+          // Each step occupies 1 unit in the master timeline (0.5 + 0.5)
+          masterTl.fromTo(card,
+            { ...fromState },
+            { ...midState, duration: 0.5, ease: 'none' },
+            step // all cards in this step start together
+          )
+          masterTl.to(card,
+            { ...toState, duration: 0.5, ease: 'none' },
+            step + 0.5
+          )
+
+          // Snap zIndex at exactly the 50% mark — only for the two transitioning cards
+          if (i === step) {
+            // Current card starts on top
+            masterTl.set(card, {
+              zIndex: totalCards + 2
+            }, step)
+
+            // Mid animation, move below next card
+            masterTl.set(card, {
+              zIndex: totalCards - 1
+            }, step + 0.5)
+
+            // After transition, move further back
+            masterTl.set(card, {
+              zIndex: totalCards - 3
+            }, step + 1)
+          }
+
+          else if (i === step + 1) {
+            // Next card starts below current
+            masterTl.set(card, {
+              zIndex: totalCards + 1
+            }, step)
+
+            // Mid animation, becomes top card
+            masterTl.set(card, {
+              zIndex: totalCards + 3
+            }, step + 0.5)
+          }
+        })
+      }
+
+      // Animate indicator dots in sync with card transitions
+      for (let step = 0; step < totalCards - 1; step++) {
+        // Deactivate current dot, activate next — at the card swap point
+        masterTl.to(dots[step], {
+          width: 6,
+          backgroundColor: 'rgba(255,255,255,0.2)',
+          duration: 0.2,
+          ease: 'none',
+        }, step + 0.4)
+        masterTl.to(dots[step + 1], {
+          width: 24,
+          backgroundColor: 'rgba(255,255,255,0.8)',
+          duration: 0.2,
+          ease: 'none',
+        }, step + 0.4)
+      }
+
       ScrollTrigger.create({
         trigger: section,
         start: 'top top',
         end: `top+=${((totalCards - 1) / totalCards) * 100}% top`,
+        scrub: 0.5,
+        animation: masterTl,
         snap: {
           snapTo: 1 / (totalCards - 1),
           duration: { min: 0.25, max: 0.6 },
@@ -97,38 +178,6 @@ const Services = () => {
           ease: 'power1.inOut',
         },
       })
-
-      for (let step = 0; step < totalCards - 1; step++) {
-        const startPercent = step / totalCards
-        const endPercent = (step + 1) / totalCards
-
-        // Animate each card during this step
-        cards.forEach((card, i) => {
-          const fromState = getCardState(i, step, totalCards)
-          const midState = getCardMidState(i, step, totalCards)
-          const toState = getCardState(i, step + 1, totalCards)
-
-          // Create individual timeline for each card in each step
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: section,
-              start: `top+=${startPercent * 100}% top`,
-              end: `top+=${endPercent * 100}% top`,
-              scrub: 0.5,
-            },
-          })
-
-          // First half: exit current active, rotate through
-          tl.fromTo(card,
-            { ...fromState },
-            { ...midState, duration: 0.5, ease: 'none' }
-          )
-          // Second half: enter new active
-          tl.to(card,
-            { ...toState, duration: 0.5, ease: 'none' }
-          )
-        })
-      }
     }, section)
 
     return () => ctx.revert()
@@ -140,30 +189,28 @@ const Services = () => {
       className='relative'
       style={{ height: `${CARD_COUNT * 100}vh` }}
     >
-      <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden">
-        {/* Header */}
-        <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pt-16 md:pt-24 pb-8 px-5">
-          <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
-            Our Services
-          </Heading>
-          <Paragraph animate className='text-center opacity-60 font-light text-lg'>
-            Tailored engineering solutions to elevate your digital presence.
-          </Paragraph>
-        </div>
+      {/* Header */}
+      <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pt-16 md:pt-24 pb-8 px-5">
+        <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
+          Our Services
+        </Heading>
+        <Paragraph animate className='text-center opacity-60 font-light text-lg'>
+          Tailored engineering solutions to elevate your digital presence.
+        </Paragraph>
+      </div>
 
+      <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden">
         {/* Card Stack */}
         <div
           ref={stackRef}
           className="relative flex-1 w-full flex items-center justify-center"
-          style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}
         >
           {servicesData.map((service, index) => (
             <div
               key={service.id}
               className="service-card absolute w-[90vw] max-w-[480px] sm:max-w-[520px]"
               style={{
-                transformStyle: 'preserve-3d',
-                willChange: 'transform, opacity',
+                willChange: 'transform',
               }}
             >
               <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border before:rounded-2xl">
@@ -209,11 +256,11 @@ const Services = () => {
           ))}
 
           {/* Active indicator dots */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 items-center">
             {servicesData.map((_, i) => (
               <div
                 key={i}
-                className="card-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300"
+                className="card-dot h-1.5 rounded-full"
                 data-index={i}
               />
             ))}
@@ -233,7 +280,7 @@ function getCardState(cardIndex: number, activeStep: number, totalCards: number)
 
   if (offset === 0) {
     // Active / centered
-    return { x: '0%', rotateY: 0, rotateZ: 0, z: 0, opacity: 1 }
+    return { x: '0%', rotateY: 0, rotateZ: 0, z: 0 }
   } else if (offset < 0) {
     // Already passed — stacked to the left
     const steps = Math.abs(offset)
@@ -242,7 +289,6 @@ function getCardState(cardIndex: number, activeStep: number, totalCards: number)
       rotateY: 0,
       rotateZ: -(4 + steps * 2),
       z: -140 - steps * 20,
-      opacity: 1 / Math.pow(2.5, steps),
     }
   } else {
     // Coming up — stacked to the right
@@ -250,8 +296,7 @@ function getCardState(cardIndex: number, activeStep: number, totalCards: number)
       x: `${3 + offset * 8}%`,
       rotateY: 0,
       rotateZ: 4 + offset * 2,
-      z: -140 - offset * 20,
-      opacity: 1 / Math.pow(2.5, offset),
+      z: -140 - offset * 222,
     }
   }
 }
@@ -268,8 +313,7 @@ function getCardMidState(cardIndex: number, activeStep: number, totalCards: numb
       x: '-47%',
       rotateY: -24,
       rotateZ: 0,
-      z: -156,
-      opacity: 0.8,
+      z: -157,
     }
   } else if (offset === 1) {
     // Next card is entering from the right
@@ -278,7 +322,6 @@ function getCardMidState(cardIndex: number, activeStep: number, totalCards: numb
       rotateY: 24,
       rotateZ: 0,
       z: -156,
-      opacity: 0.8,
     }
   } else {
     // Other cards just interpolate linearly — return their "to" state
