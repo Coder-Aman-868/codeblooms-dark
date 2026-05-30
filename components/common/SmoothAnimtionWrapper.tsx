@@ -22,19 +22,18 @@ export default function SmoothAnimtionWrapper({ children, className }: SmoothAni
             {
                 opacity: 0,
                 y: 30,
-                filter: "blur(20px)",
+                filter: "blur(5px)",
             },
             {
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
-                duration: 1,
-                ease: "power4.out",
+                duration: 0.7,
+                ease: "circ",
                 scrollTrigger: {
                     trigger: el,
                     start: "top 90%",
-                    toggleActions: "play none none reverse",
-                    // markers: true,
+                    once: true
                 },
             }
         )

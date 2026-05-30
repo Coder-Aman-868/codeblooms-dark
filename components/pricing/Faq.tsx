@@ -40,7 +40,7 @@ const Faq = () => {
 
   return (
     <section 
-      className='py-20 md:py-32 px-5 relative overflow-hidden bg-[#0c0c0e]'
+      className='py-20 md:py-32 px-5 relative overflow-hidden'
       itemScope 
       itemType="https://schema.org/FAQPage"
     >
