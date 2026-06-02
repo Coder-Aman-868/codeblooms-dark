@@ -77,7 +77,9 @@ export default function RootLayout({
         <CursorLight />
         {/* <LenisScroll /> */}
         <Navbar />
-        {children}
+        <main>
+          {children}
+        </main>
         <Footer />
         <BackToTop />
         {/* <ContactNow /> */}

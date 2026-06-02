@@ -87,10 +87,10 @@ const BuiltScale = () => {
         </SmoothAnimtionWrapper>
         <SmoothAnimtionWrapper>
           <div className="flex gap-5 items-center justify-center w-full sm:mt-10 mt-5">
-            <button className="custom-prev cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+            <button aria-label="Previous slide" className="custom-prev cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
               <Icons icon='arrowIcon' />
             </button>
-            <button className="custom-next cursor-pointer hover:shadow-[-3px_0_6px_-3px_#ffffff50] duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:bg-[linear-gradient(270.03deg,rgba(255,255,255,0.5)_0.02%,rgba(153,153,153,0)_50.18%)]! rounded-4xl">
+            <button aria-label="Next slide" className="custom-next cursor-pointer hover:shadow-[-3px_0_6px_-3px_#ffffff50] duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:bg-[linear-gradient(270.03deg,rgba(255,255,255,0.5)_0.02%,rgba(153,153,153,0)_50.18%)]! rounded-4xl">
               <Icons className='rotate-180' icon='arrowIcon' />
             </button>
           </div>
