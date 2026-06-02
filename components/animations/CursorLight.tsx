@@ -16,10 +16,6 @@ export default function CursorLight() {
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
-
-      // Update CSS vars for radial gradient spotlight (instant, no lag)
-      document.body.style.setProperty("--cursor-x", e.clientX + "px");
-      document.body.style.setProperty("--cursor-y", e.clientY + "px");
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -28,6 +24,9 @@ export default function CursorLight() {
     const tick = () => {
       smoothMouse.current.x += (mouse.current.x - smoothMouse.current.x) * 0.15;
       smoothMouse.current.y += (mouse.current.y - smoothMouse.current.y) * 0.15;
+
+      document.body.style.setProperty("--cursor-x", mouse.current.x + "px");
+      document.body.style.setProperty("--cursor-y", mouse.current.y + "px");
 
       if (cursorRef.current) {
         gsap.set(cursorRef.current, {

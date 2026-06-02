@@ -3,11 +3,12 @@ import { Poppins } from "next/font/google";
 // @ts-ignore
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
-import BackToTop from "@/components/common/BackToTop";
-import Footer from "@/components/common/Footer";
 import LenisScroll from "@/components/LenisScroll";
+import dynamic from 'next/dynamic';
 
-import CursorLight from "@/components/animations/CursorLight";
+const Footer = dynamic(() => import("@/components/common/Footer"));
+const BackToTop = dynamic(() => import("@/components/common/BackToTop"));
+const CursorLight = dynamic(() => import("@/components/animations/CursorLight"));
 
 const poppins = Poppins({
   subsets: ['latin'],

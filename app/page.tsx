@@ -1,10 +1,11 @@
 import Hero from "@/components/common/Hero";
-import BuiltScale from "@/components/homepage/BuiltScale";
-import CtaSection from "@/components/common/CtaSection";
-import FoundersSaying from "@/components/homepage/FoundersSaying";
-import Methodology from "@/components/homepage/Methodology";
-import WorkNeedle from "@/components/homepage/WorkNeedle";
-import Image from "next/image";
+import dynamic from 'next/dynamic';
+
+const BuiltScale = dynamic(() => import("@/components/homepage/BuiltScale"));
+const CtaSection = dynamic(() => import("@/components/common/CtaSection"));
+const FoundersSaying = dynamic(() => import("@/components/homepage/FoundersSaying"));
+const Methodology = dynamic(() => import("@/components/homepage/Methodology"));
+const WorkNeedle = dynamic(() => import("@/components/homepage/WorkNeedle"));
 
 export default function Home() {
   return (

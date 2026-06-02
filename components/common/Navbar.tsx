@@ -251,20 +251,19 @@ const Navbar = () => {
                                 </span>
 
                                 {/* Label */}
-                                <span
+                                <div
                                     className="text-[2.6rem] sm:text-6xl font-medium leading-none tracking-tight"
                                     style={{
-                                        background: isActive
-                                            ? 'linear-gradient(160deg, #ffffff 0%, #888888 100%)'
-                                            : 'linear-gradient(160deg, #3a3a3a 0%, #222 100%)',
+                                        background: 'linear-gradient(160deg, #ffffff 0%, #888888 100%)',
                                         WebkitBackgroundClip: 'text',
                                         WebkitTextFillColor: 'transparent',
                                         backgroundClip: 'text',
                                         transition: 'background 300ms ease',
+                                        opacity: isActive ? 1 : 0.3,
                                     }}
                                 >
                                     {label}
-                                </span>
+                                </div>
 
                                 {/* Arrow — appears on hover */}
                                 <span

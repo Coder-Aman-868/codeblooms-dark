@@ -72,7 +72,7 @@ const BuiltScale = () => {
               BUILD_GROWTH_DATA.map((item, index) => (
                 <SwiperSlide key={index} className={`rounded-[22px] overflow-clip max-w-[329px] w-full`}>
                   <div className="flex flex-col w-full grow h-full bg-[#0A0B0D] border border-[#2E3238] shadow-[inset_0_2.76px_11.06px_0_rgba(0,0,0,1),inset_0_-2.76px_11.06px_0_rgba(0,0,0,1),inset_2.76px_0_11.06px_0_rgba(0,0,0,1),inset_-2.76px_0_11.06px_0_rgba(0,0,0,1)] p-2.5 pb-8 rounded-[22px] relative overflow-clip group">
-                    <Image width={1000} height={1000} className='w-full! h-auto! relative z-10 rounded-[16.59px] shadow-[0px_11.06px_60.83px_0px_#000000] border-[1.70px] border-white/3' src={item.image} alt={item.title} />
+                    <Image loading='lazy' width={300} height={300} className='w-full! h-auto! relative z-10 rounded-[16.59px] shadow-[0px_11.06px_60.83px_0px_#000000] border-[1.70px] border-white/3' src={item.image} alt={item.title} />
                     <div className="max-w-[270px] mx-auto">
                       <Heading className='text-base font-medium mt-5.5' Tag='h3'>{item.title}</Heading>
                       <Paragraph className='text-xs! opacity-50 leading-[140%]! mt-1.5'>{item.description}</Paragraph>

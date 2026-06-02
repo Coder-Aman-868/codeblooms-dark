@@ -249,6 +249,7 @@ const FoundersSaying = () => {
                                             alt={testimonial.name}
                                             width={400}
                                             height={400}
+                                            loading='lazy'
                                             className="testimonial-card-img"
                                         />
                                     </div>
