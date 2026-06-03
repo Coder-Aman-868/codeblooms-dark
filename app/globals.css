@@ -335,6 +335,31 @@ body::before {
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
+  transition: all 0.4s linear;
+  opacity: 1;
+}
+
+.card-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none !important;
+  padding: 1px;
+  background: linear-gradient(180.03deg, var(--color-secondary) 0.02%, #99999900 90.18%);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+
+.card-border:hover::after {
+  opacity: 1;
+}
+
+.card-border:hover::before {
+  opacity: 0;
 }
 
 .swiper-wrapper {

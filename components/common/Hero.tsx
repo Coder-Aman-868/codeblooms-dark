@@ -20,7 +20,7 @@ const Hero = ({ badge, heading, para, btn1, highlightLabelText, headingClassName
 
     return (
         <div className='min-h-screen flex justify-center relative lg:py-35 sm:py-30 py-23 px-4 overflow-x-clip'>
-            <div className="bg-(--color-secondary)/50 w-[80vh] h-[30vh] absolute left-1/2 top-1/2 -translate-1/2 blur-[300px] rounded-full "></div>
+            <div className="bg-(--color-secondary)/50 w-[50vw] h-[30vh] absolute left-1/2 top-1/2 -translate-1/2 blur-[300px] rounded-full "></div>
             <div className="max-w-247 mx-auto flex flex-col sm:gap-6 gap-4 items-center relative z-20 justify-center">
                 <Badge>{badge}</Badge>
                 <h1 className={`text-white/95 lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-center font-medium leading-[137%] mx-auto ${headingClassName}`}>{heading} <HighlightLabel>{highlightLabelText}</HighlightLabel></h1>

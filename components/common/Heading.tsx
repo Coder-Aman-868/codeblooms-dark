@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import TextReveal from '../animations/TextReveal';
 import HighlightLabel from './HighlightLabel';
 
 interface Props {
-    children: string;
+    children: ReactNode;
     Tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
     className?: string;
     ref?: React.RefObject<HTMLHeadingElement>;
@@ -15,9 +15,13 @@ const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML
     const baseClass = `text-white/95 ${className}`;
     console.log(children)
     if (animate) {
+        // Ensure children is treated as a string before calling .split
+        const text = typeof children === 'string' ? children : String(children || '');
+        const words = text.split(' ');
+        
         return (
             <TextReveal Tag={Tag} className={baseClass}>
-                {children.split(' ').slice(0, -1).join(' ')} <HighlightLabel className='text-(--color-secondary)'>{children.split(' ').slice(-1)}</HighlightLabel>
+                {words.slice(0, -1).join(' ')} <HighlightLabel className='text-(--color-secondary)'>{words.slice(-1)}</HighlightLabel>
             </TextReveal>
         );
     }
