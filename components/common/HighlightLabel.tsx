@@ -9,7 +9,7 @@ export default function HighlightLabel({
 }: HighlightLabelProps) {
     return (
         <span
-            className={`relative w-fit mx-auto text-white/90 bg-(--color-secondary)/10 inline-block border border-(--color-secondary) px-2 font-machina pt-[.06rem] ${className}`}
+            className={`relative w-fit mx-auto text-(--color-secondary) bg-(--color-secondary)/10 inline-block border border-(--color-secondary) px-2 font-machina pt-[.06rem] ${className}`}
         >
             {children}
 

@@ -7,7 +7,7 @@
   --primary-color: transparent;
   --primary-color-rgb: 255, 255, 255;
   --color-primary: var(--primary-color);
-  --color-secondary: #ff8000;
+  --color-secondary: #fff;
   --cursor-x: 50vw;
   --cursor-y: 50vh;
 }
@@ -27,7 +27,7 @@ body {
   background-image:
     conic-gradient(from 270deg at bottom 1px right 1px, #000 25%, transparent 0),
     radial-gradient(350px at var(--cursor-x) var(--cursor-y),
-      #ff80005e,
+      color-mix(in srgb, var(--color-secondary) 30%, transparent) 0%,
       transparent 70%);
   background-repeat: repeat, no-repeat;
   background-size: 48px 48px, 100% 100%;
@@ -225,7 +225,7 @@ body::before {
   border-radius: 999px;
   pointer-events: none !important;
   padding: 1px;
-  background: linear-gradient(90.03deg, #ff8000 0.02%, rgba(153, 153, 153, 0) 50.18%);
+  background: linear-gradient(90.03deg, var(--color-secondary) 0.02%, rgba(153, 153, 153, 0) 50.18%);
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);

@@ -117,7 +117,12 @@ const Navbar = () => {
                     {/* Logo */}
                     <Link
                         href='/'
-                        className={`${pathname === '/' ? 'bg-[linear-gradient(180deg,#FF9E3C_0%,#646464_100%)]' : 'bg-[linear-gradient(180deg,#E7E7E7_0%,#646464_100%)]'} text-transparent bg-clip-text text-lg leading-none font-medium text-nowrap`}
+                        style={{
+                            backgroundImage: pathname === '/'
+                                ? 'linear-gradient(180deg, var(--color-secondary) 0%, #646464 100%)'
+                                : 'linear-gradient(180deg, #E7E7E7 0%, #646464 100%)'
+                        }}
+                        className={`text-transparent bg-clip-text text-lg leading-none font-medium text-nowrap`}
                     >
                         Code Blooms
                     </Link>

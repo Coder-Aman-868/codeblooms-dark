@@ -47,7 +47,7 @@ const Methodology = () => {
                             <div className="relative flex flex-col h-full gap-4 p-6 sm:p-8 pb-12! rounded-2xl overflow-hidden bg-black card-border before:rounded-2xl after:rounded-2xl">
                                 <div className="h-10.75 w-[80%] absolute -top-20 left-1/2 -translate-x-1/2 bg-(--color-secondary) blur-2xl opacity-0 scale-20 duration-300 group-hover:scale-100 group-hover:opacity-100"></div>
                                 {/* <div className="h-6.75 w-[95%] absolute top-0 left-1/2 -translate-x-1/2 bg-white blur-[30px] scale-95 opacity-0 translate-y-6  group-hover:translate-y-0 duration-800 ease-out will-change-transform"></div> */}
-                                <span className="absolute sm:-bottom-5 sm:-right-1 -bottom-4 -right-1.75 leading-none text-8xl sm:text-9xl font-bold bg-[linear-gradient(115.42deg,#ff8000_52.82%,#ffffff80_79.53%)] bg-clip-text text-transparent opacity-50 group-hover:opacity-90 duration-300">{step.number}</span>
+                                <span style={{ backgroundImage: 'linear-gradient(115.42deg,var(--color-secondary) 52.82%,#ffffff80 79.53%)' }} className="absolute sm:-bottom-5 sm:-right-1 -bottom-4 -right-1.75 leading-none text-8xl sm:text-9xl font-bold bg-clip-text text-transparent opacity-50 group-hover:opacity-90 duration-300">{step.number}</span>
                                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 relative z-10">
                                     <TextReveal Tag='h3' className="text-xl sm:text-2xl font-medium text-white">{step.title}</TextReveal>
                                 </div>
