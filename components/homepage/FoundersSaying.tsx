@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Icons from '../common/Icons';
 import Badge from '../common/Badge';
+import Heading from '../common/Heading';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -219,7 +220,7 @@ const FoundersSaying = () => {
                 {/* Section Header */}
                 <div className="testimonial-header">
                     <Badge>What Our Clients Say</Badge>
-                    <h2 className="testimonial-heading">Trusted by Industry Leaders</h2>
+                    <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center'>Trusted by Industry Leaders</Heading>
                 </div>
 
                 {/* Card Slider */}
@@ -282,7 +283,7 @@ const FoundersSaying = () => {
                                         </div>
 
                                         <footer className="testimonial-card-footer slide-fade-up">
-                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous"  className="cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous" className="cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
                                                 <Icons icon='arrowIcon' />
                                             </label>
                                             <label htmlFor={`testimonial-radio-${nextIndex}`} aria-label="Next" className="cursor-pointer hover:shadow-[-3px_0_6px_-3px_#ffffff50] duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:bg-[linear-gradient(270.03deg,rgba(255,255,255,0.5)_0.02%,rgba(153,153,153,0)_50.18%)]! rounded-4xl">

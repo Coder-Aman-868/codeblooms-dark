@@ -1,8 +1,9 @@
 import React from 'react'
 import TextReveal from '../animations/TextReveal';
+import HighlightLabel from './HighlightLabel';
 
 interface Props {
-    children: React.ReactNode;
+    children: string;
     Tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
     className?: string;
     ref?: React.RefObject<HTMLHeadingElement>;
@@ -11,12 +12,12 @@ interface Props {
 }
 
 const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML, animate }: Props) => {
-    const baseClass = `bg-[linear-gradient(90deg,#FFFFFF_30%,#B1B1B1_91.16%)] bg-clip-text text-transparent ${className}`;
-
+    const baseClass = `text-white/95 ${className}`;
+    console.log(children)
     if (animate) {
         return (
             <TextReveal Tag={Tag} className={baseClass}>
-                {children}
+                {children.split(' ').slice(0, -1).join(' ')} <HighlightLabel className='text-(--color-secondary)'>{children.split(' ').slice(-1)}</HighlightLabel>
             </TextReveal>
         );
     }

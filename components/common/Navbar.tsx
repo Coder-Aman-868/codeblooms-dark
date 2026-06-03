@@ -107,6 +107,7 @@ const Navbar = () => {
     }
     const handleMouseLeave = () => setTarget(activePosRef.current)
 
+
     return (
         <>
             {/* ── Top bar ───────────────────────────────────────────────────── */}
@@ -116,7 +117,7 @@ const Navbar = () => {
                     {/* Logo */}
                     <Link
                         href='/'
-                        className='bg-[linear-gradient(180deg,#E7E7E7_0%,#646464_100%)] text-transparent bg-clip-text text-lg leading-none font-medium text-nowrap'
+                        className={`${pathname === '/' ? 'bg-[linear-gradient(180deg,#FF9E3C_0%,#646464_100%)]' : 'bg-[linear-gradient(180deg,#E7E7E7_0%,#646464_100%)]'} text-transparent bg-clip-text text-lg leading-none font-medium text-nowrap`}
                     >
                         Code Blooms
                     </Link>
@@ -124,7 +125,7 @@ const Navbar = () => {
                     {/* Desktop links */}
                     <div
                         ref={navRef}
-                        className="relative flex justify-center gap-6.5 items-center leading-none text-[#B8B8B8] text-base max-lg:hidden"
+                        className="relative flex justify-center gap-6.5 items-center leading-none text-base max-lg:hidden"
                         onMouseLeave={handleMouseLeave}
                     >
                         {NAV_LINKS.map(({ href, label }, i) => {
@@ -135,7 +136,7 @@ const Navbar = () => {
                                     href={href}
                                     ref={(el) => { linkRefs.current[i] = el }}
                                     onMouseEnter={handleMouseEnter}
-                                    className={`py-1 transition-colors duration-200 hover:text-white ${isActive ? 'text-white' : ''}`}
+                                    className={`py-1 transition-colors duration-200 hover:text-(--color-secondary) ${isActive ? 'text-(--color-secondary)' : 'text-white/70'}`}
                                 >
                                     {label}
                                 </Link>
@@ -145,7 +146,7 @@ const Navbar = () => {
                         {/* Lerp underline */}
                         <span
                             ref={underlineRef}
-                            className="pointer-events-none absolute bottom-0 h-px bg-white rounded-full"
+                            className="pointer-events-none absolute bottom-0 h-px bg-(--color-secondary) rounded-full"
                             style={{
                                 left: 0,
                                 width: `${currentRef.current.width}px`,

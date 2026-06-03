@@ -21,7 +21,7 @@ const BuiltScale = () => {
     <div className='lg:pb-37.5 md:pb-30 sm:pb-20 pb-15 px-5 relative overflow-x-clip'>
       <div className="max-w-[1036px] mx-auto w-full relative z-10">
         <div className="flex flex-col justify-center items-center gap-3 max-w-[800px] mx-auto pb-10">
-          <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>Built to Scale Fast.</Heading>
+          <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center'>Built to Scale Fast.</Heading>
           <Paragraph animate className='text-center opacity-80'>We don't just write code. We build digital assets designed to lower customer acquisition costs and increase conversions.</Paragraph>
         </div>
         {/* <div className="lg:flex hidden flex-row flex-wrap items-stretch justify-center gap-y-4 lg:-mx-3 -mx-2">
@@ -87,17 +87,17 @@ const BuiltScale = () => {
         </SmoothAnimtionWrapper>
         <SmoothAnimtionWrapper>
           <div className="flex gap-5 items-center justify-center w-full sm:mt-10 mt-5">
-            <button aria-label="Previous slide" className="custom-prev cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+            <button aria-label="Previous slide" className="custom-prev cursor-pointer ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
               <Icons icon='arrowIcon' />
             </button>
-            <button aria-label="Next slide" className="custom-next cursor-pointer hover:shadow-[-3px_0_6px_-3px_#ffffff50] duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:bg-[linear-gradient(270.03deg,rgba(255,255,255,0.5)_0.02%,rgba(153,153,153,0)_50.18%)]! rounded-4xl">
+            <button aria-label="Next slide" className="custom-next cursor-pointer ease-in flex justify-center items-center size-12 bg-black slider-buttons before:rotate-180 after:rotate-180 rounded-4xl">
               <Icons className='rotate-180' icon='arrowIcon' />
             </button>
           </div>
         </SmoothAnimtionWrapper>
       </div>
-      <div className="bg-[#EAFFFF] opacity-60 blur-[200px] w-[415px] h-[129px] absolute top-[295px] left-1/2 -translate-x-1/2"></div>
-      <img className='w-[1079px] h-auto absolute lg:-top-20 sm:top-0 -top-10 left-1/2 -translate-x-1/2 mix-blend-overlay' src={"/assets/images/png/built-for-growth-top-layer.png"} alt='top layer' />
+      <div className="bg-(--color-secondary) opacity-60 blur-[200px] w-[415px] h-[129px] absolute top-[295px] left-1/2 -translate-x-1/2"></div>
+      <img className='w-[1079px] h-auto absolute lg:-top-20 sm:top-0 -top-10 left-1/2 -translate-x-1/2 mix-blend-soft-light' src={"/assets/images/png/built-for-growth-top-layer.png"} alt='top layer' />
     </div>
   )
 }
