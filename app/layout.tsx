@@ -75,7 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body
-        className={`${poppins.className} antialiased bg-black overflow-hidden`}
+        className={`${poppins.className} antialiased bg-black`}
       >
         <CursorLight />
         <LenisScroll />

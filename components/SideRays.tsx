@@ -3,12 +3,14 @@ import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 import './SideRays.css';
 
-const hexToRgb = hex => {
+type Origin = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
+const hexToRgb = (hex: string): [number, number, number] => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return m ? [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255] : [1, 1, 1];
 };
 
-const originToFlip = origin => {
+const originToFlip = (origin: Origin): [number, number] => {
   switch (origin) {
     case 'top-left': return [1, 0];
     case 'bottom-right': return [0, 1];
@@ -16,6 +18,21 @@ const originToFlip = origin => {
     default: return [0, 0];
   }
 };
+
+interface SideRaysProps {
+  speed?: number;
+  rayColor1?: string;
+  rayColor2?: string;
+  intensity?: number;
+  spread?: number;
+  origin?: Origin;
+  tilt?: number;
+  saturation?: number;
+  blend?: number;
+  falloff?: number;
+  opacity?: number;
+  className?: string;
+}
 
 const SideRays = ({
   speed = 2.5,
@@ -30,21 +47,21 @@ const SideRays = ({
   falloff = 1.6,
   opacity = 1.0,
   className = ''
-}) => {
-  const containerRef = useRef(null);
-  const uniformsRef = useRef(null);
-  const rendererRef = useRef(null);
-  const animationIdRef = useRef(null);
-  const meshRef = useRef(null);
-  const cleanupFunctionRef = useRef(null);
+}: SideRaysProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const uniformsRef = useRef<Record<string, { value: any }> | null>(null);
+  const rendererRef = useRef<Renderer | null>(null);
+  const animationIdRef = useRef<number | null>(null);
+  const meshRef = useRef<Mesh | null>(null);
+  const cleanupFunctionRef = useRef<(() => void) | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const observerRef = useRef(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     observerRef.current = new IntersectionObserver(
-      entries => {
+      (entries: IntersectionObserverEntry[]) => {
         const entry = entries[0];
         setIsVisible(entry.isIntersecting);
       },
@@ -190,13 +207,13 @@ void main() {
         uniforms.iResolution.value = [w * renderer.dpr, h * renderer.dpr];
       };
 
-      const loop = t => {
+      const loop = (t: number) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current) return;
         uniforms.iTime.value = t * 0.001;
         try {
           renderer.render({ scene: mesh });
           animationIdRef.current = requestAnimationFrame(loop);
-        } catch (e) {
+        } catch (e: any) {
           return;
         }
       };
@@ -217,7 +234,7 @@ void main() {
             if (loseCtx) loseCtx.loseContext();
             const canvas = renderer.gl.canvas;
             if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
-          } catch (e) {}
+          } catch (e: any) {}
         }
         rendererRef.current = null;
         uniformsRef.current = null;
