@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import Button from './Button'
-import SmoothAnimtionWrapper from './SmoothAnimtionWrapper'
 
 const NAV_LINKS = [
     { href: '/services', label: 'Services' },
@@ -112,7 +111,7 @@ const Navbar = () => {
         <>
             {/* ── Top bar ───────────────────────────────────────────────────── */}
             <div className='px-5 lg:pt-12.5 sm:pt-8 pt-5 fixed top-0 w-full z-50 left-0'>
-                <div className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-[#202020] flex justify-between items-center w-full bg-white/5 backdrop-blur-lg">
+                <div className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-transparent flex justify-between items-center w-full bg-white/5 backdrop-blur-lg">
 
                     {/* Logo */}
                     <Link

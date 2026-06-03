@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 // @ts-ignore
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import LenisScroll from "@/components/LenisScroll";
 import dynamic from 'next/dynamic';
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const Footer = dynamic(() => import("@/components/common/Footer"));
 const BackToTop = dynamic(() => import("@/components/common/BackToTop"));
@@ -70,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", inter.variable)}>
       <body
         className={`${poppins.className} antialiased bg-black overflow-hidden`}
       >
