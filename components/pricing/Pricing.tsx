@@ -163,7 +163,7 @@ const Pricing = () => {
       className='relative'
       style={{ height: `${CARD_COUNT * 100}vh` }}
     >
-      <div className="flex flex-col justify-center items-center gap-4 max-w-[600px] mx-auto pt-16 md:pt-24 pb-8 px-5">
+      <div className="flex flex-col justify-center items-center gap-4 max-w-[600px] mx-auto">
         <Heading animate Tag='h2' className='text-3xl md:text-5xl font-medium text-center text-white! bg-transparent!'>
           Pricing Plans
         </Heading>

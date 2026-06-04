@@ -7,6 +7,7 @@ import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
 import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper';
+import Badge from '../common/Badge';
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ const ContactSection = () => {
     };
 
     return (
-        <section id="contact-form" className="lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip">
+        <section id="contact-form" className="px-5 relative overflow-x-clip">
 
             {/* Ambient background glow */}
             <div className="absolute pointer-events-none top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[150px]" />
@@ -53,12 +54,10 @@ const ContactSection = () => {
                 {/* Section header */}
                 <SmoothAnimtionWrapper>
                     <div className="text-center space-y-4 mb-16 sm:mb-20">
-                        <div className="flex items-center justify-center gap-3 text-white/40 mb-4">
-                            <span className="h-[1px] w-12 bg-white/10" />
-                            <span className="text-xs font-semibold tracking-[0.3em] uppercase">Contact</span>
-                            <span className="h-[1px] w-12 bg-white/10" />
-                        </div>
-                        <Heading Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
+                        <Badge className="mb-4 max-w-max mx-auto">
+                           Contact
+                        </Badge>
+                        <Heading animate Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
                             Send Us a Message
                         </Heading>
                         <Paragraph className="text-white/50 max-w-xl mx-auto text-lg font-light">
@@ -228,7 +227,7 @@ const ContactSection = () => {
                                 <div className="flex justify-start pt-4">
                                     <Button
                                         type="submit"
-                                        className={`px-10 py-4 text-base font-medium rounded-full bg-white text-black transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] ${isSubmitting ? 'opacity-70 cursor-wait' : 'hover:bg-white/90'}`}
+                                        className={`px-10 py-4 text-base ${isSubmitting ? 'opacity-70 cursor-wait' : ''}`}
                                     >
                                         {isSubmitting ? (
                                             <span className="flex items-center gap-2">

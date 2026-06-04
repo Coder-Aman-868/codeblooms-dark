@@ -21,13 +21,12 @@ export default function SmoothAnimtionWrapper({ children, className }: SmoothAni
             el,
             {
                 opacity: 0,
-                y: 30,
-                filter: "blur(5px)",
+                y: 50,
+                stagger: 0.1,
             },
             {
                 opacity: 1,
                 y: 0,
-                filter: "blur(0px)",
                 duration: 0.7,
                 ease: "circ",
                 scrollTrigger: {

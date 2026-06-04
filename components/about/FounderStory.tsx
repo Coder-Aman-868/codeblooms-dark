@@ -5,7 +5,7 @@ import Paragraph from '../common/Paragraph'
 
 const FounderStory = () => {
     return (
-        <section className='py-20 md:py-28 lg:py-32 px-5 relative overflow-x-clip'>
+        <section className='px-5 relative overflow-x-clip'>
             <div className="max-w-[1036px] mx-auto w-full">
                 <SmoothAnimtionWrapper className="flex flex-col gap-6 sm:gap-8">
                     <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light text-center tracking-tight text-white! bg-transparent!'>

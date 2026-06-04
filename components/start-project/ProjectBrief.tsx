@@ -69,7 +69,7 @@ const ProjectBrief = () => {
     ];
 
     return (
-        <section className="lg:py-37.5 md:py-30 sm:py-20 py-15 px-5 relative overflow-x-clip">
+        <section className="px-5 relative overflow-x-clip">
             <div className="max-w-[800px] mx-auto w-full relative z-10">
 
                 {/* Clean, minimalistic form container without heavy backgrounds */}
@@ -83,7 +83,7 @@ const ProjectBrief = () => {
 
                             {/* Header Area */}
                             <div className="text-center space-y-4 mb-10">
-                                <Heading Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
+                                <Heading animate Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
                                     Start a Project
                                 </Heading>
                                 <Paragraph className="text-white/60 max-w-xl mx-auto text-lg">

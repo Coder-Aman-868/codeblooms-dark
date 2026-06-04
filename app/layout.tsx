@@ -78,7 +78,7 @@ export default function RootLayout({
         className={`${poppins.className} antialiased bg-black`}
       >
         <CursorLight />
-        <LenisScroll />
+        {/* <LenisScroll /> */}
         <Navbar />
         <main>
           {children}

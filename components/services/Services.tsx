@@ -173,7 +173,7 @@ const Services = () => {
       style={{ height: `${CARD_COUNT * 100}vh` }}
     >
       {/* Header */}
-      <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pt-16 md:pt-24 pb-8 px-5">
+      <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto">
         <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
           Our Services
         </Heading>

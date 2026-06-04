@@ -52,7 +52,7 @@
 
 * {
   padding: auto;
-  cursor: none !important;
+  /* cursor: none !important; */
 }
 
 /* ============================================
@@ -219,20 +219,20 @@ body::before {
   position: relative;
 }
 
-.badge-box::before {
+/* .badge-box::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 999px;
   pointer-events: none !important;
   padding: 1px;
-  background: var(--dynamic-gradient);
+  background: linear-gradient(180.03deg, rgba(255, 255, 255, 0.5) 0.02%, rgba(153, 153, 153, 0) 100.18%);
 
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
-}
+} */
 
 .slider-buttons {
   position: relative;
@@ -891,9 +891,11 @@ body::before {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
