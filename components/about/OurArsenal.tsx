@@ -30,7 +30,7 @@ const OurArsenal = () => {
                 <SmoothAnimtionWrapper className="flex flex-col gap-12 sm:gap-16">
                     <div className="flex flex-col justify-center items-center gap-4">
                         <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
-                            Our Arsenal of <span className='font-normal border-b border-white/20 pb-1'>Choice</span>
+                            Our Arsenal of Choice
                         </Heading>
                         <Paragraph animate className='text-center opacity-60 font-light text-lg'>
                             We specialize in a focused, high-end technology stack. We don't try to be everything to everyone; we master the tools that deliver the best results for modern tech brands.

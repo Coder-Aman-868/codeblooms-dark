@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
@@ -53,6 +53,8 @@ const CARD_COUNT = servicesData.length
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const stackRef = useRef<HTMLDivElement>(null)
+  const [activeCard, setActiveCard] = useState(0);
+
 
   useEffect(() => {
     const section = sectionRef.current
@@ -83,15 +85,6 @@ const Services = () => {
           zIndex: totalCards - i,
         })
       }
-    })
-
-    // Initialize indicator dots
-    const dots = gsap.utils.toArray<HTMLElement>('.card-dot', stack)
-    dots.forEach((dot, i) => {
-      gsap.set(dot, {
-        width: i === 0 ? 24 : 6,
-        backgroundColor: i === 0 ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.2)',
-      })
     })
 
     // Single master timeline driven by one ScrollTrigger — avoids
@@ -148,23 +141,6 @@ const Services = () => {
         })
       }
 
-      // Animate indicator dots in sync with card transitions
-      for (let step = 0; step < totalCards - 1; step++) {
-        // Deactivate current dot, activate next — at the card swap point
-        masterTl.to(dots[step], {
-          width: 6,
-          backgroundColor: 'rgba(255,255,255,0.2)',
-          duration: 0.2,
-          ease: 'none',
-        }, step + 0.4)
-        masterTl.to(dots[step + 1], {
-          width: 24,
-          backgroundColor: 'rgba(255,255,255,0.8)',
-          duration: 0.2,
-          ease: 'none',
-        }, step + 0.4)
-      }
-
       ScrollTrigger.create({
         trigger: section,
         start: 'top top',
@@ -177,6 +153,13 @@ const Services = () => {
           delay: 0.05,
           ease: 'power1.inOut',
         },
+        onUpdate: (self) => {
+          const index = Math.round(
+            self.progress * (totalCards - 1)
+          );
+
+          setActiveCard(index);
+        }
       })
     }, section)
 
@@ -213,16 +196,18 @@ const Services = () => {
                 willChange: 'transform',
               }}
             >
-              <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border before:rounded-2xl">
+              <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border after:rounded-2xl before:rounded-2xl">
                 {/* Card Number */}
                 <div className="flex items-center gap-4">
-                  <span className="text-[80px] sm:text-[100px] leading-none font-bold bg-[linear-gradient(115.42deg,_#B8B8B8_52.82%,_#525252_79.53%)] bg-clip-text text-transparent opacity-30 select-none">
+                  <span
+                    style={{ backgroundImage: 'linear-gradient(115.42deg,var(--color-secondary) 52.82%,#ffffff80 79.53%)' }}
+                    className={`text-[80px] sm:text-[100px] leading-none duration-500 font-bold bg-clip-text text-transparent select-none ${activeCard === index ? "" : "opacity-30"}`}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-medium text-white tracking-tight leading-tight">
+                <h3 className="text-xl sm:text-2xl font-medium text-white tracking-tight opacity-80 leading-tight">
                   {service.title}
                 </h3>
 
@@ -236,7 +221,7 @@ const Services = () => {
                   {service.benefits.map((benefit, idx) => (
                     <span
                       key={idx}
-                      className="px-3.5 py-1.5 border border-white/[0.06] rounded-full text-xs text-white/40 bg-white/[0.02]"
+                      className={`px-3.5 py-1.5 border  rounded-full text-xs duration-500 ${activeCard === index ? "border-(--color-secondary)/70 text-(--color-secondary)/90 bg-(--color-secondary)/10" : "border-white/[0.06] text-white/40 bg-white/[0.02]"}`}
                     >
                       {benefit}
                     </span>
@@ -246,8 +231,8 @@ const Services = () => {
                 {/* CTA */}
                 <div className="pt-4">
                   <Link href="/start-project">
-                    <Button secondary className="!py-3 !px-6 !text-sm border-white/10 hover:border-white/30 rounded-full">
-                      {service.cta} <span className="ml-2 opacity-50">→</span>
+                    <Button secondary className="!py-3 !px-6 !text-sm group flex item-center">
+                      {service.cta} <span className="ml-2 flex opacity-50 group-hover:translate-x-2! group-hover:opacity-100 duration-300">→</span>
                     </Button>
                   </Link>
                 </div>
@@ -260,7 +245,7 @@ const Services = () => {
             {servicesData.map((_, i) => (
               <div
                 key={i}
-                className="card-dot h-1.5 rounded-full"
+                className={`h-1.5 rounded-full transition-all duration-300 ${activeCard === i ? "w-6 bg-(--color-secondary)" : "w-1.5 bg-white/50"}`}
                 data-index={i}
               />
             ))}

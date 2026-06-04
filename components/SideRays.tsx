@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
+// @ts-ignore
 import './SideRays.css';
 
 type Origin = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
