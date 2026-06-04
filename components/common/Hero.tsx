@@ -31,8 +31,8 @@ const Hero = ({ badge, heading, para, btn1, highlightLabelText, headingClassName
                 <h1 className={`text-white/95 lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-center font-medium leading-[137%] mx-auto ${headingClassName}`}>{heading} <HighlightLabel>{highlightLabelText}</HighlightLabel></h1>
                 <Paragraph className='text-center'>{para}</Paragraph>
                 <div className="flex items-center justify-center sm:flex-row flex-col sm:max-w-none max-w-100 w-full sm:gap-5 gap-3 sm:mt-0 mt-4">
-                    <Link href={btn1Link}>
-                        <Button >{btn1}</Button>
+                    <Link className='relative z-10' href={btn1Link}>
+                        <Button>{btn1}</Button>
                     </Link>
                     <Link href={btn2Link}>
                         <Button secondary>{btn2}</Button>

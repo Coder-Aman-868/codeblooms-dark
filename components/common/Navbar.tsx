@@ -139,7 +139,7 @@ const Navbar = () => {
                     {/* Desktop links */}
                     <div
                         ref={navRef}
-                        className="relative flex justify-center gap-6.5 items-center leading-none text-base max-lg:hidden"
+                        className="relative flex justify-center gap-6.5 items-center leading-none text-base max-lg:hidden z-10"
                         onMouseLeave={handleMouseLeave}
                     >
                         {NAV_LINKS.map(({ href, label }, i) => {
@@ -172,7 +172,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Right: CTA + hamburger */}
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 relative z-10">
                         <Link href='/start-project' className="max-sm:hidden">
                             <Button secondary className='leading-none! text-base! px-5! py-4!'>Get Started</Button>
                         </Link>
