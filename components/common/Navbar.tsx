@@ -111,8 +111,18 @@ const Navbar = () => {
         <>
             {/* ── Top bar ───────────────────────────────────────────────────── */}
             <div className='px-5 lg:pt-12.5 sm:pt-8 pt-5 fixed top-0 w-full z-50 left-0'>
-                <div className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-transparent flex justify-between items-center w-full bg-white/5 backdrop-blur-lg">
-
+                <div className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-transparent flex justify-between items-center w-full bg-white/5 relative">
+                    <div className="d-glass-card liquid-glass">
+                        <div className="d-glass-card-morph"></div>
+                        <div className="d-glass-card-corner"></div>
+                        <div className="d-glass-card-border"></div>
+                    </div>
+                    <svg style={{ display: "none" }} xmlns="http://www.w3.org/2000/svg">
+                        <filter id="liquid-glass">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.02" numOctaves="2" seed="5" result="turbulence" />
+                            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="40" xChannelSelector="R" yChannelSelector="G" />
+                        </filter>
+                    </svg>
                     {/* Logo */}
                     <Link
                         href='/'
@@ -121,7 +131,7 @@ const Navbar = () => {
                                 ? 'linear-gradient(180deg, var(--color-secondary) 0%, #646464 100%)'
                                 : 'linear-gradient(180deg, #E7E7E7 0%, #646464 100%)'
                         }}
-                        className={`text-transparent bg-clip-text text-lg leading-none font-medium text-nowrap`}
+                        className={`text-transparent bg-clip-text text-lg z-10 relative leading-none font-medium text-nowrap`}
                     >
                         Code Blooms
                     </Link>
