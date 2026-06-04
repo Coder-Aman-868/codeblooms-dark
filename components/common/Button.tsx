@@ -11,7 +11,7 @@ interface Props {
 
 const Button = ({ children, className, secondary = false, ref, type = "button", onClick }: Props) => {
     return (
-        <button ref={ref} type={type} onClick={onClick} className={`rounded-[999px] cursor-pointer group relative overflow-hidden py-4 px-5.5 text-base font-medium  leading-none transition-all duration-300 ease-in-out ${secondary ? "text-[#B8B8B8] hover:text-(--color-secondary)/70" : "mix-blend-difference! bg-(--color-secondary) hover:bg-transparent hover:text-(--color-secondary) border border-transparent hover:border-(--color-secondary)"} ${className}`}>
+        <button ref={ref} type={type} onClick={onClick} className={`rounded-[999px] cursor-pointer group relative overflow-hidden py-4 px-5.5 text-base font-medium  leading-none transition-all duration-300 ease-in-out ${secondary ? "text-[#B8B8B8] hover:text-(--color-secondary)/70" : "mix-blend-difference! bg-(--color-secondary) hover:bg-transparent hover:text-(--color-secondary)"} ${className}`}>
             <div className="d-glass-card liquid-glass">
                 <div className="d-glass-card-morph"></div>
                 <div className="d-glass-card-corner"></div>

@@ -901,10 +901,6 @@ body::before {
   }
 }
 
-/* ===== CORE GLASS EFFECT STYLES ===== */
-
-/* Main glass card container */
-/* Make position relative and set height/width to 100% for flex/grid container usage */
 .d-glass-card {
   position: absolute;
   inset: 0;
@@ -918,18 +914,15 @@ body::before {
   font-size: 18px;
 }
 
-/* The glass effect is created here using SVG filter distortion */
 .d-glass-card-morph {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* Control background blur intensity with backdrop-filter */
   backdrop-filter: blur(2px);
   filter: url(#liquid-glass);
   border-radius: inherit;
 }
 
-/* Content wrapper - must have z-index 3 or higher */
 .d-glass-card-item {
   position: relative;
   z-index: 3;
@@ -943,17 +936,26 @@ body::before {
   pointer-events: none;
 }
 
-/* Inner border effect */
 .d-glass-card-border {
   position: absolute;
   inset: 0;
   z-index: 2;
-  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
-    inset -2px -2px 2px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: inset 2px 2px 2px 0 var(--color-secondary),
+    inset -2px -2px 2px 0 var(--color-secondary);
   border-radius: inherit;
+  transition: all 0.3s linear;
 }
 
-/* Outer shadow effects */
+button .d-glass-card-border {
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+button:hover .d-glass-card-border {
+  box-shadow: inset 2px 2px 2px 0 var(--color-secondary),
+    inset -2px -2px 2px 0 var(--color-secondary);
+}
+
 .d-glass-card-corner {
   position: absolute;
   inset: 0;
