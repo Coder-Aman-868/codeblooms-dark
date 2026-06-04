@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 const Footer = () => {
     const pathname = usePathname()
     return (
-        <footer className="w-full relative bg-black pt-16 pb-12 sm:pb-16 border-t border-[#202020] overflow-hidden rounded-t-[2.5rem] mt-20">
+        <footer className="w-full relative bg-black pt-16 pb-12 sm:pb-16 border-t border-(--color-secondary) overflow-hidden rounded-t-[2.5rem] mt-20">
             <div className="max-w-7xl mx-auto px-5 w-full relative z-10">
                 {/* Top Info & Links Section */}
                 <div className="flex flex-col lg:flex-row justify-between w-full gap-12 lg:gap-8">

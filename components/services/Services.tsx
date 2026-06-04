@@ -196,7 +196,7 @@ const Services = () => {
                 willChange: 'transform',
               }}
             >
-              <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border after:rounded-2xl before:rounded-2xl">
+              <div className={`rounded-2xl overflow-hidden bg-[#0a0a0a]/20 backdrop-blur-sm border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border after:rounded-2xl before:rounded-2xl ${activeCard === index ? "after:opacity-100! before:opacity-0!" : "after:opacity-0! before:opacity-100!"}`}>
                 {/* Card Number */}
                 <div className="flex items-center gap-4">
                   <span

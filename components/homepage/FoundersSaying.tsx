@@ -260,7 +260,7 @@ const FoundersSaying = () => {
                                         <span className="testimonial-card-num slide-fade-up">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
 
                                         {/* Big quote icon */}
-                                        <svg className="testimonial-quote-icon slide-fade-up" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg className="testimonial-quote-icon slide-fade-up text-(--color-secondary)!" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9.5C9.5 16.3807 8.38071 17.5 7 17.5V19.5C9.48528 19.5 11.5 17.4853 11.5 15V9C11.5 7.89543 10.6046 7 9.5 7H11V7ZM19 7H15C13.8954 7 13 7.89543 13 9V13C13 14.1046 13.8954 15 15 15H17.5C17.5 16.3807 16.3807 17.5 15 17.5V19.5C17.4853 19.5 19.5 17.4853 19.5 15V9C19.5 7.89543 18.6046 7 17.5 7H19V7Z" fill="currentColor" />
                                         </svg>
 
@@ -283,10 +283,10 @@ const FoundersSaying = () => {
                                         </div>
 
                                         <footer className="testimonial-card-footer slide-fade-up">
-                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous" className="cursor-pointer hover:shadow-[3px_0_6px_-3px_#ffffff50] duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous" className="cursor-pointer duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
                                                 <Icons icon='arrowIcon' />
                                             </label>
-                                            <label htmlFor={`testimonial-radio-${nextIndex}`} aria-label="Next" className="cursor-pointer hover:shadow-[-3px_0_6px_-3px_#ffffff50] duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:bg-[linear-gradient(270.03deg,rgba(255,255,255,0.5)_0.02%,rgba(153,153,153,0)_50.18%)]! rounded-4xl">
+                                            <label htmlFor={`testimonial-radio-${nextIndex}`} aria-label="Next" className="cursor-pointer duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:rotate-180 after:rotate-180 rounded-4xl">
                                                 <Icons className='rotate-180' icon='arrowIcon' />
                                             </label>
                                         </footer>
