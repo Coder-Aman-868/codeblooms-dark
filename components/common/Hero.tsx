@@ -4,6 +4,7 @@ import Button from './Button'
 import Link from 'next/link'
 import HighlightLabel from './HighlightLabel';
 import SideRays from '../SideRays';
+import Icons from './Icons';
 
 interface Props {
     badge?: string;
@@ -20,24 +21,12 @@ interface Props {
 const Hero = ({ badge, heading, para, btn1, highlightLabelText, headingClassName, btn1Link = "#", btn2, btn2Link = "#" }: Props) => {
 
     return (
-        <div className='min-h-screen flex justify-center relative lg:py-35 sm:py-30 py-23 px-4 overflow-x-clip'>
-            {/* <div className="absolute w-screen h-screen inset-0">
-                <SideRays
-                    rayColor1="#EAB308"
-                    rayColor2="#96c8ff"
-                    origin="top-right"
-                    speed={2.5}
-                    intensity={2}
-                    spread={2}
-                    tilt={0}
-                    saturation={1.5}
-                    blend={0.75}
-                    falloff={1.6}
-                    opacity={1}
-                />
+        <div className='min-h-screen flex justify-center relative lg:py-35 sm:py-30 py-23 px-4'>
+            {/* <div className="fixed w-screen h-screen inset-0 z-100">
+                
             </div> */}
             <div className="bg-(--color-secondary)/50 w-[50vw] h-[30vh] absolute left-1/2 top-1/2 -translate-1/2 blur-[300px] rounded-full "></div>
-            <div className="max-w-247 mx-auto flex flex-col sm:gap-6 gap-4 items-center relative z-20 justify-center">
+            <div className="max-w-247 mx-auto flex flex-col sm:gap-6 gap-4 items-center relative justify-center">
                 <Badge>{badge}</Badge>
                 <h1 className={`text-white/95 lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-center font-medium leading-[137%] mx-auto ${headingClassName}`}>{heading} <HighlightLabel>{highlightLabelText}</HighlightLabel></h1>
                 <Paragraph className='text-center'>{para}</Paragraph>
@@ -50,7 +39,7 @@ const Hero = ({ badge, heading, para, btn1, highlightLabelText, headingClassName
                     </Link>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
