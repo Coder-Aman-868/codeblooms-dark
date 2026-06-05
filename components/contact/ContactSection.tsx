@@ -6,7 +6,6 @@ import Paragraph from '../common/Paragraph';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
-import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper';
 import Badge from '../common/Badge';
 
 const ContactSection = () => {
@@ -52,19 +51,17 @@ const ContactSection = () => {
             <div className="max-w-[1200px] mx-auto w-full relative z-10">
 
                 {/* Section header */}
-                <SmoothAnimtionWrapper>
-                    <div className="text-center space-y-4 mb-16 sm:mb-20">
-                        <Badge className="mb-4 max-w-max mx-auto">
-                           Contact
-                        </Badge>
-                        <Heading animate Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
-                            Send Us a Message
-                        </Heading>
-                        <Paragraph className="text-white/50 max-w-xl mx-auto text-lg font-light">
-                            We're here to help bring your vision to life. Fill out the form and our team will respond within 24 hours.
-                        </Paragraph>
-                    </div>
-                </SmoothAnimtionWrapper>
+                <div className="text-center space-y-4 mb-16 sm:mb-20">
+                    <Badge className="mb-4 max-w-max mx-auto">
+                        Contact
+                    </Badge>
+                    <Heading animate Tag="h2" className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight">
+                        Send Us a Message
+                    </Heading>
+                    <Paragraph className="text-white/50 max-w-xl mx-auto text-lg font-light">
+                        We're here to help bring your vision to life. Fill out the form and our team will respond within 24 hours.
+                    </Paragraph>
+                </div>
 
                 {/* Content grid — Form + 3D Robot */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start">

@@ -4,13 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import Button from './Button'
-
-const NAV_LINKS = [
-    { href: '/services', label: 'Services' },
-    { href: '/portfolio', label: 'Portfolio' },
-    { href: '/about', label: 'About' },
-    { href: '/pricing', label: 'Pricing' },
-]
+import { NAV_LINKS } from '@/helper/helper'
 
 type UnderlinePos = { left: number; width: number }
 

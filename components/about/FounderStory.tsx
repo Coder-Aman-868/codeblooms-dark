@@ -1,5 +1,3 @@
-import React from 'react'
-import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 
@@ -7,7 +5,7 @@ const FounderStory = () => {
     return (
         <section className='px-5 relative overflow-x-clip'>
             <div className="max-w-[1036px] mx-auto w-full">
-                <SmoothAnimtionWrapper className="flex flex-col gap-6 sm:gap-8">
+                <div className="flex flex-col gap-6 sm:gap-8">
                     <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light text-center tracking-tight text-white! bg-transparent!'>
                         The Story Behind the Studio
                     </Heading>
@@ -21,7 +19,7 @@ const FounderStory = () => {
                             As a specialized, expert-led studio, CodeBlooms operates without the bloat of traditional agencies. You don't get passed off to junior developers or endless account managers. You work directly with a senior technical partner who understands both high-level business strategy and deep-level React/Next.js engineering. We build websites that act as your most relentless, high-performing asset.
                         </Paragraph>
                     </div>
-                </SmoothAnimtionWrapper>
+                </div>
             </div>
         </section>
     )

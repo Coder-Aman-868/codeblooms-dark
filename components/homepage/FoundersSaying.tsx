@@ -6,39 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Icons from '../common/Icons';
 import Badge from '../common/Badge';
 import Heading from '../common/Heading';
+import { TESTIMONIALS_DATA } from '@/helper/helper';
 
 gsap.registerPlugin(ScrollTrigger)
-
-const testimonials = [
-    {
-        quote: "Working together was a seamless experience. The designs were beautiful and user-focused, and our website traffic improved noticeably.",
-        name: "Thoms Alva",
-        title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_1.png",
-        angle: 5,
-    },
-    {
-        quote: "The team delivered beyond expectations. Their attention to detail and creative vision transformed our entire digital presence.",
-        name: "David Chen",
-        title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_2.png",
-        angle: -7,
-    },
-    {
-        quote: "Exceptional collaboration from start to finish. The final product exceeded all our benchmarks and delighted our users.",
-        name: "Elena Rodriguez",
-        title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_3.png",
-        angle: -6,
-    },
-    {
-        quote: "Professional, creative, and incredibly responsive. They turned our vague ideas into a stunning reality that drives results.",
-        name: "Marcus Johnson",
-        title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_4.png",
-        angle: 9,
-    },
-]
 
 /** Split text into per-character spans wrapped in overflow-hidden containers */
 const SplitText = ({ children, className }: { children: string; className?: string }) => {
@@ -113,7 +83,7 @@ const StarRating = () => (
 )
 
 const FoundersSaying = () => {
-    const total = testimonials.length;
+    const total = TESTIMONIALS_DATA.length;
     const sectionRef = useRef<HTMLElement>(null);
     const hasAnimatedOnce = useRef(false);
 
@@ -225,7 +195,7 @@ const FoundersSaying = () => {
 
                 {/* Card Slider */}
                 <div className="testimonial-cards">
-                    {testimonials.map((testimonial, index) => {
+                    {TESTIMONIALS_DATA.map((testimonial, index) => {
                         const radioId = `testimonial-radio-${index + 1}`;
                         const prevIndex = index === 0 ? total : index;
                         const nextIndex = index === total - 1 ? 1 : index + 2;

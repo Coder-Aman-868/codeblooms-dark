@@ -1,35 +1,15 @@
-"use client";
-import React from 'react'
+import { ETHOS_DATA } from '@/helper/helper'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
-
-const ethosData = [
-    {
-        title: "Our Mission",
-        description: "To empower visionary tech founders by providing world-class, conversion-engineered digital platforms that accelerate growth and dominate markets."
-    },
-    {
-        title: "Our Vision",
-        description: "To be the definitive technical partner for the next generation of unicorn SaaS companies, setting the gold standard for modern web performance."
-    },
-    {
-        title: "Core Values",
-        values: [
-            { label: "Performance First:", text: "Speed is a feature." },
-            { label: "Radical Transparency:", text: "No black-box development." },
-            { label: "Pixel-Perfect Precision:", text: "Detail obsession." }
-        ]
-    }
-]
 
 const OurMission = () => {
     return (
         <section className='py-20 md:py-28 lg:py-32 px-5 relative overflow-x-clip border-t border-white/5'>
             <div className="max-w-[1036px] mx-auto w-full">
-                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 sm:gap-12">
-                    {ethosData.map((ethos, index) => (
-                        <SmoothAnimtionWrapper key={index} className="relative group pt-8 flex flex-col h-full border-t border-white/10 transition-all duration-700 hover:border-white/30">
+                <SmoothAnimtionWrapper className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 sm:gap-12">
+                    {ETHOS_DATA.map((ethos, index) => (
+                        <div key={index} className="relative group pt-8 flex flex-col h-full border-t border-white/10 transition-all duration-700 hover:border-white/30">
                             {/* Top Glow on hover */}
                             <div className="absolute top-0 left-0 w-full h-[1px] bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_15px_rgba(255,255,255,0.6)]"></div>
                             {/* Soft inner glow */}
@@ -59,9 +39,9 @@ const OurMission = () => {
                                     </ul>
                                 )}
                             </div>
-                        </SmoothAnimtionWrapper>
+                        </div>
                     ))}
-                </div>
+                </SmoothAnimtionWrapper>
             </div>
         </section>
     )

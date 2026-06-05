@@ -1,23 +1,7 @@
-"use client";
-import React from 'react'
+import { FEATURES_DATA } from '@/helper/helper'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
-
-const featuresData = [
-    {
-        title: "Business-First Engineering",
-        description: "We don't write code in a vacuum. Every technical decision—from framework choice to animation logic—is tied directly to your MRR, lead generation, and user retention goals."
-    },
-    {
-        title: "Modern, Scalable Architecture",
-        description: "Say goodbye to bloated legacy builders. We utilize the modern JAMstack, ensuring your site is secure, infinitely scalable, and incredibly fast worldwide."
-    },
-    {
-        title: "Seamless Founder Experience",
-        description: "We speak startup. We understand burn rates, funding rounds, and the need for rapid iterations. Our communication is asynchronous, clear, and focused on momentum."
-    }
-]
 
 const PartnerWith = () => {
     return (
@@ -32,9 +16,9 @@ const PartnerWith = () => {
                     </Paragraph>
                 </div>
 
-                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 sm:gap-16">
-                    {featuresData.map((feature, index) => (
-                        <SmoothAnimtionWrapper key={index} className="relative group pl-6 sm:pl-8 flex flex-col h-full border-l border-white/10 transition-all duration-700 hover:border-white/30">
+                <SmoothAnimtionWrapper className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 sm:gap-16">
+                    {FEATURES_DATA.map((feature, index) => (
+                        <div key={index} className="relative group pl-6 sm:pl-8 flex flex-col h-full border-l border-white/10 transition-all duration-700 hover:border-white/30">
                             {/* Left Glow on hover */}
                             <div className="absolute top-0 left-0 w-[1px] h-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_15px_rgba(255,255,255,0.6)]"></div>
                             {/* Soft inner glow */}
@@ -49,9 +33,9 @@ const PartnerWith = () => {
                                     {feature.description}
                                 </Paragraph>
                             </div>
-                        </SmoothAnimtionWrapper>
+                        </div>
                     ))}
-                </div>
+                </SmoothAnimtionWrapper>
             </div>
 
             {/* Subtle Minimal Background Glow */}

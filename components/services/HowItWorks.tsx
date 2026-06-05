@@ -1,7 +1,6 @@
 import Heading from '../common/Heading';
 import Paragraph from '../common/Paragraph';
 import Button from '../common/Button';
-import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper';
 
 const HowItWorks = () => {
   return (
@@ -19,7 +18,7 @@ const HowItWorks = () => {
         </div>
 
         {/* Pricing Teaser Card */}
-        <SmoothAnimtionWrapper className="relative group rounded-2xl overflow-hidden p-[1px]">
+        <div className="relative group rounded-2xl overflow-hidden p-[1px]">
           {/* Gradient Border */}
           <div className="absolute inset-0 bg-[linear-gradient(115.42deg,_rgba(184,184,184,0.3)_0%,_rgba(82,82,82,0)_50%,_rgba(184,184,184,0.3)_100%)] opacity-100"></div>
 
@@ -43,7 +42,7 @@ const HowItWorks = () => {
               </Button>
             </div>
           </div>
-        </SmoothAnimtionWrapper>
+        </div>
 
       </div>
     </section>

@@ -2,34 +2,7 @@
 
 import React, { useState } from 'react'
 import Paragraph from '../common/Paragraph'
-
-const faqData = [
-  {
-    id: 1,
-    question: "Do you work with WordPress or Webflow?",
-    answer: "We are strictly a code-first studio. We specialize in React and Next.js because they offer unparalleled performance, security, and scalability that visual builders cannot match for enterprise or high-growth tech brands."
-  },
-  {
-    id: 2,
-    question: "What are your payment terms?",
-    answer: "Typically, we operate on a 50% upfront deposit to secure your spot in our development schedule, followed by 25% at a major project milestone, and the final 25% prior to deployment."
-  },
-  {
-    id: 3,
-    question: "Will I be able to edit the content myself?",
-    answer: "Absolutely. For the Growth and Premium tiers, we integrate a modern headless CMS (like Sanity) tailored to your exact data structure. This gives your marketing team complete control over copy and images without touching code."
-  },
-  {
-    id: 4,
-    question: "How long does a typical project take?",
-    answer: "Project timelines vary by scope. Starter projects typically take 3-4 weeks, Growth projects 6-8 weeks, and Premium custom applications 10+ weeks. We will provide a crystal clear timeline before kicking off."
-  },
-  {
-    id: 5,
-    question: "Do you provide post-launch support?",
-    answer: "Yes, we offer flexible post-launch retainer options and maintenance packages to ensure your platform remains secure, up-to-date, and continues to evolve with your business."
-  }
-]
+import { FAQ_DATA } from '@/helper/helper'
 
 const Faq = () => {
   const [openId, setOpenId] = useState<number | null>(null)
@@ -59,7 +32,7 @@ const Faq = () => {
           {/* Right Side: Questions List */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <div className="flex flex-col border-t border-white/[0.08]">
-              {faqData.map((faq) => (
+              {FAQ_DATA.map((faq) => (
                 <div 
                   key={faq.id}
                   className="border-b border-white/[0.08]"

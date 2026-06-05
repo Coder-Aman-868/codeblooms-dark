@@ -7,48 +7,11 @@ import Link from 'next/link'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import Button from '../common/Button'
+import { SERVICES_DATA } from '@/helper/helper'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const servicesData = [
-  {
-    id: "custom-web",
-    title: "Custom Website Development",
-    description: "We architect bespoke websites from the ground up — tailored to your user personas, optimized for search engines, and built with clean, scalable code.",
-    benefits: ["100% unique brand positioning", "Future-proof architecture", "Seamless API integrations"],
-    cta: "Build Your Custom Site"
-  },
-  {
-    id: "saas-landing",
-    title: "SaaS Landing Page Development",
-    description: "Conversion-focused landing pages built with behavioral psychology. We structure content, micro-interactions, and CTAs to guide users toward conversion.",
-    benefits: ["Lower acquisition cost", "Higher lead quality", "A/B testing ready"],
-    cta: "Optimize Conversions"
-  },
-  {
-    id: "frontend-dev",
-    title: "Frontend Development",
-    description: "We leverage React and Next.js to build modular, component-driven interfaces. Separating data from presentation for ultimate speed and flexibility.",
-    benefits: ["App-like speed", "Reusable components", "Enhanced dev velocity"],
-    cta: "Upgrade Your Frontend"
-  },
-  {
-    id: "redesign",
-    title: "Website Redesign",
-    description: "A strategic overhaul — we rethink the user experience, update the tech stack, and align the aesthetic with your premium market positioning.",
-    benefits: ["Modernized perception", "Improved credibility", "Enterprise-ready"],
-    cta: "Revamp Your Brand"
-  },
-  {
-    id: "performance",
-    title: "Performance Optimization",
-    description: "A deep-dive technical audit. We optimize image delivery, eliminate render-blocking resources, and implement advanced caching strategies.",
-    benefits: ["Near-instant loads", "Higher SEO rankings", "Decreased bounce rates"],
-    cta: "Boost Your Speed"
-  }
-]
-
-const CARD_COUNT = servicesData.length
+const CARD_COUNT = SERVICES_DATA.length
 
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -188,7 +151,7 @@ const Services = () => {
           ref={stackRef}
           className="relative flex-1 w-full flex items-center justify-center"
         >
-          {servicesData.map((service, index) => (
+          {SERVICES_DATA.map((service, index) => (
             <div
               key={service.id}
               className="service-card absolute w-[90vw] max-w-[480px] sm:max-w-[520px]"
@@ -242,7 +205,7 @@ const Services = () => {
 
           {/* Active indicator dots */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 items-center">
-            {servicesData.map((_, i) => (
+            {SERVICES_DATA.map((_, i) => (
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${activeCard === i ? "w-6 bg-(--color-secondary)" : "w-1.5 bg-white/50"}`}

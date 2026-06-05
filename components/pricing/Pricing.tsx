@@ -5,70 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import Button from '../common/Button'
+import { PRICING_DATA } from '@/helper/helper'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const pricingData = [
-  {
-    id: "starter",
-    title: "Starter",
-    idealFor: "For early startups needing an elite landing page to validate ideas.",
-    price: "$5,000",
-    prevPrice: "$6,000",
-    features: [
-      "High-converting single-page architecture",
-      "Custom UI/UX Design (No templates)",
-      "Next.js & Tailwind CSS development",
-      "Lead capture form integration",
-      "Basic on-page SEO setup"
-    ],
-    timeline: "3-4 Weeks",
-    tier: "starter",
-    highlighted: false,
-    colorTheme: "blue"
-  },
-  {
-    id: "growth",
-    title: "Growth",
-    idealFor: "For scaling SaaS companies needing a robust marketing site to drive MRR.",
-    price: "$12,000",
-    prevPrice: "$15,000",
-    features: [
-      "Up to 8-page custom architecture",
-      "Premium animations & interactions",
-      "Headless CMS integration",
-      "Blog / Resource center setup",
-      "Advanced technical SEO & schema",
-      "Core Web Vitals guarantee"
-    ],
-    timeline: "6-8 Weeks",
-    tier: "growth",
-    highlighted: true,
-    badge: "POPULAR",
-    colorTheme: "white"
-  },
-  {
-    id: "premium",
-    title: "Premium",
-    idealFor: "For established tech brands requiring custom web apps or major migrations.",
-    price: "Custom",
-    prevPrice: "Custom",
-    features: [
-      "Unlimited pages / App views",
-      "Complex API integrations",
-      "User authentication & UI",
-      "E-commerce / Headless Shopify",
-      "Dedicated QA & testing",
-      "Post-launch retainer options"
-    ],
-    timeline: "10+ Weeks",
-    tier: "premium",
-    highlighted: false,
-    colorTheme: "green"
-  }
-]
-
-const CARD_COUNT = pricingData.length
+const CARD_COUNT = PRICING_DATA.length
 
 const Pricing = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -174,7 +115,7 @@ const Pricing = () => {
 
       <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden">
         <div ref={stackRef} className="relative flex-1 w-full flex items-center justify-center">
-          {pricingData.map((plan, index) => (
+          {PRICING_DATA.map((plan, index) => (
             <div
               key={plan.id}
               className="pricing-card absolute w-[90vw] max-w-[400px] sm:max-w-[900px]"
@@ -216,7 +157,7 @@ const Pricing = () => {
 
           {/* Active indicator dots */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 items-center">
-            {pricingData.map((_, i) => (
+            {PRICING_DATA.map((_, i) => (
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${activeCard === i ? "w-6 bg-(--color-secondary)" : "w-1.5 bg-white/50"}`}

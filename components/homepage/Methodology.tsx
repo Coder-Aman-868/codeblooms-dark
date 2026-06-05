@@ -1,31 +1,7 @@
-import React from 'react'
 import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
-import SmoothAnimtionWrapper from '../common/SmoothAnimtionWrapper'
 import TextReveal from '../animations/TextReveal'
-
-const methodologySteps = [
-    {
-        number: "01",
-        title: "Discovery & Strategy",
-        description: "We dive deep into your target audience, business goals, and current bottlenecks. We define the technical architecture and user journey before a single line of code is written."
-    },
-    {
-        number: "02",
-        title: "High-Fidelity Prototyping",
-        description: "We transform strategic insights into interactive wireframes and premium UI/UX designs, ensuring perfect alignment with your brand's DNA and conversion goals."
-    },
-    {
-        number: "03",
-        title: "Agile Development",
-        description: "This is where the magic happens. We build your site using modern, scalable frameworks (Next.js/React). You get weekly progress updates and staging links to see your product come to life."
-    },
-    {
-        number: "04",
-        title: "QA, Optimization & Launch",
-        description: "Rigorous cross-browser testing, accessibility audits, and Core Web Vitals optimization. We ensure a flawless deployment that search engines love and users trust."
-    }
-]
+import { METHODOLOGY_STEPS } from '@/helper/helper'
 
 const Methodology = () => {
     return (
@@ -41,8 +17,8 @@ const Methodology = () => {
                 </div>
 
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4 sm:gap-6 w-full">
-                    {methodologySteps.map((step, index) => (
-                        <SmoothAnimtionWrapper key={index} className="relative group rounded-2xl overflow-hidden h-full flex flex-col">
+                    {METHODOLOGY_STEPS.map((step, index) => (
+                        <div key={index} className="relative group rounded-2xl overflow-hidden h-full flex flex-col">
                             {/* Inner Card Content */}
                             <div className="relative flex flex-col h-full gap-4 p-6 sm:p-8 pb-12! rounded-2xl overflow-hidden bg-black card-border before:rounded-2xl after:rounded-2xl">
                                 <div className="h-10.75 w-[80%] absolute -top-20 left-1/2 -translate-x-1/2 bg-(--color-secondary) blur-2xl opacity-0 scale-20 duration-300 group-hover:scale-100 group-hover:opacity-100"></div>
@@ -55,7 +31,7 @@ const Methodology = () => {
                                     {step.description}
                                 </Paragraph>
                             </div>
-                        </SmoothAnimtionWrapper>
+                        </div>
                     ))}
                 </div>
             </div>
