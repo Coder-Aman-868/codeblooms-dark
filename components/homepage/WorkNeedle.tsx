@@ -17,8 +17,8 @@ const WorkNeedle = () => {
                     <div className="flex flex-col gap-4 w-full h lg:h-[747px] md:h-[calc(747px_-10vw)] sm:h-[calc(747px_-20vw)] h-[700px]">
                         <div className="relative p-3.75 bg-white/12 border sm:h-[55%] h-full backdrop-blur-[22px] border-white/12 rounded-xl">
                             <div className="relative rounded-lg overflow-clip h-full">
-                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/png/work-needle-cards-bg-image.png" alt="bg-image" />
-                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/png/project-img-1.png" alt="project-image" />
+                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/webp/work-needle-cards-bg-image.webp" alt="bg-image" />
+                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/webp/project-img-1.webp" alt="project-image" />
                                 <Link aria-label="View Project" className='z-10 size-9.5 rounded-4xl border border-white/12 bg-[#171717] flex justify-center items-center absolute bottom-[15px] left-[15px]' href={"#"}>
                                     <Icons className='rotate-135' icon='arrowIcon' />
                                 </Link>
@@ -26,8 +26,8 @@ const WorkNeedle = () => {
                         </div>
                         <div className="relative p-3.75 bg-white/12 border sm:h-[43%] h-full backdrop-blur-[22px] border-white/12 rounded-xl">
                             <div className="relative rounded-lg overflow-clip h-full">
-                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/png/work-needle-small-cards-bg-image.png" alt="bg-image" />
-                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/png/project-img-3.png" alt="project-image" />
+                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/webp/work-needle-small-cards-bg-image.webp" alt="bg-image" />
+                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/webp/project-img-3.webp" alt="project-image" />
                                 <Link aria-label="View Project" className='z-10 size-9.5 rounded-4xl border border-white/12 bg-[#171717] flex justify-center items-center absolute bottom-[15px] left-[15px]' href={"#"}>
                                     <Icons className='rotate-135' icon='arrowIcon' />
                                 </Link>
@@ -37,8 +37,8 @@ const WorkNeedle = () => {
                     <div className="flex flex-col gap-4 w-full h lg:h-[747px] md:h-[calc(747px_-10vw)] sm:h-[calc(747px_-20vw)] h-[700px]">
                         <div className="relative p-3.75 bg-white/12 border sm:h-[43%] h-full backdrop-blur-[22px] border-white/12 rounded-xl">
                             <div className="relative rounded-lg overflow-clip h-full">
-                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/png/work-needle-small-cards-bg-image.png" alt="bg-image" />
-                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/png/project-img-2.png" alt="project-image" />
+                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/webp/work-needle-small-cards-bg-image.webp" alt="bg-image" />
+                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/webp/project-img-2.webp" alt="project-image" />
                                 <Link aria-label="View Project" className='z-10 size-9.5 rounded-4xl border border-white/12 bg-[#171717] flex justify-center items-center absolute bottom-[15px] left-[15px]' href={"#"}>
                                     <Icons className='rotate-135' icon='arrowIcon' />
                                 </Link>
@@ -46,8 +46,8 @@ const WorkNeedle = () => {
                         </div>
                         <div className="relative p-3.75 bg-white/12 border sm:h-[55%] h-full backdrop-blur-[22px] border-white/12 rounded-xl">
                             <div className="relative rounded-lg overflow-clip h-full">
-                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/png/work-needle-cards-bg-image.png" alt="bg-image" />
-                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/png/project-img-4.png" alt="project-image" />
+                                <Image width={300} height={300} loading='lazy' className='z-0 absolute inset-0 w-full h-full object-cover' src="/assets/images/webp/work-needle-cards-bg-image.webp" alt="bg-image" />
+                                <Image width={300} height={300} loading='lazy' className='absolute left-1/2 -translate-x-1/2 top-[42px] rounded-xl w-[80%]' src="/assets/images/webp/project-img-4.webp" alt="project-image" />
                                 <Link aria-label="View Project" className='z-10 size-9.5 rounded-4xl border border-white/12 bg-[#171717] flex justify-center items-center absolute bottom-[15px] left-[15px]' href={"#"}>
                                     <Icons className='rotate-135' icon='arrowIcon' />
                                 </Link>

@@ -1,31 +1,31 @@
 export const BUILD_GROWTH_DATA = [
     {
-        image: "/assets/images/png/saas-website-img.png",
+        image: "/assets/images/webp/saas-website-img.webp",
         title: "SaaS Websites & Landing Pages",
         description: "High-converting, user-centric landing pages engineered to clearly articulate your value and drive immediate sign- ups."
     },
     {
-        image: "/assets/images/png/modern-frontend-development.png",
+        image: "/assets/images/webp/modern-frontend-development.webp",
         title: "Modern Frontend Development",
         description: "Scalable, headless frontend architectures built with React and Next.js for lightning-fast, native-like experiences."
     },
     {
-        image: "/assets/images/png/performance-optimization.png",
+        image: "/assets/images/webp/performance-optimization.webp",
         title: "Performance Optimization",
         description: "Strategic codebase refactoring to master Core Web Vitals, boosting SEO rankings and user retention."
     },
     {
-        image: "/assets/images/png/saas-website-img.png",
+        image: "/assets/images/webp/saas-website-img.webp",
         title: "SaaS Websites & Landing Pages",
         description: "High-converting, user-centric landing pages engineered to clearly articulate your value and drive immediate sign- ups."
     },
     {
-        image: "/assets/images/png/modern-frontend-development.png",
+        image: "/assets/images/webp/modern-frontend-development.webp",
         title: "Modern Frontend Development",
         description: "Scalable, headless frontend architectures built with React and Next.js for lightning-fast, native-like experiences."
     },
     {
-        image: "/assets/images/png/performance-optimization.png",
+        image: "/assets/images/webp/performance-optimization.webp",
         title: "Performance Optimization",
         description: "Strategic codebase refactoring to master Core Web Vitals, boosting SEO rankings and user retention."
     },
@@ -113,28 +113,28 @@ export const TESTIMONIALS_DATA = [
         quote: "Working together was a seamless experience. The designs were beautiful and user-focused, and our website traffic improved noticeably.",
         name: "Thoms Alva",
         title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_1.png",
+        image: "/assets/images/webp/client_avatar_1.webp",
         angle: 5,
     },
     {
         quote: "The team delivered beyond expectations. Their attention to detail and creative vision transformed our entire digital presence.",
         name: "David Chen",
         title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_2.png",
+        image: "/assets/images/webp/client_avatar_2.webp",
         angle: -7,
     },
     {
         quote: "Exceptional collaboration from start to finish. The final product exceeded all our benchmarks and delighted our users.",
         name: "Elena Rodriguez",
         title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_3.png",
+        image: "/assets/images/webp/client_avatar_3.webp",
         angle: -6,
     },
     {
         quote: "Professional, creative, and incredibly responsive. They turned our vague ideas into a stunning reality that drives results.",
         name: "Marcus Johnson",
         title: "Ceo Of Bingo",
-        image: "/assets/images/png/client_avatar_4.png",
+        image: "/assets/images/webp/client_avatar_4.webp",
         angle: 9,
     },
 ]

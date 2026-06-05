@@ -1,3 +1,4 @@
+"use client"
 import { BUILD_GROWTH_DATA } from '@/helper/helper'
 import Image from 'next/image'
 import Heading from '../common/Heading'
@@ -71,7 +72,7 @@ const BuiltScale = () => {
         </div>
       </div>
       <div className="bg-(--color-secondary) opacity-60 blur-[200px] w-[415px] h-[129px] absolute top-[295px] left-1/2 -translate-x-1/2"></div>
-      <img className='w-[1079px] h-auto absolute lg:-top-20 sm:top-0 -top-10 left-1/2 -translate-x-1/2 mix-blend-soft-light' src={"/assets/images/png/built-for-growth-top-layer.png"} alt='top layer' />
+      <img className='w-[1079px] h-auto absolute lg:-top-20 sm:top-0 -top-10 left-1/2 -translate-x-1/2 mix-blend-soft-light' src={"/assets/images/webp/built-for-growth-top-layer.webp"} alt='top layer' />
     </div>
   )
 }
