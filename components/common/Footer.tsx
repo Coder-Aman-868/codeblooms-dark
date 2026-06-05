@@ -57,7 +57,7 @@ const Footer = () => {
                             <h3 className="text-white font-medium text-sm tracking-widest uppercase mb-1">Explore</h3>
                             <Link href="/portfolio" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">Portfolio</Link>
                             <Link href="/pricing" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">Pricing</Link>
-                            <Link href="/start-project" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm text-balance">Start a Project</Link>
+                            <Link href="/contact" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm text-balance">Start a Project</Link>
                         </div>
                     </div>
                 </div>

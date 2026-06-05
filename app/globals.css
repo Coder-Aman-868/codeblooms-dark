@@ -940,15 +940,10 @@ body::before {
   position: absolute;
   inset: 0;
   z-index: 2;
-  box-shadow: inset 2px 2px 2px 0 var(--color-secondary),
-    inset -2px -2px 2px 0 var(--color-secondary);
-  border-radius: inherit;
-  transition: all 0.3s linear;
-}
-
-button .d-glass-card-border {
   box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
     inset -2px -2px 2px 0 rgba(255, 255, 255, 0.2);
+  border-radius: inherit;
+  transition: all 0.3s linear;
 }
 
 button:hover .d-glass-card-border {

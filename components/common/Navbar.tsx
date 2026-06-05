@@ -173,7 +173,7 @@ const Navbar = () => {
 
                     {/* Right: CTA + hamburger */}
                     <div className="flex items-center gap-2.5 relative z-10">
-                        <Link href='/start-project' className="max-sm:hidden">
+                        <Link href='/contact' className="max-sm:hidden">
                             <Button secondary className='leading-none! text-base! px-5! py-4!'>Get Started</Button>
                         </Link>
 
@@ -301,7 +301,7 @@ const Navbar = () => {
                         transition: `opacity 450ms ease ${100 + NAV_LINKS.length * 65 + 50}ms, transform 450ms cubic-bezier(0.16,1,0.3,1) ${100 + NAV_LINKS.length * 65 + 50}ms`,
                     }}
                 >
-                    <Link href='/start-project' onClick={() => setMenuOpen(false)} className="block">
+                    <Link href='/contact' onClick={() => setMenuOpen(false)} className="block">
                         <Button secondary className='w-full! justify-center! leading-none! text-base! px-5! py-4!'>
                             Get Started
                         </Button>

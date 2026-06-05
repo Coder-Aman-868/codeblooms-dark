@@ -230,7 +230,7 @@ const Services = () => {
 
                 {/* CTA */}
                 <div className="pt-4">
-                  <Link href="/start-project">
+                  <Link href="/contact">
                     <Button secondary className="!py-3 !px-6 !text-sm group flex item-center">
                       {service.cta} <span className="ml-2 flex opacity-50 group-hover:translate-x-2! group-hover:opacity-100 duration-300">→</span>
                     </Button>

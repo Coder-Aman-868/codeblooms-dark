@@ -23,7 +23,7 @@ const Button = ({ children, className, secondary = false, ref, type = "button", 
                     <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="40" xChannelSelector="R" yChannelSelector="G" />
                 </filter>
             </svg>
-            <span className='relative z-10'>{children}</span>
+            <span className='relative z-10 flex items-center'>{children}</span>
         </button>
     )
 }
