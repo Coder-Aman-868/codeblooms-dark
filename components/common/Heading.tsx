@@ -13,7 +13,6 @@ interface Props {
 
 const Heading = ({ children, Tag = 'h2', className, ref, dangerouslySetInnerHTML, animate }: Props) => {
     const baseClass = `text-white/95 ${className}`;
-    console.log(children)
     if (animate) {
         // Ensure children is treated as a string before calling .split
         const text = typeof children === 'string' ? children : String(children || '');

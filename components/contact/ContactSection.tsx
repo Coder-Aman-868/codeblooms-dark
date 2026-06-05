@@ -25,15 +25,7 @@ const ContactSection = () => {
 
         // Simulate network request
         await new Promise(resolve => setTimeout(resolve, 1500));
-
-        console.log('=== CONTACT FORM DATA ===');
-        console.log('Full Name:', formData.fullName);
-        console.log('Email:', formData.email);
-        console.log('Subject:', formData.subject);
-        console.log('Description:', formData.description);
-        console.log('=== END FORM DATA ===');
         console.log('Full Form Object:', formData);
-
         setIsSubmitting(false);
         setIsSubmitted(true);
 

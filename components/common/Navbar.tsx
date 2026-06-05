@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 import Button from './Button'
+import LiquidGlass from './LiquidGlass'
 import { NAV_LINKS } from '@/helper/helper'
 
 type UnderlinePos = { left: number; width: number }
@@ -106,17 +107,7 @@ const Navbar = () => {
             {/* ── Top bar ───────────────────────────────────────────────────── */}
             <div className='px-5 lg:pt-12.5 sm:pt-8 pt-5 fixed top-0 w-full z-50 left-0'>
                 <div className="max-w-205 mx-auto p-1 pl-3.5 rounded-full border border-transparent flex justify-between items-center w-full bg-white/5 relative">
-                    <div className="d-glass-card liquid-glass">
-                        <div className="d-glass-card-morph"></div>
-                        <div className="d-glass-card-corner"></div>
-                        <div className="d-glass-card-border"></div>
-                    </div>
-                    <svg style={{ display: "none" }} xmlns="http://www.w3.org/2000/svg">
-                        <filter id="liquid-glass">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.02" numOctaves="2" seed="5" result="turbulence" />
-                            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="40" xChannelSelector="R" yChannelSelector="G" />
-                        </filter>
-                    </svg>
+                    <LiquidGlass />
                     {/* Logo */}
                     <Link
                         href='/'
