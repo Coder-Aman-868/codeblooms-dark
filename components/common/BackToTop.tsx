@@ -90,7 +90,7 @@ const BackToTop = () => {
         <button
             onClick={scrollToTop}
             className={` fixed bottom-6 z-100 right-6 group duration-300 ease-in ${isVisible ? "opacity-100" : "opacity-0 translate-y-5 pointer-events-none"} `}>
-            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ ["--back-gradient" as any]: `linear-gradient(${count}.03deg, rgba(255,255,255,0.5) 0.02%, rgba(153,153,153,0) 80.18%)` }} className="bg-black py-2 pl-4 pr-2 cursor-pointer rounded-full shadow-md transition-all back-to-top-button flex justify-center items-center gap-1">
+            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ ["--back-gradient" as any]: `linear-gradient(${count}.03deg, var(--color-secondary) 0.02%, rgba(153,153,153,0) 80.18%)` }} className="bg-black py-2 pl-4 pr-2 cursor-pointer rounded-full shadow-md transition-all back-to-top-button flex justify-center items-center gap-1">
                 <p className="text-xs leading-[100%] mb-0.5 bg-[linear-gradient(180deg,#bababa_0%,#706f6f70_101.16%)] bg-clip-text text-transparent">Scroll Up</p>
                 <Icons className="rotate-90" icon="arrowIcon" />
             </div>
