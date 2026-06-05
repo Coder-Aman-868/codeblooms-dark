@@ -6,6 +6,7 @@ import Heading from '../common/Heading'
 import Paragraph from '../common/Paragraph'
 import Button from '../common/Button'
 import { PRICING_DATA } from '@/helper/helper'
+import Badge from '../common/Badge'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -125,7 +126,10 @@ const Pricing = () => {
                 {/* <!-- Left: price + button --> */}
                 <div className="flex flex-col gap-5 sm:flex-1 max-sm:w-full min-w-[160px]">
                   <div>
-                    <p className="text-(--color-secondary)/80 text-base line-through sm:mb-8 mb-2">{plan.prevPrice}</p>
+                    <div className="flex justify-between items-center sm:mb-8 mb-2">
+                      <p className="text-(--color-secondary)/80 text-base line-through">{plan.prevPrice}</p>
+                      <Badge>{plan.title}</Badge>
+                    </div>
                     <div className="flex items-baseline gap-1 sm:mb-6 mb-0">
                       <span className="text-5xl font-bold text-white/90">{plan.price}</span>
                       <span className="text-sm text-(--color-secondary) ml-1">/Month</span>

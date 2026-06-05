@@ -7,7 +7,7 @@ interface Props {
 
 const Badge = ({ children, className }: Props) => {
     return (
-        <div className={`py-2 px-3 rounded-[999px] badge-box ${className}`}>
+        <div className={`py-2 px-3 rounded-[999px] relative ${className}`}>
             <div className="d-glass-card liquid-glass">
                 <div className="d-glass-card-morph"></div>
                 <div className="d-glass-card-corner"></div>
@@ -19,7 +19,7 @@ const Badge = ({ children, className }: Props) => {
                     <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="40" xChannelSelector="R" yChannelSelector="G" />
                 </filter>
             </svg>
-            <TextReveal Tag='p' className='relative after:left-2.5 after:top-1/2 after:-translate-y-1/2 after:absolute after:size-1 after:rounded-2xl after:bg-[#939393] text-sm pl-5 font-medium text-white'>{children}</TextReveal>
+            <TextReveal Tag='p' className='relative after:left-1.75 after:top-1/2 after:-translate-y-1/2 after:absolute after:size-1 after:rounded-2xl after:bg-[#939393] text-sm pl-5 font-medium text-white'>{children}</TextReveal>
         </div>
     )
 }

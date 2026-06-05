@@ -215,25 +215,6 @@ body::before {
   outline-offset: 2px;
 }
 
-.badge-box {
-  position: relative;
-}
-
-/* .badge-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  pointer-events: none !important;
-  padding: 1px;
-  background: linear-gradient(180.03deg, rgba(255, 255, 255, 0.5) 0.02%, rgba(153, 153, 153, 0) 100.18%);
-
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-} */
-
 .slider-buttons {
   position: relative;
 }
