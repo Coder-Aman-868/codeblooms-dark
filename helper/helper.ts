@@ -1,3 +1,5 @@
+import { Project } from "@/types/type"
+
 export const BUILD_GROWTH_DATA = [
     {
         image: "/assets/images/webp/saas-website-img.webp",
@@ -245,3 +247,77 @@ export const SERVICES_DATA = [
         cta: "Boost Your Speed"
     }
 ]
+export const PROJECTS: Project[] = [
+    {
+        id: 1,
+        title: "ShopMetrics Dashboard",
+        category: "E-Commerce",
+        description:
+            "A high-performance analytics dashboard that cut acquisition costs by 38% with real-time conversion insights.",
+        tags: ["Next.js", "TypeScript", "Recharts"],
+        image: "/assets/images/webp/project-img-1.webp",
+        metric: "+38%",
+        metricLabel: "Conversion Rate",
+        link: "#",
+    },
+    {
+        id: 2,
+        title: "FlowAI Landing Page",
+        category: "SaaS",
+        description:
+            "Crafted a stunning SaaS landing page with micro-animations that boosted sign-up rates by 52%.",
+        tags: ["React", "GSAP", "Framer Motion"],
+        image: "/assets/images/webp/project-img-2.webp",
+        metric: "+52%",
+        metricLabel: "Sign-up Rate",
+        link: "#",
+    },
+    {
+        id: 3,
+        title: "Luxe Storefront",
+        category: "E-Commerce",
+        description:
+            "A premium luxury fashion store with immersive product experiences that increased AOV by 61%.",
+        tags: ["Shopify", "Liquid", "GSAP"],
+        image: "/assets/images/webp/project-img-3.webp",
+        metric: "+61%",
+        metricLabel: "Avg. Order Value",
+        link: "#",
+    },
+    {
+        id: 4,
+        title: "Nexus Agency Site",
+        category: "Web Design",
+        description:
+            "A bold creative agency portfolio with scroll-driven storytelling and 3D canvas interactions.",
+        tags: ["Next.js", "Three.js", "Lenis"],
+        image: "/assets/images/webp/project-img-4.webp",
+        metric: "3.2s",
+        metricLabel: "Avg. Session Time",
+        link: "#",
+    },
+    {
+        id: 4,
+        title: "Cloth Store",
+        category: "Web Design",
+        description:
+            "A bold creative agency portfolio with scroll-driven storytelling and 3D canvas interactions.",
+        tags: ["Next.js", "Three.js", "Lenis"],
+        image: "/assets/images/webp/project-img-5.webp",
+        metric: "3.2s",
+        metricLabel: "Avg. Session Time",
+        link: "#",
+    },
+    {
+        id: 4,
+        title: "Frosty Delights Corn",
+        category: "Branding",
+        description:
+            "A bold creative agency portfolio with scroll-driven storytelling and 3D canvas interactions.",
+        tags: ["Next.js", "Three.js", "Lenis"],
+        image: "/assets/images/webp/project-img-6.webp",
+        metric: "3.2s",
+        metricLabel: "Avg. Session Time",
+        link: "#",
+    }
+];

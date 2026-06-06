@@ -111,7 +111,7 @@ export default function TextReveal({
       y: "0%",
       duration,
       stagger,
-      ease: "power3.out",
+      ease: "back",
     });
 
     return () => {
