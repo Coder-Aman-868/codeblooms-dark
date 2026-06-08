@@ -297,7 +297,7 @@ export const PROJECTS: Project[] = [
         link: "#",
     },
     {
-        id: 4,
+        id: 5,
         title: "Cloth Store",
         category: "Web Design",
         description:
@@ -309,7 +309,7 @@ export const PROJECTS: Project[] = [
         link: "#",
     },
     {
-        id: 4,
+        id: 6,
         title: "Frosty Delights Corn",
         category: "Branding",
         description:
