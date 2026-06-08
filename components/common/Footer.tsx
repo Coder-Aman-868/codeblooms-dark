@@ -48,13 +48,13 @@ const Footer = () => {
                     {/* Available Links */}
                     <div className="w-full lg:w-1/2 flex justify-start lg:justify-end gap-16 md:gap-24">
                         <div className="flex flex-col gap-4">
-                            <h3 className="text-white font-medium text-sm tracking-widest uppercase mb-1">Navigation</h3>
+                            <h3 className="text-(--color-secondary) font-medium text-sm tracking-widest uppercase mb-1">Navigation</h3>
                             <Link href="/" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">Home</Link>
                             <Link href="/about" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">About Us</Link>
                             <Link href="/services" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">Services</Link>
                         </div>
                         <div className="flex flex-col gap-4">
-                            <h3 className="text-white font-medium text-sm tracking-widest uppercase mb-1">Explore</h3>
+                            <h3 className="text-(--color-secondary) font-medium text-sm tracking-widest uppercase mb-1">Explore</h3>
                             <Link href="/portfolio" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">Portfolio</Link>
                             <Link href="/pricing" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm">Pricing</Link>
                             <Link href="/contact" className="text-[#919191] hover:text-(--color-secondary) max-w-max transition-colors text-sm text-balance">Start a Project</Link>

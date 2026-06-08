@@ -22,6 +22,7 @@ const Services = () => {
   useEffect(() => {
     const section = sectionRef.current
     const stack = stackRef.current
+    let currentIndex = 0;
     if (!section || !stack) return
 
     const cards = gsap.utils.toArray<HTMLElement>('.service-card', stack)
@@ -37,6 +38,7 @@ const Services = () => {
           rotateZ: 0,
           z: 0,
           zIndex: totalCards,
+          force3D: true,
         })
       } else {
         gsap.set(card, {
@@ -110,18 +112,23 @@ const Services = () => {
         end: `top+=${((totalCards - 1) / totalCards) * 100}% top`,
         scrub: 0.5,
         animation: masterTl,
-        snap: {
-          snapTo: 1 / (totalCards - 1),
-          duration: { min: 0.25, max: 0.6 },
-          delay: 0.05,
-          ease: 'power1.inOut',
-        },
+        // snap: {
+        //   snapTo: 1 / (totalCards - 1),
+        //   duration: { min: 0.25, max: 0.6 },
+        //   delay: 0.05,
+        //   ease: 'power1.inOut',
+        // },
+
+
         onUpdate: (self) => {
           const index = Math.round(
             self.progress * (totalCards - 1)
           );
 
-          setActiveCard(index);
+          if (index !== currentIndex) {
+            currentIndex = index;
+            setActiveCard(index);
+          }
         }
       })
     }, section)
@@ -157,6 +164,7 @@ const Services = () => {
               className="service-card absolute w-[90vw] max-w-[480px] sm:max-w-[520px]"
               style={{
                 willChange: 'transform',
+                backfaceVisibility: 'hidden',
               }}
             >
               <div className={`rounded-2xl overflow-hidden bg-[#0a0a0a]/20 backdrop-blur-sm border border-white/[0.06] p-6 sm:p-8 flex flex-col gap-5 card-border after:rounded-2xl before:rounded-2xl ${activeCard === index ? "after:opacity-100! before:opacity-0!" : "after:opacity-0! before:opacity-100!"}`}>

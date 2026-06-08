@@ -10,8 +10,6 @@
   --primary-color-rgb: 255, 255, 255;
   --color-primary: var(--primary-color);
   --color-secondary: #67E8F9;
-  --cursor-x: 50vw;
-  --cursor-y: 50vh;
 }
 
 * {
@@ -23,27 +21,6 @@
    ============================================ */
 body {
   background-color: #000;
-  background-image:
-    conic-gradient(from 270deg at bottom 1px right 1px, #000 25%, transparent 0),
-    radial-gradient(350px at var(--cursor-x) var(--cursor-y),
-      color-mix(in srgb, var(--color-secondary) 30%, transparent) 0%,
-      transparent 70%);
-  background-repeat: repeat, no-repeat;
-  background-size: 48px 48px, 100% 100%;
-  background-attachment: fixed;
-}
-
-/* Grid lines — subtle white hairlines */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
 }
 
 @theme {
@@ -131,15 +108,40 @@ body::before {
   border-radius: 999px;
   pointer-events: none !important;
   padding: 2px;
-  background: var(--back-gradient);
-
+  background: linear-gradient(180.03deg, var(--color-secondary) 0.02%, rgba(153, 153, 153, 0) 80.18%);
+  opacity: 0;
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
+  transition: all 0.3s linear;
 }
 
-.swiper-slide-active {
+.back-to-top-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  pointer-events: none !important;
+  padding: 2px;
+  background: linear-gradient(180.03deg, #bababa 0.02%, rgba(153, 153, 153, 0) 80.18%);
+  opacity: 1;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: all 0.3s linear;
+}
+
+.back-to-top-button:hover::after {
+  opacity: 0 !important;
+}
+
+.back-to-top-button:hover::before {
+  opacity: 1 !important;
+}
+
+per-slide-active {
   .active-ellipse {
     opacity: 1 !important;
     scale: 1 !important;

@@ -3,7 +3,6 @@ import { Poppins, Inter } from "next/font/google";
 // @ts-ignore
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
-import LenisScroll from "@/components/LenisScroll";
 import dynamic from 'next/dynamic';
 import { cn } from "@/lib/utils";
 
@@ -11,8 +10,6 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const Footer = dynamic(() => import("@/components/common/Footer"));
 const BackToTop = dynamic(() => import("@/components/common/BackToTop"));
-const CursorLight = dynamic(() => import("@/components/animations/CursorLight"));
-const ColorPicker = dynamic(() => import("@/components/common/ColorPicker"));
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -78,29 +75,12 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased bg-black`}
       >
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const savedColor = localStorage.getItem('colorSecondary');
-                if (savedColor) {
-                  document.documentElement.style.setProperty('--color-secondary', savedColor);
-                }
-              } catch (e) {}
-            `,
-          }}
-        /> */}
-        <CursorLight />
-        {/* <LenisScroll /> */}
         <Navbar />
         <main>
           {children}
         </main>
         <Footer />
         <BackToTop />
-        {/* <ColorPicker /> */}
-        {/* <ContactNow /> */}
-        {/* <SpeedInsights /> */}
       </body>
     </html>
   );

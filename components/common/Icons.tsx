@@ -36,11 +36,36 @@ const Icons: React.FC<LoginCardProps> = ({
                             stopColor="rgba(153, 153, 153, 0)"
                         />
                     </linearGradient>
+                    <linearGradient
+                        id="hoverArrowGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="0%"
+                    >
+                        <stop
+                            offset="0.02%"
+                            stopColor="var(--color-secondary)"
+                        />
+                        <stop
+                            offset="100.18%"
+                            stopColor="rgba(153, 153, 153, 0)"
+                        />
+                    </linearGradient>
                 </defs>
 
                 <path
+                    className="opacity-100 group-hover:opacity-0 duration-300"
                     d="M6 12H18M6 12L11 7M6 12L11 17"
                     stroke="url(#arrowGradient)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    className="opacity-0 group-hover:opacity-100 duration-300"
+                    d="M6 12H18M6 12L11 7M6 12L11 17"
+                    stroke="url(#hoverArrowGradient)"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

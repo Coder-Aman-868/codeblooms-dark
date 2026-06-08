@@ -280,10 +280,10 @@ const FoundersSaying = () => {
 
                                         {/* Prev / Next footer */}
                                         <footer className="flex gap-3 mt-2" style={{ justifyContent: 'var(--cards-footer-justify, center)' }}>
-                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous" className="cursor-pointer duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+                                            <label htmlFor={`testimonial-radio-${prevIndex}`} aria-label="Previous" className="group cursor-pointer duration-400 ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
                                                 <Icons icon='arrowIcon' />
                                             </label>
-                                            <label htmlFor={`testimonial-radio-${nextIndex}`} aria-label="Next" className="cursor-pointer duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:rotate-180 after:rotate-180 rounded-4xl">
+                                            <label htmlFor={`testimonial-radio-${nextIndex}`} aria-label="Next" className="group cursor-pointer duration-400 ease-in flex justify-center items-center size-12 bg-black slider-buttons before:rotate-180 after:rotate-180 rounded-4xl">
                                                 <Icons className='rotate-180' icon='arrowIcon' />
                                             </label>
                                         </footer>

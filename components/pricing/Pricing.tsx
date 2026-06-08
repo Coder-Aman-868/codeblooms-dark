@@ -15,6 +15,7 @@ const CARD_COUNT = PRICING_DATA.length
 const Pricing = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const stackRef = useRef<HTMLDivElement>(null)
+  let currentIndex = 0;
   const [activeCard, setActiveCard] = useState(0)
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const Pricing = () => {
           rotateZ: 0,
           z: 0,
           zIndex: totalCards,
+          force3D: true,
         })
       } else {
         gsap.set(card, {
@@ -83,15 +85,22 @@ const Pricing = () => {
         end: `top+=${((totalCards - 1) / totalCards) * 100}% top`,
         scrub: 0.5,
         animation: masterTl,
-        snap: {
-          snapTo: 1 / (totalCards - 1),
-          duration: { min: 0.25, max: 0.6 },
-          delay: 0.05,
-          ease: 'power1.inOut',
-        },
+        // snap: {
+        //   snapTo: 1 / (totalCards - 1),
+        //   duration: { min: 0.25, max: 0.6 },
+        //   delay: 0.05,
+        //   ease: 'power1.inOut',
+        // },
+
         onUpdate: (self) => {
-          const index = Math.round(self.progress * (totalCards - 1))
-          setActiveCard(index)
+          const index = Math.round(
+            self.progress * (totalCards - 1)
+          );
+
+          if (index !== currentIndex) {
+            currentIndex = index;
+            setActiveCard(index);
+          }
         }
       })
     }, section)
@@ -120,7 +129,10 @@ const Pricing = () => {
             <div
               key={plan.id}
               className="pricing-card absolute w-[90vw] max-w-[400px] sm:max-w-[900px]"
-              style={{ willChange: 'transform' }}
+              style={{
+                willChange: 'transform',
+                backfaceVisibility: 'hidden'
+              }}
             >
               <div className={`card-border before:rounded-2xl after:rounded-2xl rounded-2xl bg-[#0a0a0a]/10 backdrop-blur-sm p-8 flex items-center justify-between sm:flex-row flex-col sm:gap-12 gap-8 w-full transition-all duration-500 ${activeCard === index ? "after:opacity-100! before:opacity-0!" : "after:opacity-0! before:opacity-100!"}`}>
                 {/* <!-- Left: price + button --> */}
@@ -171,7 +183,7 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

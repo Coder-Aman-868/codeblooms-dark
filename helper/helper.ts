@@ -1,5 +1,6 @@
 import { Project } from "@/types/type"
 
+export const SECONDARY_COLOR = "#67E8F9"
 export const BUILD_GROWTH_DATA = [
     {
         image: "/assets/images/webp/saas-website-img.webp",

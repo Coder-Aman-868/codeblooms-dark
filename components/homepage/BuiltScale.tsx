@@ -63,10 +63,10 @@ const BuiltScale = () => {
           }
         </Swiper>
         <div className="flex gap-5 items-center justify-center w-full sm:mt-10 mt-5">
-          <button aria-label="Previous slide" className="custom-prev cursor-pointer ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
+          <button aria-label="Previous slide" className="group custom-prev cursor-pointer ease-in size-12 bg-black slider-buttons rounded-4xl flex justify-center items-center">
             <Icons icon='arrowIcon' />
           </button>
-          <button aria-label="Next slide" className="custom-next cursor-pointer ease-in flex justify-center items-center size-12 bg-black slider-buttons before:rotate-180 after:rotate-180 rounded-4xl">
+          <button aria-label="Next slide" className="group custom-next cursor-pointer ease-in flex justify-center items-center size-12 bg-black slider-buttons before:rotate-180 after:rotate-180 rounded-4xl">
             <Icons className='rotate-180' icon='arrowIcon' />
           </button>
         </div>
