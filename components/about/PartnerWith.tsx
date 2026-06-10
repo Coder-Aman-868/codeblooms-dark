@@ -18,9 +18,9 @@ const PartnerWith = () => {
 
                 <SmoothAnimtionWrapper className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 sm:gap-16">
                     {FEATURES_DATA.map((feature, index) => (
-                        <div key={index} className="relative group pl-6 sm:pl-8 flex flex-col h-full border-l border-white/10 transition-all duration-700 hover:border-white/30">
+                        <div key={index} className="relative group pl-6 sm:pl-8 flex flex-col h-full border-l border-white/10 transition-all duration-700 hover:(--color-secondary)/30">
                             {/* Left Glow on hover */}
-                            <div className="absolute top-0 left-0 w-[1px] h-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_15px_rgba(255,255,255,0.6)]"></div>
+                            <div className="absolute top-0 left-0 w-[1px] h-full bg-(--color-secondary) opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_15px_rgba(255,255,255,0.6)]"></div>
                             {/* Soft inner glow */}
                             <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[60px] h-3/4 bg-white/5 blur-[35px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 

@@ -16,7 +16,15 @@ const CARD_COUNT = SERVICES_DATA.length
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const stackRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const [headerHeight, setHeaderHeight] = useState(0);
   const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, []);
 
 
   useEffect(() => {
@@ -56,6 +64,14 @@ const Services = () => {
     // cross-timeline zIndex conflicts that happen with per-step triggers
     const ctx = gsap.context(() => {
       const masterTl = gsap.timeline()
+
+      if (headerRef.current) {
+        masterTl.to(headerRef.current, {
+          y: -headerRef.current.offsetHeight - 20,
+          duration: 0.5,
+          ease: 'power2.out'
+        })
+      }
 
       for (let step = 0; step < totalCards - 1; step++) {
         cards.forEach((card, i) => {
@@ -140,19 +156,18 @@ const Services = () => {
     <div
       ref={sectionRef}
       className='relative'
-      style={{ height: `${CARD_COUNT * 100}vh` }}
+      style={{ height: `calc(${CARD_COUNT * 100}vh + ${headerHeight}px)` }}
     >
-      {/* Header */}
-      <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto">
-        <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
-          Our Services
-        </Heading>
-        <Paragraph animate className='text-center opacity-60 font-light text-lg'>
-          Tailored engineering solutions to elevate your digital presence.
-        </Paragraph>
-      </div>
-
       <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden">
+        {/* Header */}
+        <div ref={headerRef} className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto">
+          <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light tracking-tight text-center text-white! bg-transparent!'>
+            Our Services
+          </Heading>
+          <Paragraph animate className='text-center opacity-60 font-light text-lg'>
+            Tailored engineering solutions to elevate your digital presence.
+          </Paragraph>
+        </div>
         {/* Card Stack */}
         <div
           ref={stackRef}

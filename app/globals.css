@@ -401,3 +401,17 @@ per-slide-active {
 .testimonial-card:has(+ .testimonial-radio + .testimonial-card + .testimonial-radio + .testimonial-card + .testimonial-radio:checked) {
   z-index: 7;
 }
+
+/* ============================================
+   Marquee scroll — registered as a Tailwind
+   animation token so `animate-marquee-scroll`
+   works as a utility class in the component.
+   ============================================ */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@theme {
+  --animate-marquee-scroll: marquee-scroll 40s linear infinite;
+}
