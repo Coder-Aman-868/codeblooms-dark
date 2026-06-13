@@ -9,7 +9,7 @@ const Methodology = () => {
             <div className="max-w-[1036px] mx-auto w-full flex flex-col justify-center items-center gap-6">
                 <div className="flex flex-col justify-center items-center gap-3 max-w-[800px] mx-auto pb-10">
                     <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-medium text-center text-white! bg-transparent!'>
-                        The CodeBlooms Methodology
+                        The Clear Orbit Methodology
                     </Heading>
                     <Paragraph animate className='text-center opacity-80'>
                         Explore how we’ve helped tech founders transform their digital presence and dominate their niches.

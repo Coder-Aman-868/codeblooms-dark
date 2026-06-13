@@ -118,7 +118,7 @@ const Navbar = () => {
                         }}
                         className={`text-transparent bg-clip-text text-lg z-10 relative leading-none font-medium text-nowrap`}
                     >
-                        Code Blooms
+                        Clear Orbit
                     </Link>
 
                     {/* Desktop links */}

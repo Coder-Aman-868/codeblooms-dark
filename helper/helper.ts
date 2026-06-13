@@ -172,8 +172,8 @@ export const PRICING_DATA = [
     {
         id: "starter",
         title: "Starter",
-        price: "$5,000",
-        prevPrice: "$6,000",
+        price: "$150",
+        prevPrice: "$250",
         features: [
             "High-converting single-page architecture",
             "Custom UI/UX Design (No templates)",
@@ -185,8 +185,8 @@ export const PRICING_DATA = [
     {
         id: "growth",
         title: "Growth",
-        price: "$12,000",
-        prevPrice: "$15,000",
+        price: "$400",
+        prevPrice: "$550",
         features: [
             "Up to 8-page custom architecture",
             "Premium animations & interactions",

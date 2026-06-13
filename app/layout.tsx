@@ -17,34 +17,46 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "CodeBlooms - Premium Web Development Studio",
+  title: "Clear Orbit - Premium Web Development Studio",
   description:
-    "Partner with CodeBlooms to engineer lightning-fast, high-converting websites for SaaS brands. Scale your MRR with custom Next.js solutions and build a true growth engine.",
+    "Partner with Clear Orbit to engineer lightning-fast, high-converting websites for SaaS brands. Scale your MRR with custom Next.js solutions and build a true growth engine.",
 
   keywords: [
-    "CodeBlooms",
+    "Clear Orbit",
     "Next.js agency",
     "SaaS website development",
     "High performance websites",
     "Web development studio",
+    "Frontend development",
+    "React development",
+    "Website development company",
+    "E-commerce development",
+    "Web design agency",
+    "Professional website",
+    "Custom website development",
+    "Digital transformation",
+    "Tech startup development",
+    "Conversion rate optimization",
+    "UI/UX design",
+    "Web development services"
   ],
 
-  authors: [{ name: "CodeBlooms Team" }],
-  creator: "CodeBlooms",
+  authors: [{ name: "Clear Orbit Team" }],
+  creator: "Clear Orbit",
   metadataBase: new URL("https://yourdomain.com"),
 
   openGraph: {
-    title: "CodeBlooms - Premium Web Development Studio",
+    title: "Clear Orbit - Premium Web Development Studio",
     description:
       "Lightning-fast, conversion-focused SaaS websites built with Next.js.",
     url: "https://yourdomain.com",
-    siteName: "CodeBlooms",
+    siteName: "Clear Orbit",
     images: [
       {
         url: "/seo-image.png", // public folder me rakho
         width: 1200,
         height: 630,
-        alt: "CodeBlooms SaaS Web Development Studio",
+        alt: "Clear Orbit SaaS Web Development Studio",
       },
     ],
     locale: "en_US",
@@ -53,7 +65,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "CodeBlooms - Premium Web Development Studio",
+    title: "Clear Orbit - Premium Web Development Studio",
     description:
       "High-converting SaaS websites engineered for growth.",
     images: ["/og-image.jpg"],

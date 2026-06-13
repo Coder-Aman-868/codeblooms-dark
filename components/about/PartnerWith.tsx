@@ -9,7 +9,7 @@ const PartnerWith = () => {
             <div className="max-w-[1036px] mx-auto w-full">
                 <div className="flex flex-col justify-center items-center gap-4 max-w-[800px] mx-auto pb-16 md:pb-20">
                     <Heading animate Tag='h2' className='lg:text-5xl md:text-custom-4xl sm:text-4xl text-3xl font-light text-center tracking-tight text-white! bg-transparent!'>
-                        Why Partner With CodeBlooms?
+                        Why Partner With Clear Orbit?
                     </Heading>
                     <Paragraph animate className='text-center opacity-60 font-light text-lg'>
                         We are not a traditional agency. We are an extension of your product team.

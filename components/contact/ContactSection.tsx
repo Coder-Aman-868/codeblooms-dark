@@ -78,7 +78,7 @@ const ContactSection = () => {
                                     <div>
                                         <h4 className="text-white/80 font-medium mb-1 tracking-wide">Email Us</h4>
                                         <p className="text-white/40 font-light mb-1">We typically reply within 24 hours.</p>
-                                        <a href="mailto:hello@codeblooms.com" className="text-white/80 hover:text-white transition-colors">hello@codeblooms.com</a>
+                                        <a href="mailto:hello@clearorbit.com" className="text-white/80 hover:text-white transition-colors">hello@clearorbit.com</a>
                                     </div>
                                 </div>
 
@@ -205,7 +205,7 @@ const ContactSection = () => {
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                         </svg>
-                                        <span>hello@codeblooms.com</span>
+                                        <span>hello@clearorbit.com</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

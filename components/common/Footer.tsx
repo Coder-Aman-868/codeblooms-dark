@@ -18,7 +18,7 @@ const Footer = () => {
                                     ? 'linear-gradient(180deg, var(--color-secondary) 0%, #646464 100%)'
                                     : 'linear-gradient(180deg, #E7E7E7 0%, #646464 100%)'
                             }}
-                            className="text-2xl font-bold font-semibold text-transparent bg-clip-text text-lg leading-none">Code Blooms</div>
+                            className="text-2xl font-bold font-semibold text-transparent bg-clip-text text-lg leading-none">Clear Orbit</div>
                         <p className="text-[#919191] text-sm leading-relaxed max-w-sm">
                             Empowering developers to build incredible software with modern, scalable, and dynamic web solutions.
                             We ship beautiful code that scales to billions.
