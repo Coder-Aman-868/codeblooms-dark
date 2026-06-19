@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   ],
 
   authors: [{ name: "Clear Orbit Team" }],
-  creator: "Clear Orbit",
-  metadataBase: new URL("https://yourdomain.com"),
+  creator: "Aman Siwach",
+  metadataBase: new URL("https://clear-orbit.vercel.app/"),
 
   openGraph: {
     title: "Clear Orbit - Premium Web Development Studio",

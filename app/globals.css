@@ -415,3 +415,11 @@ per-slide-active {
 @theme {
   --animate-marquee-scroll: marquee-scroll 40s linear infinite;
 }
+
+/* ============================================
+   Methodology Accordion — Progress Bar
+   ============================================ */
+@keyframes methodology-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}

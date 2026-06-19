@@ -55,22 +55,26 @@ export const METHODOLOGY_STEPS = [
     {
         number: "01",
         title: "Discovery & Strategy",
-        description: "We dive deep into your target audience, business goals, and current bottlenecks. We define the technical architecture and user journey before a single line of code is written."
+        description: "We dive deep into your target audience, business goals, and current bottlenecks. We define the technical architecture and user journey before a single line of code is written.",
+        image: "/assets/images/webp/methodology-discovery.webp"
     },
     {
         number: "02",
         title: "High-Fidelity Prototyping",
-        description: "We transform strategic insights into interactive wireframes and premium UI/UX designs, ensuring perfect alignment with your brand's DNA and conversion goals."
+        description: "We transform strategic insights into interactive wireframes and premium UI/UX designs, ensuring perfect alignment with your brand's DNA and conversion goals.",
+        image: "/assets/images/webp/methodology-prototyping.webp"
     },
     {
         number: "03",
         title: "Agile Development",
-        description: "This is where the magic happens. We build your site using modern, scalable frameworks (Next.js/React). You get weekly progress updates and staging links to see your product come to life."
+        description: "This is where the magic happens. We build your site using modern, scalable frameworks (Next.js/React). You get weekly progress updates and staging links to see your product come to life.",
+        image: "/assets/images/webp/methodology-development.webp"
     },
     {
         number: "04",
         title: "QA, Optimization & Launch",
-        description: "Rigorous cross-browser testing, accessibility audits, and Core Web Vitals optimization. We ensure a flawless deployment that search engines love and users trust."
+        description: "Rigorous cross-browser testing, accessibility audits, and Core Web Vitals optimization. We ensure a flawless deployment that search engines love and users trust.",
+        image: "/assets/images/webp/methodology-launch.webp"
     }
 ]
 export const NAV_LINKS = [

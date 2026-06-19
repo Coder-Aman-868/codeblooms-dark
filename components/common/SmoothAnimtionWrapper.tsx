@@ -15,6 +15,7 @@ export default function SmoothAnimtionWrapper({ children, className }: SmoothAni
     const sectionRef = useRef(null)
 
     useEffect(() => {
+        if (window.innerWidth <= 768) return;
         const el = sectionRef.current
 
         gsap.fromTo(

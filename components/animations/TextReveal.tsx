@@ -127,7 +127,7 @@ export default function TextReveal({
       ref={containerRef as React.RefObject<HTMLHeadingElement>}
       className={className}
     >
-      {processed}
+      {window.innerWidth >= 768 ? processed : children}
     </Tag>
   );
 }

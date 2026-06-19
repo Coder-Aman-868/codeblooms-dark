@@ -13,7 +13,7 @@ const FounderStory = () => {
                     <div className="flex flex-col gap-6 max-w-[900px] mx-auto mt-4">
                         <Paragraph animate className='text-center opacity-70 font-light leading-relaxed text-lg sm:text-xl'>
                             Clear Orbit was founded on a singular observation: brilliant SaaS products were failing because their marketing websites felt cheap, loaded slowly, and confused users.
-                        </Paragraph>
+                        </Paragraph>vv
 
                         <Paragraph animate className='text-center opacity-70 font-light leading-relaxed text-lg sm:text-xl'>
                             As a specialized, expert-led studio, Clear Orbit operates without the bloat of traditional agencies. You don't get passed off to junior developers or endless account managers. You work directly with a senior technical partner who understands both high-level business strategy and deep-level React/Next.js engineering. We build websites that act as your most relentless, high-performing asset.
