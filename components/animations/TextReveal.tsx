@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useRef,
   useMemo,
+  useState,
   Children,
   isValidElement,
   cloneElement,
@@ -11,8 +12,6 @@ import React, {
 } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface TextRevealProps {
   children: React.ReactNode;
@@ -82,6 +81,7 @@ export default function TextReveal({
   duration = 0.6
 }: TextRevealProps) {
   const containerRef = useRef<HTMLElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // Split at the React level — no DOM manipulation needed
   const processed = useMemo(() => {
@@ -90,6 +90,11 @@ export default function TextReveal({
   }, [children]);
 
   useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+  }, []);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const el = containerRef.current;
     if (!el) return;
 
@@ -120,14 +125,14 @@ export default function TextReveal({
         if (st.trigger === el) st.kill();
       });
     };
-  }, [duration, stagger]);
+  }, [duration, stagger, isDesktop]);
 
   return (
     <Tag
       ref={containerRef as React.RefObject<HTMLHeadingElement>}
       className={className}
     >
-      {window.innerWidth >= 768 ? processed : children}
+      {isDesktop ? processed : children}
     </Tag>
   );
 }

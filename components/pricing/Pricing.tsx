@@ -19,6 +19,7 @@ const Pricing = () => {
   const [activeCard, setActiveCard] = useState(0)
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current
     const stack = stackRef.current
     if (!section || !stack) return

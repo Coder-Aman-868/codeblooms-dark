@@ -9,8 +9,6 @@ import Paragraph from '../common/Paragraph'
 import Button from '../common/Button'
 import { SERVICES_DATA } from '@/helper/helper'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const CARD_COUNT = SERVICES_DATA.length
 
 const Services = () => {
@@ -28,6 +26,7 @@ const Services = () => {
 
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current
     const stack = stackRef.current
     let currentIndex = 0;

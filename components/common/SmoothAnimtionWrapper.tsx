@@ -3,8 +3,6 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerPlugin(ScrollTrigger)
-
 interface SmoothAnimtionWrapperProps {
     children: React.ReactNode
     className?: string
@@ -15,6 +13,7 @@ export default function SmoothAnimtionWrapper({ children, className }: SmoothAni
     const sectionRef = useRef(null)
 
     useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
         if (window.innerWidth <= 768) return;
         const el = sectionRef.current
 
